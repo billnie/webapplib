@@ -35,8 +35,9 @@ int main() {
     root.append(person);
     
     std::string json_file = writer.write(root);
-    count<<json_file<<endl;
-	
+    cout<<json_file.c_str()<<endl;
+
+	return 0;	
 	/*提示 webapp::Cgi在读不到CGI环境变量时会运行在调试模式，提示输入CGI参数值*/
 	
 	////////////////////////////////////////////////////////////////////////////
