@@ -33,15 +33,15 @@ int main() {
 	ConfigFile conf( "example.conf" );
 	String check_interface = conf["check_interface"];
 	
-	cout << "---------------------------------------------------------" << endl;
-	cout << "check user privilege from:" << check_interface << endl;
+//	cout << "---------------------------------------------------------" << endl;
+//	cout << "check user privilege from:" << check_interface << endl;
 	
 	HttpClient www;
 	www.request( check_interface + "?username=" + username );
 	if ( www.done() && www.content()=="CHECK_PASS" ) {
-		cout << "check pass" << endl;
+//		cout << "check pass" << endl;
 	} else {
-		cout << "check fail" << endl;
+//		cout << "check fail" << endl;
 	}
 	
 	////////////////////////////////////////////////////////////////////////////
@@ -78,10 +78,10 @@ int main() {
 	file_logger( log_file, "username:%s", username.c_str() );
 	file_logger( log_file, "usermd5:%s", md5_encode(username).c_str() );
 	
-	cout << "---------------------------------------------------------" << endl;
+//	cout << "---------------------------------------------------------" << endl;
 	String file_content;
 	file_content.load_file( log_file );
-	cout << file_content << endl;
+//	cout << file_content << endl;
 
 	////////////////////////////////////////////////////////////////////////////
 	// 5、更新用户端Cookie（Cookie、DateTime）
@@ -98,7 +98,7 @@ int main() {
 	page.set( "value", value );
 	
 	// 显示查询结果
-	cout << "---------------------------------------------------------" << endl;
+//	cout << "---------------------------------------------------------" << endl;
 	http_head();
 	page.print();
 }

@@ -22,7 +22,7 @@ namespace webapp {
 void http_head() {
 	static bool WEBAPP_ALREADY_HTTPHEAD = false;
 	if ( !WEBAPP_ALREADY_HTTPHEAD ) {
-		cout << "Content-Type: text/html\n" << endl;
+		cout << "Content-Type: text/html\n\n" << endl;
 		WEBAPP_ALREADY_HTTPHEAD = true;
 	}
 }
