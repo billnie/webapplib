@@ -37,7 +37,6 @@ int main() {
     std::string json_file = writer.write(root);
     cout<<json_file.c_str()<<endl;
 
-	return 0;	
 	/*提示 webapp::Cgi在读不到CGI环境变量时会运行在调试模式，提示输入CGI参数值*/
 	
 	////////////////////////////////////////////////////////////////////////////
@@ -77,7 +76,10 @@ int main() {
 		} else {
 			cout << mysqlclient.error() << endl;
 		}
-        mysqlclient.query("INSERT INTO log (tm, header, content, dfa) VALUES (from_unixtime(1513926245),\"ios\",\"hello world\",\"2314234124\")");
+        	string ss;
+		ss = "INSERT INTO log (tm, header, content, dfa) VALUES (from_unixtime(1513926245),\'ios\',\'hello world\',\'2314234124\')";
+		cout<<ss<<endl;
+		mysqlclient.query("INSERT INTO log (tm, header, content, dfa) VALUES (from_unixtime(1513926245),\'ios\',\'hello world\',\'2314234124\')");
 	}
 
 	#endif //_WEBAPPLIB_NOMYSQL
