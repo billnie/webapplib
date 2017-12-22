@@ -2,52 +2,52 @@
 # /// Web Application Library Makefile
 
 ################################################################################
-# ʹ�÷���
+# 使用方法
 
-# ʹ�� make ����������ɿ��ļ���
-# ʹ�� make install ������ļ�����ͷ�ļ����Ƶ�ϵͳĿ¼��
-# ʹ�� make uninstall ����ɾ��ϵͳĿ¼�еĿ��ļ�����ͷ�ļ���
-# ʹ�� make clean ���������ǰĿ¼�ı���������ʱ�ļ���
-# ʹ�ö�̬��ʱ��Ĭ������£�����ִ�� make install �����ļ���װ��ϵͳĿ¼��
-# ����Ŀ��ʹ�� webapplib��Makefile ���ݿɲο� Makefile.example��
-# ���߱� root Ȩ�޵��û����Խ��� Makefile �� $(LIBPATH) ��Ϊ����Ŀ¼��
-# ������Ŀ¼���ӵ�ִ���ļ����л����Ļ������� LD_LIBRARY_PATH ��.
+# 使用 make 命令编译生成库文件；
+# 使用 make install 命令将库文件、库头文件复制到系统目录；
+# 使用 make uninstall 命令删除系统目录中的库文件、库头文件；
+# 使用 make clean 命令清除当前目录的编译结果及临时文件；
+# 使用动态库时（默认情况下）必须执行 make install 将库文件安装到系统目录，
+# 在项目中使用 webapplib，Makefile 内容可参考 Makefile.example；
+# 不具备 root 权限的用户可以将本 Makefile 中 $(LIBPATH) 改为其他目录，
+# 并将该目录添加到执行文件运行环境的环境变量 LD_LIBRARY_PATH 中.
 
 ################################################################################
-# ��ǰWEB������汾�� $(WEBAPPLIB_VERSION)
+# 当前WEB开发库版本号 $(WEBAPPLIB_VERSION)
 WEBAPPLIB_VERSION = 1.2
 WEBAPPLIB_SONAME = 1
 
-# C++ ����������
+# C++ 编译器命令
 CXX = g++
 
-# ����ѡ��
+# 编译选项
 CXXFLAGS = -Wall -O2 -fPIC #-s
-# -Wall ��ʾ���о�����Ϣ
-# -O2 �����Ż�
-# -fPIC �����ַ�޹ش��룬�������ɶ�̬���ӿ�
-# -s ȥ�����Է�����Ϣ����С�����ļ��ߴ�
+# -Wall 显示所有警告信息
+# -O2 编译优化
+# -fPIC 编译地址无关代码，用于生成动态链接库
+# -s 去除调试符号信息，减小对象文件尺寸
 
 ################################################################################
-# ϵͳͷ�ļ�Ŀ¼
+# 系统头文件目录
 INCPATH = /usr/local/include/webapplib
-# ϵͳ���ļ�Ŀ¼
+# 系统库文件目录
 LIBPATH = /usr/local/lib
 SYSLIB = /usr/lib
 
 ################################################################################
-# �Ƿ���� MysqlClient���������� MysqlClient ��ע�ͱ�����
+# 是否编译 MysqlClient，若不编译 MysqlClient 则注释本变量
 MYSQL = yes
-# MySQL ͷ�ļ�·��
+# MySQL 头文件路径
 MYSQLINC = -I/usr/include/mysql
-# MySQL ���ļ�·�������Ӳ���
+# MySQL 库文件路径及链接参数
 MYSQLLIB = -L/usr/lib/mysql -lmysqlclient -lm -lz
 
 ################################################################################
-# ����������ļ��б�
+# 开发库对象文件列表
 LIBS = String Encode Cgi FileSystem DateTime Template HttpClient TextFile ConfigFile Utility
 
-# �Ƿ����MysqlClient���
+# 是否编译MysqlClient组件
 ifdef MYSQL
 LIBS += MysqlClient
 else
@@ -58,31 +58,31 @@ endif
 
 OBJS = $(foreach n,$(LIBS),wa$(n).o)
 	
-# ������ͷ�ļ��б�
+# 开发库头文件列表
 WEBAPPINC = webapplib.h $(OBJS:%.o=%.h)
-# �����⾲̬���ļ���
+# 开发库静态库文件名
 WEBAPPLIB = libwebapp.a.$(WEBAPPLIB_VERSION)
-# �����⶯̬���ӿ��ļ���
+# 开发库动态链接库文件名
 WEBAPPDLL = libwebapp.so.$(WEBAPPLIB_VERSION)
 WEBAPPSO = libwebapp.so.$(WEBAPPLIB_SONAME)
 
 ################################################################################
-# ����Ŀ��
+# 编译目标
 all: $(WEBAPPLIB) $(WEBAPPDLL)
 
-# ���뿪��������ļ�
+# 编译开发库对象文件
 $(OBJS): %.o: %.cpp %.h
 	@echo ""
 	@echo "Compile $(@:%.o=%.cpp) ..."
 	$(CXX) $(CXXFLAGS) -c $(@:%.o=%.cpp) $(MYSQLINC)
 
-# ���ɾ�̬���ļ�
+# 生成静态库文件
 $(WEBAPPLIB): $(OBJS)
 	@echo ""
 	@echo "Build $(WEBAPPLIB) ..."
 	$(AR) rc $@ $(OBJS)
 
-# ���ɶ�̬���ļ�
+# 生成动态库文件
 $(WEBAPPDLL): $(OBJS)
 	@echo ""
 	@echo "Build $(WEBAPPDLL) ..."
@@ -94,7 +94,7 @@ $(WEBAPPDLL): $(OBJS)
 	@echo ""
 
 ################################################################################
-# ִ�а�װ
+# 执行安装
 install:
 	@echo ""
 	@echo "Install webapplib ..."
@@ -110,7 +110,7 @@ install:
 	ln -fs $(LIBPATH)/$(WEBAPPDLL) $(SYSLIB)/libwebapp.so
 	ln -fs $(LIBPATH)/$(WEBAPPDLL) $(SYSLIB)/$(WEBAPPSO)
 
-# ִ��ɾ��
+# 执行删除
 uninstall:
 	@echo ""
 	@echo "Uninstall webapplib ..."
@@ -127,7 +127,7 @@ uninstall:
 	unlink $(SYSLIB)/libwebapp.a
 	unlink $(SYSLIB)/libwebapp.so	
 	
-# ��ձ�����
+# 清空编译结果
 clean:
 	@echo ""
 	@echo "Clean webapplib ..."
