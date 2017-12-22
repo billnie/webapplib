@@ -19,11 +19,23 @@ int main() {
 
 	////////////////////////////////////////////////////////////////////////////
 	// 1、读取CGI参数和Cookie数据（Cgi、Cookie）
-	
+	http_head();	
 	Cgi cgi;
 	Cookie cookie;
 	String username = cgi["username"];
 	String usercookie = cookie["usercookie"];
+    
+    //jsontest
+    Json::Value root;
+    Json::FastWriter writer;
+    Json::Value person;
+    
+    person["name"] = "hello world";
+    person["age"] = 100;
+    root.append(person);
+    
+    std::string json_file = writer.write(root);
+    count<<json_file<<endl;
 	
 	/*提示 webapp::Cgi在读不到CGI环境变量时会运行在调试模式，提示输入CGI参数值*/
 	
@@ -33,15 +45,15 @@ int main() {
 	ConfigFile conf( "example.conf" );
 	String check_interface = conf["check_interface"];
 	
-//	cout << "---------------------------------------------------------" << endl;
-//	cout << "check user privilege from:" << check_interface << endl;
+	cout << "---------------------------------------------------------" << endl;
+	cout << "check user privilege from:" << check_interface << endl;
 	
 	HttpClient www;
 	www.request( check_interface + "?username=" + username );
 	if ( www.done() && www.content()=="CHECK_PASS" ) {
-//		cout << "check pass" << endl;
+		cout << "check pass" << endl;
 	} else {
-//		cout << "check fail" << endl;
+		cout << "check fail" << endl;
 	}
 	
 	////////////////////////////////////////////////////////////////////////////
@@ -51,11 +63,13 @@ int main() {
 
 	String sql;
 	sql.sprintf( "SELECT value FROM kkkk WHERE user='%s'", escape_sql(username).c_str() );
-	
+
+	cout<<sql;	
 	MysqlClient mysqlclient;
 	MysqlData mysqldata;
 
-	mysqlclient.connect( "example.mysql.com", "user", "pwd", "test" );
+	mysqlclient.connect( "127.0.0.1", "root", "jfh_2017", "test" );
+
 	if ( mysqlclient.is_connected() ) {
 		if ( mysqlclient.query(sql,mysqldata) ) {
 			value = mysqldata( 0, "value" );
@@ -78,10 +92,10 @@ int main() {
 	file_logger( log_file, "username:%s", username.c_str() );
 	file_logger( log_file, "usermd5:%s", md5_encode(username).c_str() );
 	
-//	cout << "---------------------------------------------------------" << endl;
+	cout << "---------------------------------------------------------" << endl;
 	String file_content;
 	file_content.load_file( log_file );
-//	cout << file_content << endl;
+	cout << file_content << endl;
 
 	////////////////////////////////////////////////////////////////////////////
 	// 5、更新用户端Cookie（Cookie、DateTime）
@@ -99,7 +113,7 @@ int main() {
 	
 	// 显示查询结果
 //	cout << "---------------------------------------------------------" << endl;
-	http_head();
+//	http_head();
 	page.print();
 }
 
