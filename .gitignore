@@ -1,0 +1,7 @@
+/build
+*.a
+*.o
+*.a.*
+*.so
+*.so.*
+example
