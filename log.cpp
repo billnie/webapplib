@@ -27,13 +27,13 @@ int main() {
     Json::FastWriter writer;
     Json::Value person;
     
-    person["name"] = "hello world";
-    person["age"] = 100;
-    root.append(person);
+    root["msg"] = "ok";
+    root["code"] = 0;
+ //   root.append(person);
     
     std::string json_file = writer.write(root);
     cout<<json_file.c_str()<<endl;
-
+    cout<< cgi._content.c_str()<<endl;
 	////////////////////////////////////////////////////////////////////////////
 
 	MysqlClient mysqlclient;
