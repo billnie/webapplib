@@ -25,7 +25,7 @@ LIBPATH = /usr/local/lib
 # MySQL 头文件路径
 MYSQLINC = -I/usr/include/mysql
 # MySQL 库文件路径及链接参数
-MYSQLLIB = -L/usr/lib/mysql -lmysqlclient -lm -lz
+MYSQLLIB = -L/usr/lib/mysql -lmysqlclient -lm -lz -ljsoncpp
 
 ################################################################################
 # 以下部分一般不需更改
