@@ -18,4 +18,4 @@
 curl -v -d "content=curlpost&dfa=12345" "http://49.4.0.191/cgi-bin/log.cgi"
 
 
-curl -l -H "Content-type: application/json" -X POST -d '{"phone":"13521389587","password":"test"}' http://49.4.0.191/cgi-bin/log.cgi
+curl -v -l -H "Content-type:application/json;charset=UTF-8" -X POST -d '{"phone":"13521389587","password":"test"}' http://49.4.0.191/cgi-bin/log.cgi
