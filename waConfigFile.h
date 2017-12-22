@@ -1,6 +1,6 @@
 /// \file waConfigFile.h
-/// INI¸ñÊ½ÅäÖÃÎÄ¼ş½âÎöÀàÍ·ÎÄ¼ş
-/// ÒÀÀµÓÚ webapp::String, webapp::TextFile
+/// INIæ ¼å¼é…ç½®æ–‡ä»¶è§£æç±»å¤´æ–‡ä»¶
+/// ä¾èµ–äº webapp::String, webapp::TextFile
 
 #ifndef _WEBAPPLIB_CONFIGFILE_H_
 #define _WEBAPPLIB_CONFIGFILE_H_
@@ -14,70 +14,70 @@ using namespace std;
 /// Web Application Library namaspace
 namespace webapp {
 
-/// INI¸ñÊ½ÅäÖÃÎÄ¼ş½âÎöÀà
+/// INIæ ¼å¼é…ç½®æ–‡ä»¶è§£æç±»
 class ConfigFile
 {
 	public:
 	
-	/// Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// é»˜è®¤æ„é€ å‡½æ•°
 	ConfigFile(): _file(""), _unsaved(false) {};
 	
-	/// ²ÎÊıÎªÅäÖÃÎÄ¼şÃûµÄ¹¹Ôìº¯Êı
+	/// å‚æ•°ä¸ºé…ç½®æ–‡ä»¶åçš„æ„é€ å‡½æ•°
 	ConfigFile( const string &file )
 	: _file(""), _unsaved(false) {
 		this->load( file );
 	}
 	
-	/// Îö¹¹º¯Êı
+	/// ææ„å‡½æ•°
 	~ConfigFile() {
 		if ( _unsaved ) this->save();
 	};
 
 	////////////////////////////////////////////////////////////////////////////
-	/// ¶ÁÈ¡½âÎöÅäÖÃÎÄ¼ş
+	/// è¯»å–è§£æé…ç½®æ–‡ä»¶
 	bool load( const string &file );
 	
-	/// ±£´æÅäÖÃÎÄ¼ş
+	/// ä¿å­˜é…ç½®æ–‡ä»¶
 	bool save( const string &file = "" );
 
-	/// ¼ì²éÅäÖÃÏîÊÇ·ñ´æÔÚ	
+	/// æ£€æŸ¥é…ç½®é¡¹æ˜¯å¦å­˜åœ¨	
 	bool value_exist( const string &block, const string &name );
 	
-	/// ¼ì²éÅäÖÃ¿éÊÇ·ñ´æÔÚ
+	/// æ£€æŸ¥é…ç½®å—æ˜¯å¦å­˜åœ¨
 	bool block_exist( const string &block );
 
 	////////////////////////////////////////////////////////////////////////////
-	/// ¶ÁÈ¡ÅäÖÃÏî²ÎÊıÖµ
+	/// è¯»å–é…ç½®é¡¹å‚æ•°å€¼
 	inline string operator[] ( const string &name ) {
 		return this->get_value( "", name );
 	}
 
-	/// ¶ÁÈ¡ÅäÖÃÏî²ÎÊıÖµ
+	/// è¯»å–é…ç½®é¡¹å‚æ•°å€¼
 	string get_value( const string &block, const string &name, const string &default_value = "" );
 
-	/// ¶ÁÈ¡Ö¸¶¨ÅäÖÃ¿éµÄÈ«²¿ÅäÖÃÏî²ÎÊıÖµ
+	/// è¯»å–æŒ‡å®šé…ç½®å—çš„å…¨éƒ¨é…ç½®é¡¹å‚æ•°å€¼
 	map<string,string> get_block( const string &block );
 
-	/// ¶ÁÈ¡È«²¿ÅäÖÃ¿éÁĞ±í					
+	/// è¯»å–å…¨éƒ¨é…ç½®å—åˆ—è¡¨					
 	vector<string> block_list();
 	
 	////////////////////////////////////////////////////////////////////////////
-	/// ¸üĞÂÅäÖÃÏî
+	/// æ›´æ–°é…ç½®é¡¹
 	inline bool set_value( const string &name, const string &value ) {
 		return this->set_value( "", name, value );
 	}
 
-	/// ¸üĞÂÅäÖÃÏî
+	/// æ›´æ–°é…ç½®é¡¹
 	bool set_value( const string &block, const string &name, const string &value );
 	
-	/// ¸üĞÂÖ¸¶¨ÅäÖÃ¿éµÄÅäÖÃÏîÁĞ±í
+	/// æ›´æ–°æŒ‡å®šé…ç½®å—çš„é…ç½®é¡¹åˆ—è¡¨
 	bool set_block( const string &block, const map<string,string> &valuelist );
 
 	////////////////////////////////////////////////////////////////////////////
-	/// É¾³ıÅäÖÃÏî
+	/// åˆ é™¤é…ç½®é¡¹
 	void del_value( const string &block, const string &name );
 	
-	/// É¾³ıÅäÖÃ¿é
+	/// åˆ é™¤é…ç½®å—
 	void del_block( const string &block );
 	
 	////////////////////////////////////////////////////////////////////////////

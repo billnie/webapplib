@@ -1,7 +1,7 @@
 /// \file waString.h
-/// webapp::StringÀàÍ·ÎÄ¼ş
-/// ¼Ì³Ğ×ÔstringµÄ×Ö·û´®Àà
-/// <a href=std_string.html>»ùÀàstringÊ¹ÓÃËµÃ÷ÎÄµµ</a>
+/// webapp::Stringç±»å¤´æ–‡ä»¶
+/// ç»§æ‰¿è‡ªstringçš„å­—ç¬¦ä¸²ç±»
+/// <a href=std_string.html>åŸºç±»stringä½¿ç”¨è¯´æ˜æ–‡æ¡£</a>
 
 #ifndef _WEBAPPLIB_STRING_H_
 #define _WEBAPPLIB_STRING_H_ 
@@ -20,123 +20,123 @@ using namespace std;
 namespace webapp {
 	
 ////////////////////////////////////////////////////////////////////////////////	
-// ¿Õ°××Ö·ûÁĞ±í
+// ç©ºç™½å­—ç¬¦åˆ—è¡¨
 const char BLANK_CHARS[] = " \t\n\r\v\f";
 
 ////////////////////////////////////////////////////////////////////////////////
-/// long int×ª»»Îªstring
+/// long intè½¬æ¢ä¸ºstring
 string itos( const long i, const ios::fmtflags base = ios::dec );
-/// string×ª»»Îªint
+/// stringè½¬æ¢ä¸ºint
 long stoi( const string &s, const ios::fmtflags base = ios::dec );
 
-/// double×ª»»Îªstring
+/// doubleè½¬æ¢ä¸ºstring
 string ftos( const double f, const int ndigit = 2 );
-/// string×ª»»Îªdouble
+/// stringè½¬æ¢ä¸ºdouble
 double stof( const string &s );
 
-/// ÅĞ¶ÏÒ»¸öË«×Ö½Ú×Ö·ûÊÇ·ñÊÇGBK±àÂëºº×Ö
+/// åˆ¤æ–­ä¸€ä¸ªåŒå­—èŠ‚å­—ç¬¦æ˜¯å¦æ˜¯GBKç¼–ç æ±‰å­—
 bool isgbk( const unsigned char c1, const unsigned char c2 );
 
-/// ¿É±ä²ÎÊı×Ö·û´®¸ñÊ½»¯£¬Óëva_start()¡¢va_end()ºêÅäºÏÊ¹ÓÃ
+/// å¯å˜å‚æ•°å­—ç¬¦ä¸²æ ¼å¼åŒ–ï¼Œä¸va_start()ã€va_end()å®é…åˆä½¿ç”¨
 string va_sprintf( va_list ap, const string &format );
-/// ¸ñÊ½»¯×Ö·û´®²¢·µ»Ø
+/// æ ¼å¼åŒ–å­—ç¬¦ä¸²å¹¶è¿”å›
 string va_str( const char *format, ... );
 
 ////////////////////////////////////////////////////////////////////////////////
-/// ¼Ì³Ğ×ÔstringµÄ×Ö·û´®Àà
-/// <a href="std_string.html">»ùÀàstringÊ¹ÓÃËµÃ÷ÎÄµµ</a>
+/// ç»§æ‰¿è‡ªstringçš„å­—ç¬¦ä¸²ç±»
+/// <a href="std_string.html">åŸºç±»stringä½¿ç”¨è¯´æ˜æ–‡æ¡£</a>
 class String : public string {
 	public:
 	
 	////////////////////////////////////////////////////////////////////////////
-	/// Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// é»˜è®¤æ„é€ å‡½æ•°
 	String(){}
 	
-	/// ²ÎÊıÎªchar*µÄ¹¹Ôìº¯Êı
+	/// å‚æ•°ä¸ºchar*çš„æ„é€ å‡½æ•°
 	String( const char *s ) {
 		if( s ) this->assign( s );
 		else this->erase();
 	}
 	
-	/// ²ÎÊıÎªstringµÄ¹¹Ôìº¯Êı
+	/// å‚æ•°ä¸ºstringçš„æ„é€ å‡½æ•°
 	String( const string &s ) {
 		this->assign( s );
 	}
 	
-	/// Îö¹¹º¯Êı
+	/// ææ„å‡½æ•°
 	virtual ~String(){}
 	
 	////////////////////////////////////////////////////////////////////////////
-	/// \enum º¯ÊıString::split()·Ö¸î½á¹û·µ»Ø·½Ê½
+	/// \enum å‡½æ•°String::split()åˆ†å‰²ç»“æœè¿”å›æ–¹å¼
 	enum split_mode {
-		/// ºöÂÔÁ¬Ğø¶à¸ö·Ö¸ô·û£¬·µ»Ø½á¹û²»º¬¿Õ×Ö¶Î
+		/// å¿½ç•¥è¿ç»­å¤šä¸ªåˆ†éš”ç¬¦ï¼Œè¿”å›ç»“æœä¸å«ç©ºå­—æ®µ
 		SPLIT_IGNORE_BLANK,
-		/// ²»ºöÂÔÁ¬Ğø¶à¸ö·Ö¸ô·û£¬·µ»Ø½á¹û°üº¬¿Õ×Ö¶Î
+		/// ä¸å¿½ç•¥è¿ç»­å¤šä¸ªåˆ†éš”ç¬¦ï¼Œè¿”å›ç»“æœåŒ…å«ç©ºå­—æ®µ
 		SPLIT_KEEP_BLANK
 	};	
 
 	////////////////////////////////////////////////////////////////////////////
-	/// ·µ»Ø char* ĞÍ½á¹û£¬µ÷ÓÃÕß±ØĞëµ÷ÓÃ delete[] ÊÍ·ÅËù·µ»ØÄÚ´æ
+	/// è¿”å› char* å‹ç»“æœï¼Œè°ƒç”¨è€…å¿…é¡»è°ƒç”¨ delete[] é‡Šæ”¾æ‰€è¿”å›å†…å­˜
 	char* c_char() const;
 	
-	/// ·µ»Ø×Ö·ûÊıÁ¿£¬Ö§³ÖÈ«½Ç×Ö·û
+	/// è¿”å›å­—ç¬¦æ•°é‡ï¼Œæ”¯æŒå…¨è§’å­—ç¬¦
 	string::size_type w_length() const;
-	/// ½ØÈ¡×Ó×Ö·û´®£¬Ö§³ÖÈ«½Ç×Ö·û
+	/// æˆªå–å­å­—ç¬¦ä¸²ï¼Œæ”¯æŒå…¨è§’å­—ç¬¦
 	String w_substr( const string::size_type pos = 0, 
 		const string::size_type n = npos ) const;
 
-	/// Çå³ı×ó²à¿Õ°××Ö·û
+	/// æ¸…é™¤å·¦ä¾§ç©ºç™½å­—ç¬¦
 	void trim_left( const string &blank = BLANK_CHARS );
-	/// Çå³ıÓÒ²à¿Õ°××Ö·û
+	/// æ¸…é™¤å³ä¾§ç©ºç™½å­—ç¬¦
 	void trim_right( const string &blank = BLANK_CHARS );
-	/// Çå³ıÁ½²à¿Õ°××Ö·û
+	/// æ¸…é™¤ä¸¤ä¾§ç©ºç™½å­—ç¬¦
 	void trim( const string &blank = BLANK_CHARS );
 
-	/// ´Ó×ó±ß½ØÈ¡Ö¸¶¨³¤¶È×Ó´®
+	/// ä»å·¦è¾¹æˆªå–æŒ‡å®šé•¿åº¦å­ä¸²
 	String left( const string::size_type n ) const;
-	/// ´ÓÖĞ¼ä½ØÈ¡Ö¸¶¨³¤¶È×Ó´®
+	/// ä»ä¸­é—´æˆªå–æŒ‡å®šé•¿åº¦å­ä¸²
 	String mid( const string::size_type pos, 
 		const string::size_type n = npos ) const;
-	/// ´ÓÓÒ±ß½ØÈ¡Ö¸¶¨³¤¶È×Ó´®
+	/// ä»å³è¾¹æˆªå–æŒ‡å®šé•¿åº¦å­ä¸²
 	String right( const string::size_type n ) const;
 	
-	/// µ÷Õû×Ö·û´®³¤¶È
+	/// è°ƒæ•´å­—ç¬¦ä¸²é•¿åº¦
 	void resize( const string::size_type n );
 
-	/// Í³¼ÆÖ¸¶¨×Ó´®³öÏÖµÄ´ÎÊı
+	/// ç»Ÿè®¡æŒ‡å®šå­ä¸²å‡ºç°çš„æ¬¡æ•°
 	int count( const string &str ) const;
 	
-	/// ¸ù¾İ·Ö¸î·û·Ö¸î×Ö·û´®
+	/// æ ¹æ®åˆ†å‰²ç¬¦åˆ†å‰²å­—ç¬¦ä¸²
 	vector<String> split( const string &tag, const int limit = 0, 
 		const split_mode mode = SPLIT_IGNORE_BLANK ) const;
 	
-	/// ×ª»»×Ö·û´®ÎªMAP½á¹¹(map<string,string>)
+	/// è½¬æ¢å­—ç¬¦ä¸²ä¸ºMAPç»“æ„(map<string,string>)
 	map<string,string> tomap( const string &itemtag = "&", 
 		const string &exptag = "=" ) const;
 
-	/// ×éºÏ×Ö·û´®
+	/// ç»„åˆå­—ç¬¦ä¸²
 	void join( const vector<string> &strings, const string &tag );
 	void join( const vector<String> &strings, const string &tag );
 
-	/// ¸ñÊ½»¯¸³Öµ
+	/// æ ¼å¼åŒ–èµ‹å€¼
 	bool sprintf( const char *format, ... );
 	
-	/// Ìæ»»
+	/// æ›¿æ¢
 	int replace( const string &oldstr, const string &newstr );
-	/// È«ÎÄÌæ»»
+	/// å…¨æ–‡æ›¿æ¢
 	int replace_all( const string &oldstr, const string &newstr );
 	
-	/// ×ª»»Îª´óĞ´×ÖÄ¸
+	/// è½¬æ¢ä¸ºå¤§å†™å­—æ¯
 	void upper();
-	/// ×ª»»ÎªĞ¡Ğ´×ÖÄ¸
+	/// è½¬æ¢ä¸ºå°å†™å­—æ¯
 	void lower();
 	
-	/// ×Ö·û´®ÊÇ·ñÍêÈ«ÓÉÊı×Ö×é³É
+	/// å­—ç¬¦ä¸²æ˜¯å¦å®Œå…¨ç”±æ•°å­—ç»„æˆ
 	bool isnum() const;
 	
-	/// ¶ÁÈ¡ÎÄ¼şµ½×Ö·û´®
+	/// è¯»å–æ–‡ä»¶åˆ°å­—ç¬¦ä¸²
 	bool load_file( const string &filename );
-	/// ±£´æ×Ö·û´®µ½ÎÄ¼ş
+	/// ä¿å­˜å­—ç¬¦ä¸²åˆ°æ–‡ä»¶
 	bool save_file( const string &filename, const ios::openmode mode = ios::trunc|ios::out,
 		const mode_t permission = S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH ) const;
 };

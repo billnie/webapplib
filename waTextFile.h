@@ -1,7 +1,7 @@
 /// \file waTextFile.h
-/// ¹Ì¶¨·Ö¸ô·ûÎÄ±¾ÎÄ¼ş¶ÁÈ¡½âÎöÀàÍ·ÎÄ¼ş
-/// ¶ÁÈ¡½âÎö¹Ì¶¨·Ö¸ô·ûÎÄ±¾ÎÄ¼ş
-/// ÒÀÀµÓÚ webapp::String
+/// å›ºå®šåˆ†éš”ç¬¦æ–‡æœ¬æ–‡ä»¶è¯»å–è§£æç±»å¤´æ–‡ä»¶
+/// è¯»å–è§£æå›ºå®šåˆ†éš”ç¬¦æ–‡æœ¬æ–‡ä»¶
+/// ä¾èµ–äº webapp::String
 
 #ifndef _WEBAPPLIB_TEXTFILE_H_
 #define _WEBAPPLIB_TEXTFILE_H_ 
@@ -14,35 +14,35 @@ using namespace std;
 /// Web Application Library namaspace
 namespace webapp {
 	
-/// ¹Ì¶¨·Ö¸ô·ûÎÄ±¾ÎÄ¼ş¶ÁÈ¡½âÎöÀà
+/// å›ºå®šåˆ†éš”ç¬¦æ–‡æœ¬æ–‡ä»¶è¯»å–è§£æç±»
 class TextFile {
 	public:
 		
-	/// Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// é»˜è®¤æ„é€ å‡½æ•°
 	TextFile():_fp(0), _line(0), _len(0)
 	{};
 	
-	/// ²ÎÊıÎªÎÄ±¾ÎÄ¼şÃûµÄ¹¹Ôìº¯Êı
+	/// å‚æ•°ä¸ºæ–‡æœ¬æ–‡ä»¶åçš„æ„é€ å‡½æ•°
 	TextFile( const string &file )
 	:_fp(0), _line(0), _len(0) {
 		this->open( file );
 	}
 	
-	/// Îö¹¹º¯Êı
+	/// ææ„å‡½æ•°
 	~TextFile() {
 		this->close();
 	}
 	
-	/// ´ò¿ªÎÄ±¾ÎÄ¼ş
+	/// æ‰“å¼€æ–‡æœ¬æ–‡ä»¶
 	bool open( const string &file );
 	
-	/// ¹Ø±ÕÎÄ±¾ÎÄ¼ş
+	/// å…³é—­æ–‡æœ¬æ–‡ä»¶
 	void close();
 	
-	/// ¶ÁÈ¡ÏÂÒ»ĞĞ
+	/// è¯»å–ä¸‹ä¸€è¡Œ
 	bool next_line( string &line );
 	
-	/// ¶ÁÈ¡ÏÂÒ»ĞĞ²¢°´·Ö¸ô·û²ğ·Ö×Ö¶Î
+	/// è¯»å–ä¸‹ä¸€è¡Œå¹¶æŒ‰åˆ†éš”ç¬¦æ‹†åˆ†å­—æ®µ
 	bool next_fields( vector<String> &fields, const string &split="\t", const int limit=0 );
 	
 	////////////////////////////////////////////////////////////////////////////

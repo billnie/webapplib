@@ -1,8 +1,8 @@
 /// \file waMysqlClient.h
-/// webapp::ysqlClient,webapp::MysqlDataÀàÍ·ÎÄ¼ş
-/// MySQLÊı¾İ¿âC++½Ó¿Ú
+/// webapp::ysqlClient,webapp::MysqlDataç±»å¤´æ–‡ä»¶
+/// MySQLæ•°æ®åº“C++æ¥å£
 
-// ±àÒë²ÎÊı:
+// ç¼–è¯‘å‚æ•°:
 // (CC) -I /usr/local/include/mysql/ -L /usr/local/lib/mysql -lmysqlclient -lm
 
 #ifndef _WEBAPPLIB_MYSQLCLIENT_H_
@@ -18,23 +18,23 @@ using namespace std;
 /// Web Application Library namaspace
 namespace webapp {
 
-/// \defgroup waMysqlClient waMysqlClientÏà¹ØÊı¾İÀàĞÍÓëÈ«¾Öº¯Êı
+/// \defgroup waMysqlClient waMysqlClientç›¸å…³æ•°æ®ç±»å‹ä¸å…¨å±€å‡½æ•°
 
 /// \ingroup waMysqlClient
 /// \typedef MysqlDataRow 
-/// MysqlData Êı¾İĞĞÀàĞÍ (map<string,string>)
+/// MysqlData æ•°æ®è¡Œç±»å‹ (map<string,string>)
 typedef map<string,string> MysqlDataRow;
 
-/// SQLÓï¾ä×Ö·û×ªÒå
+/// SQLè¯­å¥å­—ç¬¦è½¬ä¹‰
 string escape_sql( const string &str );
 
-/// MySQLÊı¾İ¼¯Àà
+/// MySQLæ•°æ®é›†ç±»
 class MysqlData {
 	friend class MysqlClient;
 	
 	protected:
 	
-	/// Ìî³äMysqlDataÊı¾İ
+	/// å¡«å……MysqlDataæ•°æ®
 	bool fill_data( MYSQL *mysql );
 	
 	size_t _rows, _cols, _curpos;
@@ -48,77 +48,77 @@ class MysqlData {
 	////////////////////////////////////////////////////////////////////////////
 	public:
 
-	/// MysqlData¹¹Ôìº¯Êı
+	/// MysqlDataæ„é€ å‡½æ•°
 	MysqlData():
 	_rows(0), _cols(0), _curpos(0), _fetched(0),
 	_mysqlres(0), _mysqlfields(0)
 	{};
 	
-	/// MysqlDataÎö¹¹º¯Êı
+	/// MysqlDataææ„å‡½æ•°
 	virtual ~MysqlData();
 	
-	/// ·µ»ØÖ¸¶¨Î»ÖÃµÄMysqlDataÊı¾İ
-	/// \param row ĞĞÎ»ÖÃ
-	/// \param col ÁĞÎ»ÖÃ
-	/// \return Êı¾İ×Ö·û´®
+	/// è¿”å›æŒ‡å®šä½ç½®çš„MysqlDataæ•°æ®
+	/// \param row è¡Œä½ç½®
+	/// \param col åˆ—ä½ç½®
+	/// \return æ•°æ®å­—ç¬¦ä¸²
 	inline string operator() ( const size_t row, const size_t col ) {
 		return this->get_data( row, col );
 	}
-	/// ·µ»ØÖ¸¶¨Î»ÖÃµÄMysqlDataÊı¾İ
+	/// è¿”å›æŒ‡å®šä½ç½®çš„MysqlDataæ•°æ®
 	string get_data( const size_t row, const size_t col );
 
-	/// ·µ»ØÖ¸¶¨×Ö¶ÎµÄMysqlDataÊı¾İ
-	/// \param row ĞĞÎ»ÖÃ
-	/// \param field ×Ö¶ÎÃû
-	/// \return Êı¾İ×Ö·û´®
+	/// è¿”å›æŒ‡å®šå­—æ®µçš„MysqlDataæ•°æ®
+	/// \param row è¡Œä½ç½®
+	/// \param field å­—æ®µå
+	/// \return æ•°æ®å­—ç¬¦ä¸²
 	inline string operator() ( const size_t row, const string &field ) {
 		return this->get_data( row, field );
 	}
-	/// ·µ»ØÖ¸¶¨×Ö¶ÎµÄMysqlDataÊı¾İ
+	/// è¿”å›æŒ‡å®šå­—æ®µçš„MysqlDataæ•°æ®
 	string get_data( const size_t row, const string &field );
 
-	/// ·µ»ØÖ¸¶¨Î»ÖÃµÄMysqlDataÊı¾İĞĞ
+	/// è¿”å›æŒ‡å®šä½ç½®çš„MysqlDataæ•°æ®è¡Œ
 	MysqlDataRow get_row( const size_t row = 0 );
 
-	/// ·µ»ØMysqlDataÊı¾İĞĞÊı
+	/// è¿”å›MysqlDataæ•°æ®è¡Œæ•°
 	inline size_t rows() const {
 		return _rows;
 	}
-	/// ·µ»ØMysqlDataÊı¾İÁĞÊı
+	/// è¿”å›MysqlDataæ•°æ®åˆ—æ•°
 	inline size_t cols() const {
 		return _cols;
 	}
 	
-	/// ·µ»Ø×Ö¶ÎÎ»ÖÃ
+	/// è¿”å›å­—æ®µä½ç½®
 	int field_pos( const string &field );
-	/// ·µ»Ø×Ö¶ÎÃû³Æ
+	/// è¿”å›å­—æ®µåç§°
 	string field_name( const size_t col ) const;
 
 	////////////////////////////////////////////////////////////////////////////
 	private:
 	
-	/// ½ûÖ¹µ÷ÓÃ¿½±´¹¹Ôìº¯Êı
+	/// ç¦æ­¢è°ƒç”¨æ‹·è´æ„é€ å‡½æ•°
 	MysqlData( MysqlData &copy );
-	/// ½ûÖ¹µ÷ÓÃ¿½±´¸³Öµ²Ù×÷
+	/// ç¦æ­¢è°ƒç”¨æ‹·è´èµ‹å€¼æ“ä½œ
 	MysqlData& operator = ( const MysqlData& copy );
 };
 
-/// MySQLÊı¾İ¿âÁ¬½ÓÀà
+/// MySQLæ•°æ®åº“è¿æ¥ç±»
 class MysqlClient {
 	public:
 	
-	/// MysqlÄ¬ÈÏ¹¹Ôìº¯Êı
+	/// Mysqlé»˜è®¤æ„é€ å‡½æ•°
 	MysqlClient():
 	_connected(false)
 	{};
 	
-	/// Mysql¹¹Ôìº¯Êı
-	/// \param host MySQLÖ÷»úIP
-	/// \param user MySQLÓÃ»§Ãû
-	/// \param pwd ÓÃ»§¿ÚÁî
-	/// \param database Òª´ò¿ªµÄÊı¾İ¿â
-	/// \param port Êı¾İ¿â¶Ë¿Ú£¬Ä¬ÈÏÎª0
-	/// \param socket UNIX_SOCKET£¬Ä¬ÈÏÎªNULL
+	/// Mysqlæ„é€ å‡½æ•°
+	/// \param host MySQLä¸»æœºIP
+	/// \param user MySQLç”¨æˆ·å
+	/// \param pwd ç”¨æˆ·å£ä»¤
+	/// \param database è¦æ‰“å¼€çš„æ•°æ®åº“
+	/// \param port æ•°æ®åº“ç«¯å£ï¼Œé»˜è®¤ä¸º0
+	/// \param socket UNIX_SOCKETï¼Œé»˜è®¤ä¸ºNULL
 	MysqlClient( const string &host, const string &user, const string &pwd, 
 		const string &database, const int port = 0, const char* socket = NULL ):
 	_connected(false) 
@@ -126,59 +126,59 @@ class MysqlClient {
 		this->connect( host, user, pwd, database, port, socket );
 	}
 	
-	/// MysqlÎö¹¹º¯Êı
+	/// Mysqlææ„å‡½æ•°
 	virtual ~MysqlClient() {
 		this->disconnect();
 	}
 	
-	/// Á¬½ÓÊı¾İ¿â
+	/// è¿æ¥æ•°æ®åº“
 	bool connect( const string &host, const string &user, const string &pwd, 
 		const string &database, const int port = 0, const char* socket = NULL );
-	/// ¶Ï¿ªÊı¾İ¿âÁ¬½Ó
+	/// æ–­å¼€æ•°æ®åº“è¿æ¥
 	void disconnect();
-	/// ÅĞ¶ÏÊÇ·ñÁ¬½ÓÊı¾İ¿â
+	/// åˆ¤æ–­æ˜¯å¦è¿æ¥æ•°æ®åº“
 	bool is_connected();
 	
-	/// Ñ¡ÔñÊı¾İ¿â
+	/// é€‰æ‹©æ•°æ®åº“
 	bool select_db( const string &database );
 
-	/// Ö´ĞĞSQLÓï¾ä,È¡µÃ²éÑ¯½á¹û
+	/// æ‰§è¡ŒSQLè¯­å¥,å–å¾—æŸ¥è¯¢ç»“æœ
 	bool query( const string &sqlstr, MysqlData &records );
-	/// Ö´ĞĞSQLÓï¾ä
+	/// æ‰§è¡ŒSQLè¯­å¥
 	bool query( const string &sqlstr );
 	
-	/// ·µ»Ø²éÑ¯½á¹ûÖĞÖ¸¶¨Î»ÖÃµÄ×Ö·û´®Öµ
+	/// è¿”å›æŸ¥è¯¢ç»“æœä¸­æŒ‡å®šä½ç½®çš„å­—ç¬¦ä¸²å€¼
 	string query_val( const string &sqlstr, 
 		const size_t row = 0, const size_t col = 0 );
 	
-	/// ·µ»Ø²éÑ¯½á¹ûÖĞÖ¸¶¨ĞĞ
+	/// è¿”å›æŸ¥è¯¢ç»“æœä¸­æŒ‡å®šè¡Œ
 	MysqlDataRow query_row( const string &sqlstr, const size_t row = 0 );
 
-	/// ÉÏ´Î²éÑ¯¶¯×÷ËùÓ°ÏìµÄ¼ÇÂ¼ÌõÊı
+	/// ä¸Šæ¬¡æŸ¥è¯¢åŠ¨ä½œæ‰€å½±å“çš„è®°å½•æ¡æ•°
 	size_t affected();
-	/// È¡µÃÉÏ´Î²éÑ¯µÄÒ»¸öAUTO_INCREMENTÁĞÉú³ÉµÄID
+	/// å–å¾—ä¸Šæ¬¡æŸ¥è¯¢çš„ä¸€ä¸ªAUTO_INCREMENTåˆ—ç”Ÿæˆçš„ID
 	size_t last_id();
 	
-	/// È¡µÃMysql´íÎóĞÅÏ¢
-	/// \return ·µ»Ø´íÎóĞÅÏ¢×Ö·û´®
+	/// å–å¾—Mysqlé”™è¯¯ä¿¡æ¯
+	/// \return è¿”å›é”™è¯¯ä¿¡æ¯å­—ç¬¦ä¸²
 	inline string error() {
 		return string( mysql_error(&_mysql) );
 	}
-	/// È¡µÃMysql´íÎó±àºÅ
-	/// \return ·µ»Ø´íÎóĞÅÏ¢±àºÅ
+	/// å–å¾—Mysqlé”™è¯¯ç¼–å·
+	/// \return è¿”å›é”™è¯¯ä¿¡æ¯ç¼–å·
 	inline size_t errnum() {
 		return mysql_errno( &_mysql );
 	}
 
-	/// È¡µÃ¸üĞÂĞÅÏ¢
+	/// å–å¾—æ›´æ–°ä¿¡æ¯
 	string info();
 
 	////////////////////////////////////////////////////////////////////////////
 	private:
 	
-	/// ½ûÖ¹µ÷ÓÃ¿½±´¹¹Ôìº¯Êı
+	/// ç¦æ­¢è°ƒç”¨æ‹·è´æ„é€ å‡½æ•°
 	MysqlClient( MysqlClient &copy );
-	/// ½ûÖ¹µ÷ÓÃ¿½±´¸³Öµ²Ù×÷
+	/// ç¦æ­¢è°ƒç”¨æ‹·è´èµ‹å€¼æ“ä½œ
 	MysqlClient& operator = ( const MysqlClient& copy );
 
 	MYSQL _mysql;

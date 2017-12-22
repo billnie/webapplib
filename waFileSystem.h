@@ -1,6 +1,6 @@
 /// \file waFileSystem.h
-/// ÎÄ¼ş²Ù×÷º¯ÊıÍ·ÎÄ¼ş
-/// ³£ÓÃÎÄ¼ş²Ù×÷
+/// æ–‡ä»¶æ“ä½œå‡½æ•°å¤´æ–‡ä»¶
+/// å¸¸ç”¨æ–‡ä»¶æ“ä½œ
 
 #ifndef _WEBAPPLIB_FILE_H_
 #define _WEBAPPLIB_FILE_H_ 
@@ -16,62 +16,62 @@ using namespace std;
 /// Web Application Library namaspace
 namespace webapp {
 
-/// ÎÄ¼ş»òÕßÄ¿Â¼ÊÇ·ñ´æÔÚ
+/// æ–‡ä»¶æˆ–è€…ç›®å½•æ˜¯å¦å­˜åœ¨
 bool file_exist( const string &file );
 
-/// ÎÄ¼şÊÇ·ñÎªÁ´½Ó
+/// æ–‡ä»¶æ˜¯å¦ä¸ºé“¾æ¥
 bool is_link( const string &file );
-/// ÊÇ·ñÎªÄ¿Â¼
+/// æ˜¯å¦ä¸ºç›®å½•
 bool is_dir( const string &file );
 
-/// ½¨Á¢Á´½Ó
+/// å»ºç«‹é“¾æ¥
 bool make_link( const string &srcfile, const string &destfile );
 
-/// È¡µÃÎÄ¼ş´óĞ¡
+/// å–å¾—æ–‡ä»¶å¤§å°
 size_t file_size( const string &file );
-/// È¡µÃÎÄ¼ş¸ü¸ÄÊ±¼ä
+/// å–å¾—æ–‡ä»¶æ›´æ”¹æ—¶é—´
 time_t file_time( const string &file );
-/// È¡µÃÎÄ¼şÂ·¾¶
+/// å–å¾—æ–‡ä»¶è·¯å¾„
 string file_path( const string &file );
-/// È¡µÃÎÄ¼şÃû³Æ
+/// å–å¾—æ–‡ä»¶åç§°
 string file_name( const string &file );
 
-/// ÎÄ¼ş»òÕßÄ¿Â¼¸ÄÃû
+/// æ–‡ä»¶æˆ–è€…ç›®å½•æ”¹å
 bool rename_file( const string &oldname, const string &newname );
-/// ¿½±´ÎÄ¼ş	
+/// æ‹·è´æ–‡ä»¶	
 bool copy_file( const string &srcfile, const string &destfile );
-/// É¾³ıÎÄ¼ş
+/// åˆ é™¤æ–‡ä»¶
 bool delete_file( const string &file );
-/// ÒÆ¶¯ÎÄ¼ş
+/// ç§»åŠ¨æ–‡ä»¶
 bool move_file( const string &srcfile, const string &destfile );
 
-/// ·µ»ØÄ¿Â¼ÎÄ¼şÁĞ±í
+/// è¿”å›ç›®å½•æ–‡ä»¶åˆ—è¡¨
 vector<string> dir_files( const string &dir );
-/// ½¨Á¢Ä¿Â¼
+/// å»ºç«‹ç›®å½•
 bool make_dir( const string &dir, 
 	const mode_t mode = S_IRWXU|S_IRGRP|S_IXGRP|S_IROTH|S_IXOTH );
-/// ¿½±´Ä¿Â¼
+/// æ‹·è´ç›®å½•
 bool copy_dir( const string &srcdir, const string &destdir );
-/// É¾³ıÄ¿Â¼
+/// åˆ é™¤ç›®å½•
 bool delete_dir( const string &dir );
-/// ÒÆ¶¯Ä¿Â¼
+/// ç§»åŠ¨ç›®å½•
 bool move_dir( const string &srcdir, const string &destdir );
 			  
-/// ÎÄ¼ş¾ä±úËøº¯Êı
+/// æ–‡ä»¶å¥æŸ„é”å‡½æ•°
 void lock_file( int fd, const int type );
-/// ÎÄ¼ş¾ä±úËøº¯Êı
+/// æ–‡ä»¶å¥æŸ„é”å‡½æ•°
 inline void lock_file( FILE *fp, const int type ) {
 	lock_file( fileno(fp), type );
 }
 
-/// ÅĞ¶ÏÎÄ¼ş¾ä±úËø
+/// åˆ¤æ–­æ–‡ä»¶å¥æŸ„é”
 bool is_locked( int fd );
-/// ÅĞ¶ÏÎÄ¼ş¾ä±úËø
+/// åˆ¤æ–­æ–‡ä»¶å¥æŸ„é”
 inline bool is_locked( FILE *fp ) {
 	return is_locked( fileno(fp) );
 }
 
-/// ÉêÇëËø²¢´ò¿ªÎÄ¼ş
+/// ç”³è¯·é”å¹¶æ‰“å¼€æ–‡ä»¶
 FILE* lock_open( const string &file, const char* mode, const int type );
 
 } // namespace

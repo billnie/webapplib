@@ -1,8 +1,8 @@
 /// \file waTemplate.h
-/// HTMLÄ£°å´¦ÀíÀàÍ·ÎÄ¼ş
-/// Ö§³ÖÌõ¼ş¡¢Ñ­»·½Å±¾µÄHTMLÄ£°å´¦ÀíÀà
-/// ÒÀÀµÓÚ waString
-/// <a href="wa_template.html">Ê¹ÓÃËµÃ÷ÎÄµµ¼°¼òµ¥·¶Àı</a>
+/// HTMLæ¨¡æ¿å¤„ç†ç±»å¤´æ–‡ä»¶
+/// æ”¯æŒæ¡ä»¶ã€å¾ªç¯è„šæœ¬çš„HTMLæ¨¡æ¿å¤„ç†ç±»
+/// ä¾èµ–äº waString
+/// <a href="wa_template.html">ä½¿ç”¨è¯´æ˜æ–‡æ¡£åŠç®€å•èŒƒä¾‹</a>
 
 #ifndef _WEBAPPLIB_TMPL_H_
 #define _WEBAPPLIB_TMPL_H_ 
@@ -18,152 +18,152 @@ using namespace std;
 /// Web Application Library namaspace
 namespace webapp {
 	
-/// Ö§³ÖÌõ¼ş¡¢Ñ­»·½Å±¾µÄHTMLÄ£°å´¦ÀíÀà
-/// <a href="wa_template.html">Ê¹ÓÃËµÃ÷ÎÄµµ¼°¼òµ¥·¶Àı</a>
+/// æ”¯æŒæ¡ä»¶ã€å¾ªç¯è„šæœ¬çš„HTMLæ¨¡æ¿å¤„ç†ç±»
+/// <a href="wa_template.html">ä½¿ç”¨è¯´æ˜æ–‡æ¡£åŠç®€å•èŒƒä¾‹</a>
 class Template {
 	public:
 	
-	/// Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// é»˜è®¤æ„é€ å‡½æ•°
 	Template(){};
 	
-	/// ¹¹Ôìº¯Êı
-	/// \param tmpl_file Ä£°åÎÄ¼ş
+	/// æ„é€ å‡½æ•°
+	/// \param tmpl_file æ¨¡æ¿æ–‡ä»¶
 	Template( const string tmpl_file ) {
 		this->load( tmpl_file );
 	}
 	
-	/// ¹¹Ôìº¯Êı
-	/// \param tmpl_dir Ä£°åÄ¿Â¼
-	/// \param tmpl_file Ä£°åÎÄ¼ş
+	/// æ„é€ å‡½æ•°
+	/// \param tmpl_dir æ¨¡æ¿ç›®å½•
+	/// \param tmpl_file æ¨¡æ¿æ–‡ä»¶
 	Template( const string tmpl_dir, const string tmpl_file ) {
 		this->load( tmpl_dir, tmpl_file );
 	}
 	
-	/// Îö¹¹º¯Êı
+	/// ææ„å‡½æ•°
 	virtual ~Template(){};
 	
-	/// \enum Êä³öÊ±ÊÇ·ñ°üÀ¨µ÷ÊÔĞÅÏ¢
+	/// \enum è¾“å‡ºæ—¶æ˜¯å¦åŒ…æ‹¬è°ƒè¯•ä¿¡æ¯
 	enum output_mode {
-		/// ÏÔÊ¾µ÷ÊÔĞÅÏ¢
+		/// æ˜¾ç¤ºè°ƒè¯•ä¿¡æ¯
 		TMPL_OUTPUT_DEBUG,	
-		/// ²»ÏÔÊ¾
+		/// ä¸æ˜¾ç¤º
 		TMPL_OUTPUT_RELEASE	
 	};
 
-	/// ¶ÁÈ¡HTMLÄ£°åÎÄ¼ş
+	/// è¯»å–HTMLæ¨¡æ¿æ–‡ä»¶
 	bool load( const string &tmpl_file );
 
-	/// ¶ÁÈ¡Ä£°å
-	/// \param tmpl_dir Ä£°åÄ¿Â¼
-	/// \param tmpl_file Ä£°åÎÄ¼ş
-	/// \retval true ¶ÁÈ¡³É¹¦
-	/// \retval false Ê§°Ü
+	/// è¯»å–æ¨¡æ¿
+	/// \param tmpl_dir æ¨¡æ¿ç›®å½•
+	/// \param tmpl_file æ¨¡æ¿æ–‡ä»¶
+	/// \retval true è¯»å–æˆåŠŸ
+	/// \retval false å¤±è´¥
 	inline bool load( const string &tmpl_dir, const string &tmpl_file ) {
 		return this->load( tmpl_dir + "/" + tmpl_file );
 	}
 	
-	/// ÉèÖÃHTMLÄ£°åÄÚÈİ
+	/// è®¾ç½®HTMLæ¨¡æ¿å†…å®¹
 	void tmpl( const string &tmpl );
 
-	/// ÉèÖÃÌæ»»¹æÔò
+	/// è®¾ç½®æ›¿æ¢è§„åˆ™
 	void set( const string &name, const string &value );
-	/// ÉèÖÃÌæ»»¹æÔò
-	/// \param name Ä£°åÓòÃû³Æ
-	/// \param value Ìæ»»Öµ
+	/// è®¾ç½®æ›¿æ¢è§„åˆ™
+	/// \param name æ¨¡æ¿åŸŸåç§°
+	/// \param value æ›¿æ¢å€¼
 	inline void set( const string &name, const long value ) {
 		this->set( name, itos(value) );
 	}
 	
-	/// ĞÂ½¨Ñ­»·
+	/// æ–°å»ºå¾ªç¯
 	void def_loop( const string &loop, const char* field_0, ... );
-	/// Ìí¼ÓÒ»ĞĞÊı¾İµ½Ñ­»·
+	/// æ·»åŠ ä¸€è¡Œæ•°æ®åˆ°å¾ªç¯
 	void append_row( const string &loop, const char* value_0, ... );
-	/// Ìí¼ÓÒ»ĞĞÖ¸¶¨¸ñÊ½µÄÊı¾İµ½Ñ­»·
+	/// æ·»åŠ ä¸€è¡ŒæŒ‡å®šæ ¼å¼çš„æ•°æ®åˆ°å¾ªç¯
 	void append_format( const string &loop, const char* format, ... );
 	
-	/// Çå¿ÕËùÓĞÌæ»»¹æÔò
+	/// æ¸…ç©ºæ‰€æœ‰æ›¿æ¢è§„åˆ™
 	void clear_set();
 
-	/// ·µ»ØHTML×Ö·û´®
+	/// è¿”å›HTMLå­—ç¬¦ä¸²
 	string html();
-	/// Êä³öHTMLµ½stdout
+	/// è¾“å‡ºHTMLåˆ°stdout
 	void print( const output_mode mode = TMPL_OUTPUT_RELEASE );
-	/// Êä³öHTMLµ½ÎÄ¼ş
+	/// è¾“å‡ºHTMLåˆ°æ–‡ä»¶
 	bool print( const string &file, const output_mode mode = TMPL_OUTPUT_RELEASE,
 		const mode_t permission = S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH );
 	
 	////////////////////////////////////////////////////////////////////////////
 	private:
 	
-	/// ¶ÁÈ¡Ö¸¶¨Î»ÖÃµÄÄ£°å½Å±¾ÀàĞÍ¼°±í´ïÊ½
+	/// è¯»å–æŒ‡å®šä½ç½®çš„æ¨¡æ¿è„šæœ¬ç±»å‹åŠè¡¨è¾¾å¼
 	int parse_script( const string &tmpl, const size_t pos,
 		string &exp, int &type );
 
-	/// ·ÖÎö±í´ïÊ½µÄÖµ
+	/// åˆ†æè¡¨è¾¾å¼çš„å€¼
 	string exp_value( const string &expression );
 
-	/// ·ÖÎö´¦ÀíÄ£°å
+	/// åˆ†æå¤„ç†æ¨¡æ¿
 	void parse( const string &tmpl, ostream &output );
 	
-	/// ¼ì²éÌõ¼şÓï¾ä±í´ïÊ½ÊÇ·ñ³ÉÁ¢
+	/// æ£€æŸ¥æ¡ä»¶è¯­å¥è¡¨è¾¾å¼æ˜¯å¦æˆç«‹
 	bool compare( const string &exp );
 	
-	/// ¼ì²éÌõ¼şÊÇ·ñ³ÉÁ¢
+	/// æ£€æŸ¥æ¡ä»¶æ˜¯å¦æˆç«‹
 	bool check_if( const string &exp );
 
-	/// ´¦ÀíÌõ¼şÀàĞÍÄ£°å
+	/// å¤„ç†æ¡ä»¶ç±»å‹æ¨¡æ¿
 	size_t parse_if( const string &tmpl, ostream &output, 
 		const bool parent_state, const string &parsed_exp,
 		const int parsed_length );
 
-	/// ·µ»Ø×Ö¶ÎÎ»ÖÃ
+	/// è¿”å›å­—æ®µä½ç½®
 	int field_pos( const string &loop, const string &field );
 
-	/// ¼ì²éÑ­»·Óï¾äÊÇ·ñÓĞĞ§
+	/// æ£€æŸ¥å¾ªç¯è¯­å¥æ˜¯å¦æœ‰æ•ˆ
 	bool check_loop( const string &loopname );
 	
-	/// ·µ»ØÑ­»·ÖĞÖ¸¶¨Î»ÖÃ×Ö¶ÎµÄÖµ
+	/// è¿”å›å¾ªç¯ä¸­æŒ‡å®šä½ç½®å­—æ®µçš„å€¼
 	string loop_value( const string &field );
 
-	/// ´¦ÀíÑ­»·ÀàĞÍÄ£°å
+	/// å¤„ç†å¾ªç¯ç±»å‹æ¨¡æ¿
 	size_t parse_loop( const string &tmpl, ostream &output, 
 		const bool parent_state, const string &parsed_exp,
 		const int parsed_length );
 							
-	/// Ä£°å·ÖÎö´íÎó¼ÍÂ¼
+	/// æ¨¡æ¿åˆ†æé”™è¯¯çºªå½•
 	void error_log( const size_t lines, const string &error );
-	/// Ä£°å·ÖÎö¼ÍÂ¼
+	/// æ¨¡æ¿åˆ†æçºªå½•
 	void parse_log( ostream &output );
 
-	// Êı¾İ¶¨Òå
-	typedef vector<string> strings;		// ×Ö·û´®ÁĞ±í
-	typedef struct {					// Ñ­»·Ä£°åÉèÖÃ½á¹¹
-		int cols;						// Ñ­»·×Ö¶ÎÊıÁ¿
-		int rows;						// Ñ­»·Êı¾İĞĞÊı
-		int cursor;						// µ±Ç°¹â±êÎ»ÖÃ
-		strings fields;					// Ñ­»·×Ö¶Î¶¨ÒåÁĞ±í
-		map<string,int> fieldspos;		// Ñ­»·×Ö¶ÎÎ»ÖÃ,for speed
-		vector<strings> datas;			// Ñ­»·Êı¾İ
+	// æ•°æ®å®šä¹‰
+	typedef vector<string> strings;		// å­—ç¬¦ä¸²åˆ—è¡¨
+	typedef struct {					// å¾ªç¯æ¨¡æ¿è®¾ç½®ç»“æ„
+		int cols;						// å¾ªç¯å­—æ®µæ•°é‡
+		int rows;						// å¾ªç¯æ•°æ®è¡Œæ•°
+		int cursor;						// å½“å‰å…‰æ ‡ä½ç½®
+		strings fields;					// å¾ªç¯å­—æ®µå®šä¹‰åˆ—è¡¨
+		map<string,int> fieldspos;		// å¾ªç¯å­—æ®µä½ç½®,for speed
+		vector<strings> datas;			// å¾ªç¯æ•°æ®
 	} tmpl_loop;
 
-	// Ä£°åÊı¾İ
-	String _tmpl;						// HTMLÄ£°åÄÚÈİ
-	map<string,string> _sets;			// Ìæ»»¹æÔòÁĞ±í <Ä£°åÓòÃû³Æ,Ä£°åÓòÖµ>
-	map<string,tmpl_loop> _loops;		// Ñ­»·Ìæ»»¹æÔòÁĞ±í <Ñ­»·Ãû³Æ,Ñ­»·Ä£°åÉèÖÃ½á¹¹>
+	// æ¨¡æ¿æ•°æ®
+	String _tmpl;						// HTMLæ¨¡æ¿å†…å®¹
+	map<string,string> _sets;			// æ›¿æ¢è§„åˆ™åˆ—è¡¨ <æ¨¡æ¿åŸŸåç§°,æ¨¡æ¿åŸŸå€¼>
+	map<string,tmpl_loop> _loops;		// å¾ªç¯æ›¿æ¢è§„åˆ™åˆ—è¡¨ <å¾ªç¯åç§°,å¾ªç¯æ¨¡æ¿è®¾ç½®ç»“æ„>
 	
-	// ·ÖÎö¹ı³ÌÊı¾İ
-	string _loop;						// µ±Ç°Ñ­»·Ãû³Æ
-	int _cursor;						// µ±Ç°Ñ­»·¹â±êÎ»ÖÃ
-	int _lines;							// ÒÑ´¦ÀíÄ£°åĞĞÊı
+	// åˆ†æè¿‡ç¨‹æ•°æ®
+	string _loop;						// å½“å‰å¾ªç¯åç§°
+	int _cursor;						// å½“å‰å¾ªç¯å…‰æ ‡ä½ç½®
+	int _lines;							// å·²å¤„ç†æ¨¡æ¿è¡Œæ•°
 
-	string _tmplfile;					// HTMLÄ£°åÎÄ¼şÃû
-	char _date[15];						// µ±Ç°ÈÕÆÚ
-	char _time[15];						// µ±Ç°Ê±¼ä
-	output_mode _debug;					// ·ÖÎöÄ£Ê½
-	multimap<int,string> _errlog;		// ·ÖÎö´íÎó¼ÍÂ¼ <´íÎóÎ»ÖÃĞĞÊı,´íÎóÃèÊöĞÅÏ¢>
+	string _tmplfile;					// HTMLæ¨¡æ¿æ–‡ä»¶å
+	char _date[15];						// å½“å‰æ—¥æœŸ
+	char _time[15];						// å½“å‰æ—¶é—´
+	output_mode _debug;					// åˆ†ææ¨¡å¼
+	multimap<int,string> _errlog;		// åˆ†æé”™è¯¯çºªå½• <é”™è¯¯ä½ç½®è¡Œæ•°,é”™è¯¯æè¿°ä¿¡æ¯>
 };
 
-// Ä£°åÓï·¨¸ñÊ½¶¨Òå
+// æ¨¡æ¿è¯­æ³•æ ¼å¼å®šä¹‰
 const char TMPL_BEGIN[]		= "{{";		const int TMPL_BEGIN_LEN 	= strlen(TMPL_BEGIN);
 const char TMPL_END[]		= "}}";		const int TMPL_END_LEN 		= strlen(TMPL_END);
 const char TMPL_SUBBEGIN[]	= "(";		const int TMPL_SUBBEGIN_LEN = strlen(TMPL_SUBBEGIN);
@@ -189,7 +189,7 @@ const char TMPL_ELSIF[]		= "#ELSIF";	const int TMPL_ELSIF_LEN 	= strlen(TMPL_ELS
 const char TMPL_ELSE[]		= "#ELSE";	const int TMPL_ELSE_LEN 	= strlen(TMPL_ELSE);
 const char TMPL_ENDIF[]		= "#ENDIF";	const int TMPL_ENDIF_LEN 	= strlen(TMPL_ENDIF);
 
-// ±È½Ï²Ù×÷·û¶¨Òå
+// æ¯”è¾ƒæ“ä½œç¬¦å®šä¹‰
 const char TMPL_AND[]		= "AND";	const int TMPL_AND_LEN 		= strlen(TMPL_AND);
 const char TMPL_OR[]		= "OR";		const int TMPL_OR_LEN 		= strlen(TMPL_OR);
 const char TMPL_EQ[]		= "==";		const int TMPL_EQ_LEN 		= strlen(TMPL_EQ);
@@ -199,11 +199,11 @@ const char TMPL_LT[]		= "<";		const int TMPL_LT_LEN 		= strlen(TMPL_LT);
 const char TMPL_GE[]		= ">=";		const int TMPL_GE_LEN 		= strlen(TMPL_GE);
 const char TMPL_GT[]		= ">";		const int TMPL_GT_LEN 		= strlen(TMPL_GT);
 
-// Htt::format_row()¸ñÊ½¶¨Òå
+// Htt::format_row()æ ¼å¼å®šä¹‰
 const char TMPL_FMTSTR[]	= "%s";		const int TMPL_FMTSTR_LEN 	= strlen(TMPL_FMTSTR);
 const char TMPL_FMTINT[]	= "%d";		const int TMPL_FMTINT_LEN 	= strlen(TMPL_FMTINT);
 
-// ½Å±¾Óï¾äÀàĞÍ
+// è„šæœ¬è¯­å¥ç±»å‹
 enum tmpl_scripttype {
 	TMPL_S_VALUE,	
 	TMPL_S_LOOPVALUE,	
@@ -222,14 +222,14 @@ enum tmpl_scripttype {
 	TMPL_S_UNKNOWN
 };
 
-// Âß¼­ÔËËãÀàĞÍ
+// é€»è¾‘è¿ç®—ç±»å‹
 enum tmpl_logictype {
 	TMPL_L_NONE,	
 	TMPL_L_AND,
 	TMPL_L_OR
 };
 
-// ±È½ÏÔËËãÀàĞÍ
+// æ¯”è¾ƒè¿ç®—ç±»å‹
 enum tmpl_cmptype {
 	TMPL_C_EQ,
 	TMPL_C_NE,

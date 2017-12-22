@@ -1,6 +1,6 @@
 /// \file waDateTime.h
-/// webapp::DateTimeÀàÍ·ÎÄ¼þ
-/// ÈÕÆÚÊ±¼äÔËËã
+/// webapp::DateTimeç±»å¤´æ–‡ä»¶
+/// æ—¥æœŸæ—¶é—´è¿ç®—
 
 #ifndef _WEBAPPLIB_DATETIME_H_
 #define _WEBAPPLIB_DATETIME_H_ 
@@ -13,152 +13,152 @@ using namespace std;
 /// Web Application Library namaspace
 namespace webapp {
 
-/// \defgroup waDateTime waDateTimeÏà¹ØÊý¾ÝÀàÐÍÓëÈ«¾Öº¯Êý
+/// \defgroup waDateTime waDateTimeç›¸å…³æ•°æ®ç±»åž‹ä¸Žå…¨å±€å‡½æ•°
 
 /// \ingroup waDateTime
 /// \def TIME_ONE_SEC 
-/// Ê±³¤¶¨ÒåÒ»ÃëÖÓ
+/// æ—¶é•¿å®šä¹‰ä¸€ç§’é’Ÿ
 #define	TIME_ONE_SEC	1
 
 /// \ingroup waDateTime
 /// \def TIME_ONE_MIN 
-/// Ê±³¤¶¨ÒåÒ»·ÖÖÓ
+/// æ—¶é•¿å®šä¹‰ä¸€åˆ†é’Ÿ
 #define	TIME_ONE_MIN	60
 
 /// \ingroup waDateTime
 /// \def TIME_ONE_HOUR 
-/// Ê±³¤¶¨ÒåÒ»Ð¡Ê±
+/// æ—¶é•¿å®šä¹‰ä¸€å°æ—¶
 #define	TIME_ONE_HOUR	3600
 
 /// \ingroup waDateTime
 /// \def TIME_ONE_DAY 
-/// Ê±³¤¶¨ÒåÒ»Ìì
+/// æ—¶é•¿å®šä¹‰ä¸€å¤©
 #define	TIME_ONE_DAY	86400
 
 /// \ingroup waDateTime
 /// \def TIME_ONE_WEEK 
-/// Ê±³¤¶¨ÒåÒ»ÖÜ
+/// æ—¶é•¿å®šä¹‰ä¸€å‘¨
 #define	TIME_ONE_WEEK	604800
 
-/// DateTimeÈÕÆÚÊ±¼äÔËËãÀà
+/// DateTimeæ—¥æœŸæ—¶é—´è¿ç®—ç±»
 class DateTime {
 	public:
 	
-	/// Ä¬ÈÏ¹¹Ôìº¯Êý,ÒÔµ±Ç°Ê±¼ä¹¹Ôì¶ÔÏó
+	/// é»˜è®¤æž„é€ å‡½æ•°,ä»¥å½“å‰æ—¶é—´æž„é€ å¯¹è±¡
 	DateTime() {
 		this->set();
 	}
 	
-	/// ²ÎÊýÎª time_t µÄ¹¹Ôìº¯Êý
+	/// å‚æ•°ä¸º time_t çš„æž„é€ å‡½æ•°
 	DateTime( const time_t &tt ) {
 		this->set( tt );
 	}
 	
-	/// ²ÎÊýÎªÖ¸¶¨Ê±¼äµÄ¹¹Ôìº¯Êý
+	/// å‚æ•°ä¸ºæŒ‡å®šæ—¶é—´çš„æž„é€ å‡½æ•°
 	DateTime( const int year, const int mon, const int mday, 
 		const int hour=0, const int min=0, const int sec=0 ) 
 	{
 		this->set( year, mon, mday, hour, min, sec );
 	}
 	
-	/// ²ÎÊýÎª tm ½á¹¹µÄ¹¹Ôìº¯Êý
+	/// å‚æ•°ä¸º tm ç»“æž„çš„æž„é€ å‡½æ•°
 	DateTime( const tm &st ) {
 		this->set( st );
 	}
 	
-	/// ²ÎÊýÎª"YYYY-MM-DD HH:MM:SS"¸ñÊ½×Ö·û´®µÄ¹¹Ôìº¯Êý
+	/// å‚æ•°ä¸º"YYYY-MM-DD HH:MM:SS"æ ¼å¼å­—ç¬¦ä¸²çš„æž„é€ å‡½æ•°
 	DateTime( const string &datetime, const string &datemark = "-", 
 		const string &dtmark = " ", const string &timemark = ":" ) 
 	{
 		this->set( datetime, datemark, dtmark, timemark );
 	}
 
-	/// ¿½±´¹¹Ôìº¯Êý
+	/// æ‹·è´æž„é€ å‡½æ•°
 	DateTime ( const DateTime &date ) {
 		this->set( date );
 	}
 		  
-	/// Îö¹¹º¯Êý
+	/// æžæž„å‡½æ•°
 	virtual ~DateTime() {}
 	
-	/// ¸³Öµ²Ù×÷
+	/// èµ‹å€¼æ“ä½œ
 	DateTime& operator=( const DateTime &date );
-	/// ¸³Öµ²Ù×÷
+	/// èµ‹å€¼æ“ä½œ
 	DateTime& operator=( const time_t &tt );
 
-	/// µÝÔö²Ù×÷
+	/// é€’å¢žæ“ä½œ
 	DateTime& operator+=( const DateTime &date );
-	/// µÝÔö²Ù×÷
+	/// é€’å¢žæ“ä½œ
 	DateTime& operator+=( const time_t &tt );
 	
-	/// µÝ¼õ²Ù×÷
+	/// é€’å‡æ“ä½œ
 	DateTime& operator-=( const DateTime &date );
-	/// µÝ¼õ²Ù×÷
+	/// é€’å‡æ“ä½œ
 	DateTime& operator-=( const time_t &tt );
 
-	/// ·µ»ØËÄÎ»ÊýÄê·Ý
+	/// è¿”å›žå››ä½æ•°å¹´ä»½
 	inline int year() const {return _tm.tm_year+1900;}
-	/// ·µ»ØÔÂ·Ý£¬·¶Î§1~12
+	/// è¿”å›žæœˆä»½ï¼ŒèŒƒå›´1~12
 	inline int month() const {return _tm.tm_mon+1;}
-	/// ·µ»Øµ±ÔÂµÚ¼¸Ìì£¬·¶Î§1~31
+	/// è¿”å›žå½“æœˆç¬¬å‡ å¤©ï¼ŒèŒƒå›´1~31
 	inline int m_day() const {return _tm.tm_mday;}
-	/// ·µ»Øµ±ÔÂÌìÊý£¬·¶Î§1~31
+	/// è¿”å›žå½“æœˆå¤©æ•°ï¼ŒèŒƒå›´1~31
 	int m_days() const;
-	/// ·µ»Øµ±ÖÜµÚ¼¸Ìì£¬ÖÜÒ»ÖÁÖÜÁù·µ»Ø1~6£¬ÖÜÈÕ·µ»Ø0
+	/// è¿”å›žå½“å‘¨ç¬¬å‡ å¤©ï¼Œå‘¨ä¸€è‡³å‘¨å…­è¿”å›ž1~6ï¼Œå‘¨æ—¥è¿”å›ž0
 	inline int w_day() const {return _tm.tm_wday;}
-	/// ·µ»Øµ±ÄêµÚ¼¸Ìì£¬·¶Î§0~365
+	/// è¿”å›žå½“å¹´ç¬¬å‡ å¤©ï¼ŒèŒƒå›´0~365
 	inline int y_day() const {return _tm.tm_yday;}
-	/// ·µ»ØÐ¡Ê±£¬·¶Î§0~23
+	/// è¿”å›žå°æ—¶ï¼ŒèŒƒå›´0~23
 	inline int hour() const {return _tm.tm_hour;}
-	/// ·µ»Ø·ÖÖÓ£¬·¶Î§0~59
+	/// è¿”å›žåˆ†é’Ÿï¼ŒèŒƒå›´0~59
 	inline int min() const {return _tm.tm_min;}
-	/// ·µ»ØÃëÊý£¬·¶Î§0~59
+	/// è¿”å›žç§’æ•°ï¼ŒèŒƒå›´0~59
 	inline int sec() const {return _tm.tm_sec;}
 	
-	/// ·µ»Ø 1970-1-1 0:0:0 ÒÔÀ´µÄÃëÊý
+	/// è¿”å›ž 1970-1-1 0:0:0 ä»¥æ¥çš„ç§’æ•°
 	inline time_t secs() const {return _time;}
-	/// ·µ»Ø 1970-1-1 0:0:0 ÒÔÀ´µÄ·ÖÖÓÊý
+	/// è¿”å›ž 1970-1-1 0:0:0 ä»¥æ¥çš„åˆ†é’Ÿæ•°
 	inline time_t mins() const {return ( _time/TIME_ONE_MIN );}
-	/// ·µ»Ø 1970-1-1 0:0:0 ÒÔÀ´µÄÐ¡Ê±Êý
+	/// è¿”å›ž 1970-1-1 0:0:0 ä»¥æ¥çš„å°æ—¶æ•°
 	inline time_t hours() const {return ( _time/TIME_ONE_HOUR );}
-	/// ·µ»Ø 1970-1-1 0:0:0 ÒÔÀ´µÄÌìÊý
+	/// è¿”å›ž 1970-1-1 0:0:0 ä»¥æ¥çš„å¤©æ•°
 	inline time_t days() const {return ( _time/TIME_ONE_DAY );}
-	/// ·µ»Ø 1970-1-1 0:0:0 ÒÔÀ´µÄÖÜÊý
+	/// è¿”å›ž 1970-1-1 0:0:0 ä»¥æ¥çš„å‘¨æ•°
 	inline time_t weeks() const {return ( _time/TIME_ONE_WEEK );}
 	
-	/// ÒÔµ±Ç°Ê±¼äÉèÖÃ¶ÔÏó
+	/// ä»¥å½“å‰æ—¶é—´è®¾ç½®å¯¹è±¡
 	void set();
-	/// ÒÔ time_t ²ÎÊýÉèÖÃ¶ÔÏó
+	/// ä»¥ time_t å‚æ•°è®¾ç½®å¯¹è±¡
 	void set( const time_t &tt );
-	/// ÒÔ tm ½á¹¹²ÎÊýÉèÖÃ¶ÔÏó
+	/// ä»¥ tm ç»“æž„å‚æ•°è®¾ç½®å¯¹è±¡
 	void set( const tm &st );
-	/// ÒÔÖ¸¶¨Ê±¼äÉèÖÃ¶ÔÏó
+	/// ä»¥æŒ‡å®šæ—¶é—´è®¾ç½®å¯¹è±¡
 	void set( const int year, const int mon, const int mday, 
 		const int hour=0, const int min=0, const int sec=0 );
-	/// ÒÔ DateTime ²ÎÊýÉèÖÃ¶ÔÏó
+	/// ä»¥ DateTime å‚æ•°è®¾ç½®å¯¹è±¡
 	void set( const DateTime &date );
-	/// ÒÔ"YYYY-MM-DD HH:MM:SS"¸ñÊ½×Ö·û´®ÉèÖÃ¶ÔÏó
+	/// ä»¥"YYYY-MM-DD HH:MM:SS"æ ¼å¼å­—ç¬¦ä¸²è®¾ç½®å¯¹è±¡
 	void set( const string &datetime, const string &datemark = "-", 
 		const string &dtmark = " ", const string &timemark = ":" );
 	
-	/// ·µ»Ø time_t ÀàÐÍµÄ¶ÔÏóÖµ
+	/// è¿”å›ž time_t ç±»åž‹çš„å¯¹è±¡å€¼
 	inline time_t value() const {return this->secs();}
-	/// ·µ»Ø struct tm ÀàÐÍµÄ¶ÔÏóÖµ
+	/// è¿”å›ž struct tm ç±»åž‹çš„å¯¹è±¡å€¼
 	inline tm struct_tm() const {return _tm;}
 	
-	/// Êä³öÈÕÆÚ×Ö·û´®
+	/// è¾“å‡ºæ—¥æœŸå­—ç¬¦ä¸²
 	string date( const string &datemark = "-", 
 		const bool leadingzero = true ) const;
 				 
-	/// Êä³öÊ±¼ä×Ö·û´®
+	/// è¾“å‡ºæ—¶é—´å­—ç¬¦ä¸²
 	string time( const string &timemark = ":", 
 		const bool leadingzero = true ) const;
 				 
-	/// Êä³öÈÕÆÚÊ±¼ä×Ö·û´®
+	/// è¾“å‡ºæ—¥æœŸæ—¶é—´å­—ç¬¦ä¸²
 	string datetime( const string &datemark = "-", const string &dtmark = " ",
 		const string &timemark = ":", const bool leadingzero = true ) const;
 					 
-	/// Êä³ö GMT ¸ñÊ½ÈÕÆÚÊ±¼ä×Ö·û´®
+	/// è¾“å‡º GMT æ ¼å¼æ—¥æœŸæ—¶é—´å­—ç¬¦ä¸²
 	string gmt_datetime() const;
 	
 	////////////////////////////////////////////////////////////////////////////
@@ -171,104 +171,104 @@ class DateTime {
 
 /// \ingroup waDateTime
 /// \fn DateTime operator+( const DateTime &date1, const DateTime &date2 )
-/// Ê±¼äÏà¼Ó
+/// æ—¶é—´ç›¸åŠ 
 DateTime operator+( const DateTime &date1, const DateTime &date2 );
 
 /// \ingroup waDateTime
 /// \fn DateTime operator+( const DateTime &date, const time_t &tt )
-/// Ê±¼äÏà¼Ó
+/// æ—¶é—´ç›¸åŠ 
 DateTime operator+( const DateTime &date, const time_t &tt );
 
 /// \ingroup waDateTime
 /// \fn DateTime operator-( const DateTime &date1, const DateTime &date2 )
-/// Ê±¼äÏà¼õ
+/// æ—¶é—´ç›¸å‡
 DateTime operator-( const DateTime &date1, const DateTime &date2 );
 
 /// \ingroup waDateTime
 /// \fn DateTime operator-( const DateTime &date, const time_t &tt )
-/// Ê±¼äÏà¼õ
+/// æ—¶é—´ç›¸å‡
 DateTime operator-( const DateTime &date, const time_t &tt );
 
 /// \ingroup waDateTime
 /// \fn bool operator==( const DateTime &left, const DateTime &right )
-/// Ê±¼äÏàµÈ±È½Ï
+/// æ—¶é—´ç›¸ç­‰æ¯”è¾ƒ
 inline bool operator==( const DateTime &left, const DateTime &right ) {
 	return ( left.value() == right.value() );
 }
 
 /// \ingroup waDateTime
 /// \fn bool operator==( const DateTime &left, const time_t &right )
-/// Ê±¼äÏàµÈ±È½Ï
+/// æ—¶é—´ç›¸ç­‰æ¯”è¾ƒ
 inline bool operator==( const DateTime &left, const time_t &right ) {
 	return ( left.value() == right );
 }
 
 /// \ingroup waDateTime
 /// \fn bool operator!=( const DateTime &left, const DateTime &right )
-/// Ê±¼ä²»ÏàµÈ±È½Ï
+/// æ—¶é—´ä¸ç›¸ç­‰æ¯”è¾ƒ
 inline bool operator!=( const DateTime &left, const DateTime &right ) {
 	return ( left.value() != right.value() );
 }
 
 /// \ingroup waDateTime
 /// \fn bool operator!=( const DateTime &left, const time_t &right )
-/// Ê±¼ä²»ÏàµÈ±È½Ï
+/// æ—¶é—´ä¸ç›¸ç­‰æ¯”è¾ƒ
 inline bool operator!=( const DateTime &left, const time_t &right ) {
 	return ( left.value() != right );
 }
 
 /// \ingroup waDateTime
 /// \fn bool operator>( const DateTime &left, const DateTime &right )
-/// Ê±¼ä´óÓÚ±È½Ï
+/// æ—¶é—´å¤§äºŽæ¯”è¾ƒ
 inline bool operator>( const DateTime &left, const DateTime &right ) {
 	return ( left.value() > right.value() );
 }
 
 /// \ingroup waDateTime
 /// \fn bool operator>( const DateTime &left, const time_t &right )
-/// Ê±¼ä´óÓÚ±È½Ï
+/// æ—¶é—´å¤§äºŽæ¯”è¾ƒ
 inline bool operator>( const DateTime &left, const time_t &right ) {
 	return ( left.value() > right );
 }
 
 /// \ingroup waDateTime
 /// \fn bool operator<( const DateTime &left, const DateTime &right )
-/// Ê±¼äÐ¡ÓÚ±È½Ï
+/// æ—¶é—´å°äºŽæ¯”è¾ƒ
 inline bool operator<( const DateTime &left, const DateTime &right ) {
 	return ( left.value() < right.value() );
 }
 
 /// \ingroup waDateTime
 /// \fn bool operator<( const DateTime &left, const time_t &right )
-/// Ê±¼äÐ¡ÓÚ±È½Ï
+/// æ—¶é—´å°äºŽæ¯”è¾ƒ
 inline bool operator<( const DateTime &left, const time_t &right ) {
 	return ( left.value() < right );
 }
 
 /// \ingroup waDateTime
 /// \fn bool operator>=( const DateTime &left, const DateTime &right )
-/// Ê±¼ä²»Ð¡ÓÚ±È½Ï
+/// æ—¶é—´ä¸å°äºŽæ¯”è¾ƒ
 inline bool operator>=( const DateTime &left, const DateTime &right ) {
 	return ( left.value() >= right.value() );
 }
 
 /// \ingroup waDateTime
 /// \fn bool operator>=( const DateTime &left, const time_t &right )
-/// Ê±¼ä²»Ð¡ÓÚ±È½Ï
+/// æ—¶é—´ä¸å°äºŽæ¯”è¾ƒ
 inline bool operator>=( const DateTime &left, const time_t &right ) {
 	return ( left.value() >= right );
 }
 
 /// \ingroup waDateTime
 /// \fn bool operator<=( const DateTime &left, const DateTime &right )
-/// Ê±¼ä²»´óÓÚ±È½Ï
+/// æ—¶é—´ä¸å¤§äºŽæ¯”è¾ƒ
 inline bool operator<=( const DateTime &left, const DateTime &right ) {
 	return ( left.value() <= right.value() );
 }
 
 /// \ingroup waDateTime
 /// \fn bool operator<=( const DateTime &left, const time_t &right ) 
-/// Ê±¼ä²»´óÓÚ±È½Ï
+/// æ—¶é—´ä¸å¤§äºŽæ¯”è¾ƒ
 inline bool operator<=( const DateTime &left, const time_t &right ) {
 	return ( left.value() <= right );
 }

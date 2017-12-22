@@ -1,6 +1,6 @@
 /// \file waTextFile.cpp
-/// ¹Ì¶¨·Ö¸ô·ûÎÄ±¾ÎÄ¼ş¶ÁÈ¡½âÎöÀàÊµÏÖÎÄ¼ş
-/// ¶ÁÈ¡½âÎö¹Ì¶¨·Ö¸ô·ûÎÄ±¾ÎÄ¼ş
+/// å›ºå®šåˆ†éš”ç¬¦æ–‡æœ¬æ–‡ä»¶è¯»å–è§£æç±»å®ç°æ–‡ä»¶
+/// è¯»å–è§£æå›ºå®šåˆ†éš”ç¬¦æ–‡æœ¬æ–‡ä»¶
 
 #include "waTextFile.h"
 
@@ -9,10 +9,10 @@ using namespace std;
 /// Web Application Library namaspace
 namespace webapp {
 	
-/// ´ò¿ªÎÄ±¾ÎÄ¼ş
-/// \param file ÎÄ±¾ÎÄ¼şÂ·¾¶Ãû
-/// \retval true ´ò¿ªÎÄ¼ş³É¹¦
-/// \retval false ´ò¿ªÎÄ¼şÊ§°Ü
+/// æ‰“å¼€æ–‡æœ¬æ–‡ä»¶
+/// \param file æ–‡æœ¬æ–‡ä»¶è·¯å¾„å
+/// \retval true æ‰“å¼€æ–‡ä»¶æˆåŠŸ
+/// \retval false æ‰“å¼€æ–‡ä»¶å¤±è´¥
 bool TextFile::open( const string &file ) {
 	if ( file == "" ) return false;
 	if ( _fp != NULL ) this->close();
@@ -22,7 +22,7 @@ bool TextFile::open( const string &file ) {
 	else return false;
 }
 
-/// ¹Ø±ÕÎÄ±¾ÎÄ¼ş
+/// å…³é—­æ–‡æœ¬æ–‡ä»¶
 void TextFile::close() {
 	if ( _fp != NULL ) {
 		fclose( _fp );
@@ -36,10 +36,10 @@ void TextFile::close() {
 	}
 }
 
-/// ¶ÁÈ¡ÏÂÒ»ĞĞ
-/// \param line ¶ÁÈ¡µ½µÄÎÄ±¾ĞĞ£¬²»º¬Ä©Î²µÄ'\\n'
-/// \retval true »¹Î´¶Áµ½ÎÄ¼şÄ©Î²
-/// \retval false ÒÑ¶Áµ½ÎÄ¼şÄ©Î²
+/// è¯»å–ä¸‹ä¸€è¡Œ
+/// \param line è¯»å–åˆ°çš„æ–‡æœ¬è¡Œï¼Œä¸å«æœ«å°¾çš„'\\n'
+/// \retval true è¿˜æœªè¯»åˆ°æ–‡ä»¶æœ«å°¾
+/// \retval false å·²è¯»åˆ°æ–‡ä»¶æœ«å°¾
 bool TextFile::next_line( string &line ) {
 	if( _fp == NULL ) 
 		return false;
@@ -56,12 +56,12 @@ bool TextFile::next_line( string &line ) {
 	return true;
 }
 
-/// ¶ÁÈ¡ÏÂÒ»ĞĞ²¢°´·Ö¸ô·û²ğ·Ö×Ö¶Î
-/// \param fields ¶ÁÈ¡µ½µÄ×Ö·û´®Êı×é
-/// \param split ×Ö¶ÎÇĞ·Ö·Ö¸ô·û£¬Ä¬ÈÏÎª'\\t'
-/// \param limit ×Ö¶ÎÇĞ·Ö´ÎÊıÏŞÖÆ£¬Ä¬ÈÏÎª0¼´²»ÏŞÖÆ
-/// \retval true »¹Î´¶Áµ½ÎÄ¼şÄ©Î²
-/// \retval false ÒÑ¶Áµ½ÎÄ¼şÄ©Î²
+/// è¯»å–ä¸‹ä¸€è¡Œå¹¶æŒ‰åˆ†éš”ç¬¦æ‹†åˆ†å­—æ®µ
+/// \param fields è¯»å–åˆ°çš„å­—ç¬¦ä¸²æ•°ç»„
+/// \param split å­—æ®µåˆ‡åˆ†åˆ†éš”ç¬¦ï¼Œé»˜è®¤ä¸º'\\t'
+/// \param limit å­—æ®µåˆ‡åˆ†æ¬¡æ•°é™åˆ¶ï¼Œé»˜è®¤ä¸º0å³ä¸é™åˆ¶
+/// \retval true è¿˜æœªè¯»åˆ°æ–‡ä»¶æœ«å°¾
+/// \retval false å·²è¯»åˆ°æ–‡ä»¶æœ«å°¾
 bool TextFile::next_fields( vector<String> &fields, const string &split, const int limit ) {
 	String line;
 	if ( this->next_line(line) ) {

@@ -1,5 +1,5 @@
 /// \file waEncode.cpp
-/// ×Ö·û´®BASE64¡¢URI¡¢MD5±àÂëº¯ÊıÊµÏÖÎÄ¼ş
+/// å­—ç¬¦ä¸²BASE64ã€URIã€MD5ç¼–ç å‡½æ•°å®ç°æ–‡ä»¶
 
 #include <cstdio>
 #include <cstring>
@@ -15,13 +15,13 @@ using namespace std;
 /// Web Application Library namaspace
 namespace webapp {
 	
-/// \defgroup waEncode waEncode×Ö·û´®¼ÓÃÜ±àÂëº¯Êı¿â
+/// \defgroup waEncode waEncodeå­—ç¬¦ä¸²åŠ å¯†ç¼–ç å‡½æ•°åº“
 	
 ////////////////////////////////////////////////////////////////////////////////
-// URI±àÂë½âÂë
+// URIç¼–ç è§£ç 
 
-// HEX×Ö·û×ª»»ÎªASC×Ö·û
-// ÓÉº¯Êıuri_decode()µ÷ÓÃ
+// HEXå­—ç¬¦è½¬æ¢ä¸ºASCå­—ç¬¦
+// ç”±å‡½æ•°uri_decode()è°ƒç”¨
 char hex_to_asc( const string &src ) {
 	char digit;
 	digit = ( src[0]>='A' ? ((src[0]&0xdf)-'A')+10 : (src[0]-'0') );
@@ -33,9 +33,9 @@ char hex_to_asc( const string &src ) {
 
 /// \ingroup waEncode
 /// \fn string uri_encode( const string &source )
-/// URI±àÂë
-/// \param source Ô­×Ö·û´®
-/// \return ±àÂë½á¹û×Ö·û´®
+/// URIç¼–ç 
+/// \param source åŸå­—ç¬¦ä¸²
+/// \return ç¼–ç ç»“æœå­—ç¬¦ä¸²
 string uri_encode( const string &source ) {
 	const char reserved[] = ";/?:@&=+\0";
 	const char unsafe[] = " \"#%<>\0";
@@ -60,9 +60,9 @@ string uri_encode( const string &source ) {
 
 /// \ingroup waEncode
 /// \fn string uri_decode( const string &source )
-/// URI½âÂë
-/// \param source URI±àÂë×Ö·û´®
-/// \return ½âÂë½á¹û
+/// URIè§£ç 
+/// \param source URIç¼–ç å­—ç¬¦ä¸²
+/// \return è§£ç ç»“æœ
 string uri_decode( const string &source ) {
 	size_t pos = 0;
 	string seq;
@@ -85,7 +85,7 @@ string uri_decode( const string &source ) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// BASE64±àÂë
+// BASE64ç¼–ç 
 
 //*********************************************************************
 //* C_Base64 - a simple base64 encoder and decoder.
@@ -259,9 +259,9 @@ bool Base64::isPrintable(const string& s) {
 ////////////////////////////////////////////////////////////////////////////////
 /// \ingroup waEncode
 /// \fn string base64_encode( const string &source )
-/// MIME Base64±àÂë
-/// \param source Ô­×Ö·û´®
-/// \return ³É¹¦·µ»Ø±àÂë½á¹û,·ñÔò·µ»Ø¿Õ×Ö·û´®
+/// MIME Base64ç¼–ç 
+/// \param source åŸå­—ç¬¦ä¸²
+/// \return æˆåŠŸè¿”å›ç¼–ç ç»“æœ,å¦åˆ™è¿”å›ç©ºå­—ç¬¦ä¸²
 string base64_encode( const string &source ) {
 	Base64 b64;
 	return b64.encode( source );
@@ -269,9 +269,9 @@ string base64_encode( const string &source ) {
 
 /// \ingroup waEncode
 /// \fn string base64_decode( const string &source )
-/// MIME Base64½âÂë
-/// \param source BASE64±àÂë×Ö·û´®
-/// \return ³É¹¦·µ»Ø½âÂë½á¹û,·ñÔò·µ»Ø¿Õ×Ö·û´®
+/// MIME Base64è§£ç 
+/// \param source BASE64ç¼–ç å­—ç¬¦ä¸²
+/// \return æˆåŠŸè¿”å›è§£ç ç»“æœ,å¦åˆ™è¿”å›ç©ºå­—ç¬¦ä¸²
 string base64_decode( const string &source ) {
 	Base64 b64;
 	return b64.decode( source );
@@ -815,9 +815,9 @@ inline void MD5::II(uint4& a, uint4 b, uint4 c, uint4 d, uint4 x,
 ////////////////////////////////////////////////////////////////////////////////
 /// \ingroup waEncode
 /// \fn string md5_encode( const string &source )
-/// MD5½âÂë
-/// \param source MD5±àÂë×Ö·û´®
-/// \return ½âÂë½á¹û
+/// MD5è§£ç 
+/// \param source MD5ç¼–ç å­—ç¬¦ä¸²
+/// \return è§£ç ç»“æœ
 string md5_encode( const string &source ) {
 	char *buffer = NULL;
 	size_t len = source.length();

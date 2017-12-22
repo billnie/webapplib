@@ -1,5 +1,5 @@
 /// \file example.cpp
-/// ´úÂëÊ¾ÀıÎÄ¼ş£¬ÑİÊ¾Ò»¸ö¼òµ¥CGIÁ÷³Ì
+/// ä»£ç ç¤ºä¾‹æ–‡ä»¶ï¼Œæ¼”ç¤ºä¸€ä¸ªç®€å•CGIæµç¨‹
 
 #include <iostream>
 #include "webapplib.h"
@@ -8,27 +8,27 @@ using namespace webapp;
 
 int main() {
 	/***************************************************************************
-	ÑİÊ¾ÍêÕûµÄCGIÓ¦ÓÃ³ÌĞòÁ÷³Ì,Ä£ÄâWEB²éÑ¯¶¯×÷	
-	1¡¢¶ÁÈ¡CGI²ÎÊıºÍCookieÊı¾İ£¨String¡¢Cgi¡¢Cookie£©
-	2¡¢Ê¹ÓÃ¶ÁÈ¡µ½µÄ²ÎÊıµ÷ÓÃÈ¨ÏŞ¼ì²é½Ó¿Ú£¨ConfigFile¡¢HttpClient£©
-	3¡¢Ê¹ÓÃ¶ÁÈ¡µ½µÄ²ÎÊı²éÑ¯Êı¾İ¿â£¨MysqlClient£©
-	4¡¢Ê¹ÓÃÈÕÖ¾ÎÄ¼ş¼ÇÂ¼ÓÃ»§ÇëÇó£¨FileSystem¡¢Utility¡¢Encode£©
-	5¡¢¸üĞÂÓÃ»§¶ËCookie£¨Cookie¡¢DateTime£©
-	6¡¢ÏÔÊ¾HTMLÒ³Ãæ£¨Template£©
+	æ¼”ç¤ºå®Œæ•´çš„CGIåº”ç”¨ç¨‹åºæµç¨‹,æ¨¡æ‹ŸWEBæŸ¥è¯¢åŠ¨ä½œ	
+	1ã€è¯»å–CGIå‚æ•°å’ŒCookieæ•°æ®ï¼ˆStringã€Cgiã€Cookieï¼‰
+	2ã€ä½¿ç”¨è¯»å–åˆ°çš„å‚æ•°è°ƒç”¨æƒé™æ£€æŸ¥æ¥å£ï¼ˆConfigFileã€HttpClientï¼‰
+	3ã€ä½¿ç”¨è¯»å–åˆ°çš„å‚æ•°æŸ¥è¯¢æ•°æ®åº“ï¼ˆMysqlClientï¼‰
+	4ã€ä½¿ç”¨æ—¥å¿—æ–‡ä»¶è®°å½•ç”¨æˆ·è¯·æ±‚ï¼ˆFileSystemã€Utilityã€Encodeï¼‰
+	5ã€æ›´æ–°ç”¨æˆ·ç«¯Cookieï¼ˆCookieã€DateTimeï¼‰
+	6ã€æ˜¾ç¤ºHTMLé¡µé¢ï¼ˆTemplateï¼‰
 	***************************************************************************/	
 
 	////////////////////////////////////////////////////////////////////////////
-	// 1¡¢¶ÁÈ¡CGI²ÎÊıºÍCookieÊı¾İ£¨Cgi¡¢Cookie£©
+	// 1ã€è¯»å–CGIå‚æ•°å’ŒCookieæ•°æ®ï¼ˆCgiã€Cookieï¼‰
 	
 	Cgi cgi;
 	Cookie cookie;
 	String username = cgi["username"];
 	String usercookie = cookie["usercookie"];
 	
-	/*ÌáÊ¾ webapp::CgiÔÚ¶Á²»µ½CGI»·¾³±äÁ¿Ê±»áÔËĞĞÔÚµ÷ÊÔÄ£Ê½£¬ÌáÊ¾ÊäÈëCGI²ÎÊıÖµ*/
+	/*æç¤º webapp::Cgiåœ¨è¯»ä¸åˆ°CGIç¯å¢ƒå˜é‡æ—¶ä¼šè¿è¡Œåœ¨è°ƒè¯•æ¨¡å¼ï¼Œæç¤ºè¾“å…¥CGIå‚æ•°å€¼*/
 	
 	////////////////////////////////////////////////////////////////////////////
-	// 2¡¢Ê¹ÓÃ¶ÁÈ¡µ½µÄ²ÎÊıµ÷ÓÃÈ¨ÏŞ¼ì²é½Ó¿Ú£¨ConfigFile¡¢HttpClient£©
+	// 2ã€ä½¿ç”¨è¯»å–åˆ°çš„å‚æ•°è°ƒç”¨æƒé™æ£€æŸ¥æ¥å£ï¼ˆConfigFileã€HttpClientï¼‰
 	
 	ConfigFile conf( "example.conf" );
 	String check_interface = conf["check_interface"];
@@ -45,7 +45,7 @@ int main() {
 	}
 	
 	////////////////////////////////////////////////////////////////////////////
-	// 3¡¢Ê¹ÓÃ¶ÁÈ¡µ½µÄ²ÎÊı²éÑ¯Êı¾İ¿â£¨MysqlClient£©
+	// 3ã€ä½¿ç”¨è¯»å–åˆ°çš„å‚æ•°æŸ¥è¯¢æ•°æ®åº“ï¼ˆMysqlClientï¼‰
 	String value;
 	#ifndef _WEBAPPLIB_NOMYSQL
 
@@ -67,7 +67,7 @@ int main() {
 	#endif //_WEBAPPLIB_NOMYSQL
 
 	////////////////////////////////////////////////////////////////////////////
-	// 4¡¢Ê¹ÓÃÈÕÖ¾ÎÄ¼ş¼ÇÂ¼ÓÃ»§ÇëÇó£¨FileSystem¡¢Utility¡¢Encode£©
+	// 4ã€ä½¿ç”¨æ—¥å¿—æ–‡ä»¶è®°å½•ç”¨æˆ·è¯·æ±‚ï¼ˆFileSystemã€Utilityã€Encodeï¼‰
 	
 	String log_path = "/tmp/";
 	String log_file = log_path + "/logfile.txt";
@@ -84,20 +84,20 @@ int main() {
 	cout << file_content << endl;
 
 	////////////////////////////////////////////////////////////////////////////
-	// 5¡¢¸üĞÂÓÃ»§¶ËCookie£¨Cookie¡¢DateTime£©
+	// 5ã€æ›´æ–°ç”¨æˆ·ç«¯Cookieï¼ˆCookieã€DateTimeï¼‰
 	
 	DateTime now;
-	DateTime expires = now + ( TIME_ONE_DAY*3 ); // CookieÓĞĞ§ÆÚÎªÈıÌì
+	DateTime expires = now + ( TIME_ONE_DAY*3 ); // Cookieæœ‰æ•ˆæœŸä¸ºä¸‰å¤©
 	cookie.set_cookie( "username", username, expires.gmt_datetime() );
 	
 	////////////////////////////////////////////////////////////////////////////
-	// 6¡¢ÏÔÊ¾HTMLÒ³Ãæ£¨Template£©
+	// 6ã€æ˜¾ç¤ºHTMLé¡µé¢ï¼ˆTemplateï¼‰
 	
 	Template page("example.tmpl");
 	page.set( "username", username );
 	page.set( "value", value );
 	
-	// ÏÔÊ¾²éÑ¯½á¹û
+	// æ˜¾ç¤ºæŸ¥è¯¢ç»“æœ
 	cout << "---------------------------------------------------------" << endl;
 	http_head();
 	page.print();

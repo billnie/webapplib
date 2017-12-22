@@ -1,0 +1,208 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXFileReference section */
+		66CFF9081FEC8E8900E1ABC8 /* .git */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .git; sourceTree = "<group>"; };
+		66CFF9091FEC8E8900E1ABC8 /* ChangeLog */ = {isa = PBXFileReference; lastKnownFileType = text; path = ChangeLog; sourceTree = "<group>"; };
+		66CFF90A1FEC8E8900E1ABC8 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		66CFF90B1FEC8E8900E1ABC8 /* example.conf */ = {isa = PBXFileReference; lastKnownFileType = text; path = example.conf; sourceTree = "<group>"; };
+		66CFF90C1FEC8E8900E1ABC8 /* example.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = example.cpp; sourceTree = "<group>"; };
+		66CFF90D1FEC8E8900E1ABC8 /* example.tmpl */ = {isa = PBXFileReference; lastKnownFileType = text; path = example.tmpl; sourceTree = "<group>"; };
+		66CFF90E1FEC8E8900E1ABC8 /* help.chm */ = {isa = PBXFileReference; lastKnownFileType = file; path = help.chm; sourceTree = "<group>"; };
+		66CFF90F1FEC8E8900E1ABC8 /* help.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = help.pdf; sourceTree = "<group>"; };
+		66CFF9101FEC8E8900E1ABC8 /* INSTALL */ = {isa = PBXFileReference; lastKnownFileType = text; path = INSTALL; sourceTree = "<group>"; };
+		66CFF9111FEC8E8900E1ABC8 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		66CFF9121FEC8E8900E1ABC8 /* Makefile.example */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.example; sourceTree = "<group>"; };
+		66CFF9131FEC8E8900E1ABC8 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		66CFF9141FEC8E8900E1ABC8 /* string_hash.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = string_hash.js; sourceTree = "<group>"; };
+		66CFF9151FEC8E8900E1ABC8 /* string_hash.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = string_hash.pl; sourceTree = "<group>"; };
+		66CFF9161FEC8E8900E1ABC8 /* waCgi.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = waCgi.cpp; sourceTree = "<group>"; };
+		66CFF9171FEC8E8900E1ABC8 /* waCgi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = waCgi.h; sourceTree = "<group>"; };
+		66CFF9181FEC8E8900E1ABC8 /* waConfigFile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = waConfigFile.cpp; sourceTree = "<group>"; };
+		66CFF9191FEC8E8900E1ABC8 /* waConfigFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = waConfigFile.h; sourceTree = "<group>"; };
+		66CFF91A1FEC8E8900E1ABC8 /* waDateTime.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = waDateTime.cpp; sourceTree = "<group>"; };
+		66CFF91B1FEC8E8900E1ABC8 /* waDateTime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = waDateTime.h; sourceTree = "<group>"; };
+		66CFF91C1FEC8E8900E1ABC8 /* waEncode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = waEncode.cpp; sourceTree = "<group>"; };
+		66CFF91D1FEC8E8900E1ABC8 /* waEncode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = waEncode.h; sourceTree = "<group>"; };
+		66CFF91E1FEC8E8900E1ABC8 /* waFileSystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = waFileSystem.cpp; sourceTree = "<group>"; };
+		66CFF91F1FEC8E8900E1ABC8 /* waFileSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = waFileSystem.h; sourceTree = "<group>"; };
+		66CFF9201FEC8E8900E1ABC8 /* waHttpClient.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = waHttpClient.cpp; sourceTree = "<group>"; };
+		66CFF9211FEC8E8900E1ABC8 /* waHttpClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = waHttpClient.h; sourceTree = "<group>"; };
+		66CFF9221FEC8E8900E1ABC8 /* waMysqlClient.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = waMysqlClient.cpp; sourceTree = "<group>"; };
+		66CFF9231FEC8E8900E1ABC8 /* waMysqlClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = waMysqlClient.h; sourceTree = "<group>"; };
+		66CFF9241FEC8E8900E1ABC8 /* waString.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = waString.cpp; sourceTree = "<group>"; };
+		66CFF9251FEC8E8900E1ABC8 /* waString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = waString.h; sourceTree = "<group>"; };
+		66CFF9261FEC8E8900E1ABC8 /* waTemplate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = waTemplate.cpp; sourceTree = "<group>"; };
+		66CFF9271FEC8E8900E1ABC8 /* waTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = waTemplate.h; sourceTree = "<group>"; };
+		66CFF9281FEC8E8900E1ABC8 /* waTextFile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = waTextFile.cpp; sourceTree = "<group>"; };
+		66CFF9291FEC8E8900E1ABC8 /* waTextFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = waTextFile.h; sourceTree = "<group>"; };
+		66CFF92A1FEC8E8900E1ABC8 /* waUtility.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = waUtility.cpp; sourceTree = "<group>"; };
+		66CFF92B1FEC8E8900E1ABC8 /* waUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = waUtility.h; sourceTree = "<group>"; };
+		66CFF92C1FEC8E8900E1ABC8 /* webapplib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = webapplib.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		66CFF9021FEC8E8900E1ABC8 = {
+			isa = PBXGroup;
+			children = (
+				66CFF9081FEC8E8900E1ABC8 /* .git */,
+				66CFF9091FEC8E8900E1ABC8 /* ChangeLog */,
+				66CFF90A1FEC8E8900E1ABC8 /* CMakeLists.txt */,
+				66CFF90B1FEC8E8900E1ABC8 /* example.conf */,
+				66CFF90C1FEC8E8900E1ABC8 /* example.cpp */,
+				66CFF90D1FEC8E8900E1ABC8 /* example.tmpl */,
+				66CFF90E1FEC8E8900E1ABC8 /* help.chm */,
+				66CFF90F1FEC8E8900E1ABC8 /* help.pdf */,
+				66CFF9101FEC8E8900E1ABC8 /* INSTALL */,
+				66CFF9111FEC8E8900E1ABC8 /* Makefile */,
+				66CFF9121FEC8E8900E1ABC8 /* Makefile.example */,
+				66CFF9131FEC8E8900E1ABC8 /* README */,
+				66CFF9141FEC8E8900E1ABC8 /* string_hash.js */,
+				66CFF9151FEC8E8900E1ABC8 /* string_hash.pl */,
+				66CFF9161FEC8E8900E1ABC8 /* waCgi.cpp */,
+				66CFF9171FEC8E8900E1ABC8 /* waCgi.h */,
+				66CFF9181FEC8E8900E1ABC8 /* waConfigFile.cpp */,
+				66CFF9191FEC8E8900E1ABC8 /* waConfigFile.h */,
+				66CFF91A1FEC8E8900E1ABC8 /* waDateTime.cpp */,
+				66CFF91B1FEC8E8900E1ABC8 /* waDateTime.h */,
+				66CFF91C1FEC8E8900E1ABC8 /* waEncode.cpp */,
+				66CFF91D1FEC8E8900E1ABC8 /* waEncode.h */,
+				66CFF91E1FEC8E8900E1ABC8 /* waFileSystem.cpp */,
+				66CFF91F1FEC8E8900E1ABC8 /* waFileSystem.h */,
+				66CFF9201FEC8E8900E1ABC8 /* waHttpClient.cpp */,
+				66CFF9211FEC8E8900E1ABC8 /* waHttpClient.h */,
+				66CFF9221FEC8E8900E1ABC8 /* waMysqlClient.cpp */,
+				66CFF9231FEC8E8900E1ABC8 /* waMysqlClient.h */,
+				66CFF9241FEC8E8900E1ABC8 /* waString.cpp */,
+				66CFF9251FEC8E8900E1ABC8 /* waString.h */,
+				66CFF9261FEC8E8900E1ABC8 /* waTemplate.cpp */,
+				66CFF9271FEC8E8900E1ABC8 /* waTemplate.h */,
+				66CFF9281FEC8E8900E1ABC8 /* waTextFile.cpp */,
+				66CFF9291FEC8E8900E1ABC8 /* waTextFile.h */,
+				66CFF92A1FEC8E8900E1ABC8 /* waUtility.cpp */,
+				66CFF92B1FEC8E8900E1ABC8 /* waUtility.h */,
+				66CFF92C1FEC8E8900E1ABC8 /* webapplib.h */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		66CFF9071FEC8E8900E1ABC8 /* webapplib */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 66CFF92D1FEC8E8A00E1ABC8 /* Build configuration list for PBXLegacyTarget "webapplib" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = /Users/zzx/webapplib;
+			dependencies = (
+			);
+			name = webapplib;
+			passBuildSettingsInEnvironment = 1;
+			productName = webapplib;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		66CFF9031FEC8E8900E1ABC8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = 66CFF9061FEC8E8900E1ABC8 /* Build configuration list for PBXProject "webapplib" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 66CFF9021FEC8E8900E1ABC8;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				66CFF9071FEC8E8900E1ABC8 /* webapplib */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		66CFF9041FEC8E8900E1ABC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		66CFF9051FEC8E8900E1ABC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		66CFF92E1FEC8E8A00E1ABC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = webapplib;
+			};
+			name = Debug;
+		};
+		66CFF92F1FEC8E8A00E1ABC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = webapplib;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		66CFF9061FEC8E8900E1ABC8 /* Build configuration list for PBXProject "webapplib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66CFF9041FEC8E8900E1ABC8 /* Debug */,
+				66CFF9051FEC8E8900E1ABC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66CFF92D1FEC8E8A00E1ABC8 /* Build configuration list for PBXLegacyTarget "webapplib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66CFF92E1FEC8E8A00E1ABC8 /* Debug */,
+				66CFF92F1FEC8E8A00E1ABC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 66CFF9031FEC8E8900E1ABC8 /* Project object */;
+}

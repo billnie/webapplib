@@ -1,5 +1,5 @@
 /// \file waConfigFile.cpp
-/// INI¸ñÊ½ÅäÖÃÎÄ¼ş½âÎöÀàÊµÏÖÎÄ¼ş
+/// INIæ ¼å¼é…ç½®æ–‡ä»¶è§£æç±»å®ç°æ–‡ä»¶
 
 #include <fstream>
 #include <set>
@@ -13,10 +13,10 @@ using namespace std;
 /// Web Application Library namaspace
 namespace webapp {
 	
-/// ¶ÁÈ¡½âÎöÅäÖÃÎÄ¼ş
-/// \param file ÅäÖÃÎÄ¼şÂ·¾¶Ãû
-/// \retval true ½âÎö³É¹¦
-/// \retval false ½âÎöÊ§°Ü
+/// è¯»å–è§£æé…ç½®æ–‡ä»¶
+/// \param file é…ç½®æ–‡ä»¶è·¯å¾„å
+/// \retval true è§£ææˆåŠŸ
+/// \retval false è§£æå¤±è´¥
 bool ConfigFile::load( const string &file ) {
 	if ( file == "" ) return false;
 	_file = file;
@@ -94,10 +94,10 @@ bool ConfigFile::load( const string &file ) {
 	return true;
 }
 
-/// ±£´æÅäÖÃÎÄ¼ş
-/// \param file ÅäÖÃÎÄ¼şÂ·¾¶Ãû£¬Ä¬ÈÏÎª¿ÕÔòÊ¹ÓÃ¶ÁÈ¡ÎÄ¼ş²ÎÊı
-/// \retval true ±£´æ³É¹¦
-/// \retval false ±£´æÊ§°Ü
+/// ä¿å­˜é…ç½®æ–‡ä»¶
+/// \param file é…ç½®æ–‡ä»¶è·¯å¾„åï¼Œé»˜è®¤ä¸ºç©ºåˆ™ä½¿ç”¨è¯»å–æ–‡ä»¶å‚æ•°
+/// \retval true ä¿å­˜æˆåŠŸ
+/// \retval false ä¿å­˜å¤±è´¥
 bool ConfigFile::save( const string &file ) {
 	string config_file = _file;
 	if ( file != "" )
@@ -123,11 +123,11 @@ bool ConfigFile::save( const string &file ) {
 	return _unsaved;
 }
 
-/// ¼ì²éÅäÖÃÏîÊÇ·ñ´æÔÚ	
-/// \param block ÅäÖÃ¿éÃû£¬Îª¿Õ±íÊ¾È«¾ÖÅäÖÃ¿é
-/// \param name ÅäÖÃÏîÃû
-/// \retval true ´æÔÚ
-/// \retval false ²»´æÔÚ
+/// æ£€æŸ¥é…ç½®é¡¹æ˜¯å¦å­˜åœ¨	
+/// \param block é…ç½®å—åï¼Œä¸ºç©ºè¡¨ç¤ºå…¨å±€é…ç½®å—
+/// \param name é…ç½®é¡¹å
+/// \retval true å­˜åœ¨
+/// \retval false ä¸å­˜åœ¨
 bool ConfigFile::value_exist( const string &block, const string &name ) {
 	if ( name == "" )
 		return false;	
@@ -145,10 +145,10 @@ bool ConfigFile::value_exist( const string &block, const string &name ) {
 	return false;
 }
 
-/// ¼ì²éÅäÖÃ¿éÊÇ·ñ´æÔÚ
-/// \param block ÅäÖÃ¿éÃû£¬Îª¿Õ±íÊ¾È«¾ÖÅäÖÃ¿é
-/// \retval true ´æÔÚ
-/// \retval false ²»´æÔÚ
+/// æ£€æŸ¥é…ç½®å—æ˜¯å¦å­˜åœ¨
+/// \param block é…ç½®å—åï¼Œä¸ºç©ºè¡¨ç¤ºå…¨å±€é…ç½®å—
+/// \retval true å­˜åœ¨
+/// \retval false ä¸å­˜åœ¨
 bool ConfigFile::block_exist( const string &block ) {
 	if ( block == "" )
 		return true;
@@ -160,11 +160,11 @@ bool ConfigFile::block_exist( const string &block ) {
 		return false;
 }
 
-/// ¶ÁÈ¡ÅäÖÃÏî²ÎÊıÖµ
-/// \param block ÅäÖÃ¿éÃû£¬Îª¿Õ±íÊ¾È«¾ÖÅäÖÃ¿é
-/// \param name ÅäÖÃÏîÃû
-/// \param default_value Ä¬ÈÏ²ÎÊıÖµ£¬ÅäÖÃÏî²»´æÔÚÊ±·µ»Ø
-/// \return Ö¸¶¨ÅäÖÃÏî²ÎÊıÖµ
+/// è¯»å–é…ç½®é¡¹å‚æ•°å€¼
+/// \param block é…ç½®å—åï¼Œä¸ºç©ºè¡¨ç¤ºå…¨å±€é…ç½®å—
+/// \param name é…ç½®é¡¹å
+/// \param default_value é»˜è®¤å‚æ•°å€¼ï¼Œé…ç½®é¡¹ä¸å­˜åœ¨æ—¶è¿”å›
+/// \return æŒ‡å®šé…ç½®é¡¹å‚æ•°å€¼
 string ConfigFile::get_value( const string &block, const string &name, 
 						  const string &default_value ) {
 	if ( name == "" )
@@ -184,9 +184,9 @@ string ConfigFile::get_value( const string &block, const string &name,
 	return _viter->second;
 }
 
-/// ¶ÁÈ¡Ö¸¶¨ÅäÖÃ¿éµÄÈ«²¿ÅäÖÃÏî²ÎÊıÖµ
-/// \param block ÅäÖÃ¿éÃû£¬Îª¿Õ±íÊ¾È«¾ÖÅäÖÃ¿é
-/// \return Ö¸¶¨ÅäÖÃ¿éµÄÈ«²¿ÅäÖÃÏî²ÎÊıÖµÁĞ±í
+/// è¯»å–æŒ‡å®šé…ç½®å—çš„å…¨éƒ¨é…ç½®é¡¹å‚æ•°å€¼
+/// \param block é…ç½®å—åï¼Œä¸ºç©ºè¡¨ç¤ºå…¨å±€é…ç½®å—
+/// \return æŒ‡å®šé…ç½®å—çš„å…¨éƒ¨é…ç½®é¡¹å‚æ•°å€¼åˆ—è¡¨
 map<string,string> ConfigFile::get_block( const string &block ) {
 	value_def valuelist;	
 	if ( block_exist(block) )
@@ -194,8 +194,8 @@ map<string,string> ConfigFile::get_block( const string &block ) {
 	return valuelist;
 }
 
-/// ¶ÁÈ¡È«²¿ÅäÖÃ¿éÁĞ±í		
-/// \return È«²¿ÅäÖÃ¿éÁĞ±í£¬°üÀ¨È«¾ÖÅäÖÃ¿é£¨blockÖµÎª¿Õ£©
+/// è¯»å–å…¨éƒ¨é…ç½®å—åˆ—è¡¨		
+/// \return å…¨éƒ¨é…ç½®å—åˆ—è¡¨ï¼ŒåŒ…æ‹¬å…¨å±€é…ç½®å—ï¼ˆblockå€¼ä¸ºç©ºï¼‰
 vector<string> ConfigFile::block_list() {
 	vector<string> blocklist;
 	_biter = _config.begin();
@@ -204,12 +204,12 @@ vector<string> ConfigFile::block_list() {
 	return blocklist;
 }
 	
-/// ¸üĞÂÅäÖÃÏî
-/// \param block ÅäÖÃ¿éÃû£¬Îª¿Õ±íÊ¾È«¾ÖÅäÖÃ¿é
-/// \param name ÅäÖÃÏîÃû
-/// \param value ÅäÖÃ²ÎÊıÖµ
-/// \retval true ¸üĞÂ³É¹¦
-/// \retval false ¸üĞÂÊ§°Ü
+/// æ›´æ–°é…ç½®é¡¹
+/// \param block é…ç½®å—åï¼Œä¸ºç©ºè¡¨ç¤ºå…¨å±€é…ç½®å—
+/// \param name é…ç½®é¡¹å
+/// \param value é…ç½®å‚æ•°å€¼
+/// \retval true æ›´æ–°æˆåŠŸ
+/// \retval false æ›´æ–°å¤±è´¥
 bool ConfigFile::set_value( const string &block, const string &name, 
 	const string &value ) 
 {
@@ -220,11 +220,11 @@ bool ConfigFile::set_value( const string &block, const string &name,
 	return _unsaved;
 }
 
-/// ¸üĞÂÖ¸¶¨ÅäÖÃ¿éµÄÅäÖÃÏîÁĞ±í
-/// \param block ÅäÖÃ¿éÃû£¬Îª¿Õ±íÊ¾È«¾ÖÅäÖÃ¿é
-/// \param valuelist ÅäÖÃ²ÎÊıÖµ¶ÔÁĞ±í
-/// \retval true ¸üĞÂ³É¹¦
-/// \retval false ¸üĞÂÊ§°Ü
+/// æ›´æ–°æŒ‡å®šé…ç½®å—çš„é…ç½®é¡¹åˆ—è¡¨
+/// \param block é…ç½®å—åï¼Œä¸ºç©ºè¡¨ç¤ºå…¨å±€é…ç½®å—
+/// \param valuelist é…ç½®å‚æ•°å€¼å¯¹åˆ—è¡¨
+/// \retval true æ›´æ–°æˆåŠŸ
+/// \retval false æ›´æ–°å¤±è´¥
 bool ConfigFile::set_block( const string &block, 
 	const map<string,string> &valuelist ) 
 {
@@ -239,9 +239,9 @@ bool ConfigFile::set_block( const string &block,
 	return _unsaved;
 }
 
-/// É¾³ıÅäÖÃÏî
-/// \param block ÅäÖÃ¿éÃû£¬Îª¿Õ±íÊ¾È«¾ÖÅäÖÃ¿é
-/// \param name ÅäÖÃÏîÃû
+/// åˆ é™¤é…ç½®é¡¹
+/// \param block é…ç½®å—åï¼Œä¸ºç©ºè¡¨ç¤ºå…¨å±€é…ç½®å—
+/// \param name é…ç½®é¡¹å
 void ConfigFile::del_value( const string &block, const string &name ) {
 	_biter = _config.find( block );
 	if ( _biter != _config.end() ) {
@@ -254,8 +254,8 @@ void ConfigFile::del_value( const string &block, const string &name ) {
 	}
 }
 
-/// É¾³ıÅäÖÃ¿é
-/// \param block ÅäÖÃ¿éÃû£¬Îª¿Õ±íÊ¾È«¾ÖÅäÖÃ¿é
+/// åˆ é™¤é…ç½®å—
+/// \param block é…ç½®å—åï¼Œä¸ºç©ºè¡¨ç¤ºå…¨å±€é…ç½®å—
 void ConfigFile::del_block( const string &block ) {
 	_biter = _config.find( block );
 	if ( _biter != _config.end() ) {

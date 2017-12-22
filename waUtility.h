@@ -1,7 +1,7 @@
 /// \file waUtility.h
-/// ÏµÍ³µ÷ÓÃ¹¤¾ßº¯ÊýÍ·ÎÄ¼þ
-/// ³£ÓÃÏµÍ³µ÷ÓÃºÍ¹¤¾ßº¯Êý
-/// ÒÀÀµÓÚ webapp::String, webapp::DateTime
+/// ç³»ç»Ÿè°ƒç”¨å·¥å…·å‡½æ•°å¤´æ–‡ä»¶
+/// å¸¸ç”¨ç³»ç»Ÿè°ƒç”¨å’Œå·¥å…·å‡½æ•°
+/// ä¾èµ–äºŽ webapp::String, webapp::DateTime
 
 #ifndef _WEBAPPLIB_UTILITY_H_
 #define _WEBAPPLIB_UTILITY_H_ 
@@ -14,23 +14,23 @@ using namespace std;
 /// Web Application Library namaspace
 namespace webapp {
 
-/// \defgroup waUtility waUtilityÏµÍ³µ÷ÓÃ¹¤¾ßº¯Êý¿â
+/// \defgroup waUtility waUtilityç³»ç»Ÿè°ƒç”¨å·¥å…·å‡½æ•°åº“
 
-// È«½Ç°ë½Ç×Ö·û×ª»»±í
+// å…¨è§’åŠè§’å­—ç¬¦è½¬æ¢è¡¨
 #define SDBC_TABLE_SIZE		172
 static const char SBC_TABLE[SDBC_TABLE_SIZE][3] = {
-	"£±", "£²", "£³", "£´", "£µ", "£¶", "£·", "£¸", "£¹", "£°",
-	"Ò»", "¶þ", "Èý", "ËÄ", "Îå", "Áù", "Æß", "°Ë", "¾Å", "Áã",
-	"Ò¼", "·¡", "Èþ", "ËÁ", "Îé", "Â½", "Æâ", "°Æ", "¾Á", "Áã",
-	"¢±", "¢²", "¢³", "¢´", "¢µ", "¢¶", "¢·", "¢¸", "¢¹", "¢º",
-	"¢Å", "¢Æ", "¢Ç", "¢È", "¢É", "¢Ê", "¢Ë", "¢Ì", "¢Í", "¢Î",
-	"¢Ù", "¢Ú", "¢Û", "¢Ü", "¢Ý", "¢Þ", "¢ß", "¢à", "¢á", "¢â",
-	"¢å", "¢æ", "¢ç", "¢è", "¢é", "¢ê", "¢ë", "¢ì", "¢í", "¢î",
-	"£á", "£â", "£ã", "£ä", "£å", "£æ", "£ç", "£è", "£é", "£ê", "£ë", "£ì", "£í", "£î", "£ï", "£ð" ,"£ñ", "£ò", "£ó", "£ô", "£õ", "£ö", "£÷", "£ø", "£ù", "£ú",
-	"£Á", "£Â", "£Ã", "£Ä", "£Å", "£Æ", "£Ç", "£È", "£É", "£Ê", "£Ë", "£Ì", "£Í", "£Î", "£Ï", "£Ð" ,"£Ñ", "£Ò", "£Ó", "£Ô", "£Õ", "£Ö", "£×", "£Ø", "£Ù", "£Ú",
-	"£­", "£½", "£Û", "£Ý", "¡¢", "£»", "£à", "£§", "¡®", "¡¯", "£¬", "¡£", "£¯", "¡«", "£¡", "¡¤", "££",
-	"£¤", "£¥", "¦ä", "£¦", "£ª", "¡ù", "£¨", "£©", "¡ª", "£«", "£û", "£ý", "£ü", "£º", "¡¶", "¡·", "£¿",
-	"¡­", "£Ü", "£®", "£À", "¡ç", "£ß", "¡°", "£¢", "¡±", "£¼", "£¾", "¡¡", "¡´", "¡µ", "¡¾", "¡¿"
+	"ï¼‘", "ï¼’", "ï¼“", "ï¼”", "ï¼•", "ï¼–", "ï¼—", "ï¼˜", "ï¼™", "ï¼",
+	"ä¸€", "äºŒ", "ä¸‰", "å››", "äº”", "å…­", "ä¸ƒ", "å…«", "ä¹", "é›¶",
+	"å£¹", "è´°", "å", "è‚†", "ä¼", "é™†", "æŸ’", "æŒ", "çŽ–", "é›¶",
+	"â’ˆ", "â’‰", "â’Š", "â’‹", "â’Œ", "â’", "â’Ž", "â’", "â’", "â’‘",
+	"â‘´", "â‘µ", "â‘¶", "â‘·", "â‘¸", "â‘¹", "â‘º", "â‘»", "â‘¼", "â‘½",
+	"â‘ ", "â‘¡", "â‘¢", "â‘£", "â‘¤", "â‘¥", "â‘¦", "â‘§", "â‘¨", "â‘©",
+	"ãˆ ", "ãˆ¡", "ãˆ¢", "ãˆ£", "ãˆ¤", "ãˆ¥", "ãˆ¦", "ãˆ§", "ãˆ¨", "ãˆ©",
+	"ï½", "ï½‚", "ï½ƒ", "ï½„", "ï½…", "ï½†", "ï½‡", "ï½ˆ", "ï½‰", "ï½Š", "ï½‹", "ï½Œ", "ï½", "ï½Ž", "ï½", "ï½" ,"ï½‘", "ï½’", "ï½“", "ï½”", "ï½•", "ï½–", "ï½—", "ï½˜", "ï½™", "ï½š",
+	"ï¼¡", "ï¼¢", "ï¼£", "ï¼¤", "ï¼¥", "ï¼¦", "ï¼§", "ï¼¨", "ï¼©", "ï¼ª", "ï¼«", "ï¼¬", "ï¼­", "ï¼®", "ï¼¯", "ï¼°" ,"ï¼±", "ï¼²", "ï¼³", "ï¼´", "ï¼µ", "ï¼¶", "ï¼·", "ï¼¸", "ï¼¹", "ï¼º",
+	"ï¼", "ï¼", "ï¼»", "ï¼½", "ã€", "ï¼›", "ï½€", "ï¼‡", "â€˜", "â€™", "ï¼Œ", "ã€‚", "ï¼", "ï½ž", "ï¼", "Â·", "ï¼ƒ",
+	"ï¿¥", "ï¼…", "ï¸¿", "ï¼†", "ï¼Š", "â€»", "ï¼ˆ", "ï¼‰", "â€”", "ï¼‹", "ï½›", "ï½", "ï½œ", "ï¼š", "ã€Š", "ã€‹", "ï¼Ÿ",
+	"â€¦", "ï¼¼", "ï¼Ž", "ï¼ ", "ï¼„", "ï¼¿", "â€œ", "ï¼‚", "â€", "ï¼œ", "ï¼ž", "ã€€", "ã€ˆ", "ã€‰", "ã€", "ã€‘"
 };
 static const char DBC_TABLE[SDBC_TABLE_SIZE] = {
 	'1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
@@ -48,48 +48,48 @@ static const char DBC_TABLE[SDBC_TABLE_SIZE] = {
 };
 
 /// \ingroup waUtility 
-/// \enum ÌáÈ¡ÕýÎÄº¯Êý¹ýÂËÑ¡Ïî
+/// \enum æå–æ­£æ–‡å‡½æ•°è¿‡æ»¤é€‰é¡¹
 enum extract_option {
-	/// ¹ýÂËÓ¢ÎÄ×ÖÄ¸
+	/// è¿‡æ»¤è‹±æ–‡å­—æ¯
 	EXTRACT_ALPHA	= 2,	
-	/// ¹ýÂË°¢À­²®Êý×Ö
+	/// è¿‡æ»¤é˜¿æ‹‰ä¼¯æ•°å­—
 	EXTRACT_DIGIT	= 4,
-	/// ¹ýÂË°ë½Ç±êµã	
+	/// è¿‡æ»¤åŠè§’æ ‡ç‚¹	
 	EXTRACT_PUNCT	= 8,	
-	/// ¹ýÂË¿Õ°×  
+	/// è¿‡æ»¤ç©ºç™½  
 	EXTRACT_SPACE	= 16,	
-	/// ¹ýÂËHTML´úÂë
+	/// è¿‡æ»¤HTMLä»£ç 
 	EXTRACT_HTML	= 32	
 };
 
 /// \ingroup waUtility 
 /// \def EXTRACT_ALL 
-/// ÌáÈ¡ÕýÎÄº¯Êý¹ýÂËÑ¡Ïî£¬¹ýÂËÈ«²¿£¨×ÖÄ¸¡¢Êý×Ö¡¢±êµã¡¢¿Õ°×¡¢HTML£©
+/// æå–æ­£æ–‡å‡½æ•°è¿‡æ»¤é€‰é¡¹ï¼Œè¿‡æ»¤å…¨éƒ¨ï¼ˆå­—æ¯ã€æ•°å­—ã€æ ‡ç‚¹ã€ç©ºç™½ã€HTMLï¼‰
 #define EXTRACT_ALL	(EXTRACT_ALPHA|EXTRACT_DIGIT|EXTRACT_PUNCT|EXTRACT_SPACE|EXTRACT_HTML)
 
-/// ·µ»Ø×Ö·û´®HASHÖµ£¬»ùÓÚDJB HASHËã·¨
+/// è¿”å›žå­—ç¬¦ä¸²HASHå€¼ï¼ŒåŸºäºŽDJB HASHç®—æ³•
 size_t string_hash( const string &str );
 
-/// È«ÎÄ´Ê±íÌæ»»£¬¼æÈÝGBKºº×Ö
+/// å…¨æ–‡è¯è¡¨æ›¿æ¢ï¼Œå…¼å®¹GBKæ±‰å­—
 string replace_text( const string &text, const map<string,string> &replace );
 
-/// ÌáÈ¡HTML´úÂëÕýÎÄ
+/// æå–HTMLä»£ç æ­£æ–‡
 string extract_html( const string &html );
 
-/// È«½Ç°ë½Ç×Ö·û×ª»»²¢ÌáÈ¡ÕýÎÄ
+/// å…¨è§’åŠè§’å­—ç¬¦è½¬æ¢å¹¶æå–æ­£æ–‡
 string extract_text( const string &text, const int option=EXTRACT_ALL, 
 	const size_t len=0 );
 
-/// ×·¼ÓÈÕÖ¾¼ÇÂ¼
+/// è¿½åŠ æ—¥å¿—è®°å½•
 void file_logger( const string &file, const char *format, ... );
 
-/// ×·¼ÓÈÕÖ¾¼ÇÂ¼
+/// è¿½åŠ æ—¥å¿—è®°å½•
 void file_logger( FILE *fp, const char *format, ... );
 
-/// Ö´ÐÐÃüÁî²¢·µ»ØÃüÁîÊä³ö½á¹û
+/// æ‰§è¡Œå‘½ä»¤å¹¶è¿”å›žå‘½ä»¤è¾“å‡ºç»“æžœ
 string system_command( const string &cmd );
 
-/// ·µ»ØÖ¸¶¨Íø¿¨Éè±¸°ó¶¨µÄIPµØÖ·
+/// è¿”å›žæŒ‡å®šç½‘å¡è®¾å¤‡ç»‘å®šçš„IPåœ°å€
 string host_addr( const string &interface="eth0" );
 
 } // namespace

@@ -1,6 +1,6 @@
 /// \file waEncode.h
-/// ±àÂë,¼Ó½âÃÜº¯ÊıÍ·ÎÄ¼ş
-/// ×Ö·û´®BASE64¡¢URI¡¢MD5±àÂëº¯Êı
+/// ç¼–ç ,åŠ è§£å¯†å‡½æ•°å¤´æ–‡ä»¶
+/// å­—ç¬¦ä¸²BASE64ã€URIã€MD5ç¼–ç å‡½æ•°
    
 #ifndef _WEBAPPLIB_ENCODE_H_
 #define _WEBAPPLIB_ENCODE_H_ 
@@ -12,17 +12,17 @@ using namespace std;
 /// Web Application Library namaspace
 namespace webapp {
 
-/// URI±àÂë
+/// URIç¼–ç 
 string uri_encode( const string &source );
-/// URI½âÂë
+/// URIè§£ç 
 string uri_decode( const string &source );
 
-/// ×Ö·û´®MIME BASE64±àÂë
+/// å­—ç¬¦ä¸²MIME BASE64ç¼–ç 
 string base64_encode( const string &source );
-/// ×Ö·û´®MIME BASE64½âÂë
+/// å­—ç¬¦ä¸²MIME BASE64è§£ç 
 string base64_decode( const string &source );
 
-/// MD5±àÂë
+/// MD5ç¼–ç 
 string md5_encode( const string &source );
 
 } // namespace

@@ -1,6 +1,6 @@
 /// \file waCgi.h
-/// webapp::Cgi,webapp::CookieÀàÍ·ÎÄ¼ş
-/// ÒÀÀµÓÚ webapp::String, webapp::Encode
+/// webapp::Cgi,webapp::Cookieç±»å¤´æ–‡ä»¶
+/// ä¾èµ–äº webapp::String, webapp::Encode
 
 #ifndef _WEBAPPLIB_CGI_H_
 #define _WEBAPPLIB_CGI_H_ 
@@ -14,45 +14,45 @@ using namespace std;
 namespace webapp {
 
 ////////////////////////////////////////////////////////////////////////////////	
-/// Êä³öHTML Content-Type header
+/// è¾“å‡ºHTML Content-Type header
 void http_head();
-/// È¡µÃ»·¾³±äÁ¿
+/// å–å¾—ç¯å¢ƒå˜é‡
 string get_env( const string &envname );
 
 ////////////////////////////////////////////////////////////////////////////////
 
-/// \defgroup waCgi waCgiÏà¹ØÊı¾İÀàĞÍÓëÈ«¾Öº¯Êı
+/// \defgroup waCgi waCgiç›¸å…³æ•°æ®ç±»å‹ä¸å…¨å±€å‡½æ•°
 
 /// \ingroup waCgi
 /// \typedef CgiList 
-/// Cgi ²ÎÊıÖµÁĞ±íÀàĞÍ (map<string,string>)
+/// Cgi å‚æ•°å€¼åˆ—è¡¨ç±»å‹ (map<string,string>)
 typedef map<string,string> CgiList;
 
-/// CGI²ÎÊı¶ÁÈ¡Àà
+/// CGIå‚æ•°è¯»å–ç±»
 class Cgi {
 	public:
 
-	/// ¹¹Ôìº¯Êı
+	/// æ„é€ å‡½æ•°
 	Cgi( const size_t formdata_maxsize = 0 );
 	
-	/// Îö¹¹º¯Êı
+	/// ææ„å‡½æ•°
 	virtual ~Cgi(){};
 	
-	/// È¡µÃCGI²ÎÊı
+	/// å–å¾—CGIå‚æ•°
 	string get_cgi( const string &name );
 	
-	/// È¡µÃCGI²ÎÊı
+	/// å–å¾—CGIå‚æ•°
 	inline string operator[] ( const string &name ) {
 		return this->get_cgi( name );
 	}
 	
-	/// FORMÊı¾İ´óĞ¡ÊÇ·ñ³¬³öÏŞÖÆ
+	/// FORMæ•°æ®å¤§å°æ˜¯å¦è¶…å‡ºé™åˆ¶
 	inline bool is_trunc() const {
 		return _trunc;
 	}
 	
-	/// ·µ»Ø²ÎÊıÖµÁĞ±í
-	/// \return ·µ»ØÖµÀàĞÍÎªCgiList,¼´map<string,string>.	
+	/// è¿”å›å‚æ•°å€¼åˆ—è¡¨
+	/// \return è¿”å›å€¼ç±»å‹ä¸ºCgiList,å³map<string,string>.	
 	inline CgiList dump() const {
 		return _cgi;
 	}
@@ -60,13 +60,13 @@ class Cgi {
 	////////////////////////////////////////////////////////////////////////////
 	private:
 	
-	/// ±£´æCGI²ÎÊı
+	/// ä¿å­˜CGIå‚æ•°
 	void add_cgi( const string &name, const string &value );
 	
-	/// ·ÖÎöurlencodedÀàĞÍÄÚÈİ
+	/// åˆ†æurlencodedç±»å‹å†…å®¹
 	void parse_urlencoded( const string &buf );
 	
-	/// ·ÖÎömultipartÀàĞÍÄÚÈİ
+	/// åˆ†æmultipartç±»å‹å†…å®¹
 	void parse_multipart( const string &content_type, const string &buf );
 
 	map<string,string> _cgi;
@@ -77,40 +77,40 @@ class Cgi {
 ////////////////////////////////////////////////////////////////////////////
 /// \ingroup waCgi
 /// \typedef CookieList 
-/// Cookie ²ÎÊıÖµÁĞ±íÀàĞÍ (map<string,string>)
+/// Cookie å‚æ•°å€¼åˆ—è¡¨ç±»å‹ (map<string,string>)
 typedef map<string,string> CookieList;
 
-/// Cookie¶ÁÈ¡,ÉèÖÃÀà
+/// Cookieè¯»å–,è®¾ç½®ç±»
 class Cookie {
 	public:
 	
-	/// ¹¹Ôìº¯Êı
+	/// æ„é€ å‡½æ•°
 	Cookie();
 	
-	/// Îö¹¹º¯Êı
+	/// ææ„å‡½æ•°
 	virtual ~Cookie(){};
 	
-	/// È¡µÃcookieÄÚÈİ
+	/// å–å¾—cookieå†…å®¹
 	string get_cookie( const string &name );
 	
-	/// È¡µÃcookieÄÚÈİ
+	/// å–å¾—cookieå†…å®¹
 	inline string operator[] ( const string &name ) {
 		return this->get_cookie( name );
 	}
 	
-	/// ÉèÖÃcookieÄÚÈİ
+	/// è®¾ç½®cookieå†…å®¹
 	void set_cookie( const string &name, const string &value, 
 		const string &expires = "", const string &path = "/", 
 		const string &domain = "" ) const;
 
-	/// Çå³ıÖ¸¶¨µÄcookieÄÚÈİ
-	/// \param name cookieÃû×Ö
+	/// æ¸…é™¤æŒ‡å®šçš„cookieå†…å®¹
+	/// \param name cookieåå­—
 	inline void del_cookie( const string &name ) const {
 		this->set_cookie( name, "", "Thursday,01-January-1970 08:00:01 GMT" );
 	}
 	
-	/// ·µ»Ø²ÎÊıÖµÁĞ±í
-	/// \return ·µ»ØÖµÀàĞÍÎªCookieList,¼´map<string,string>.	
+	/// è¿”å›å‚æ•°å€¼åˆ—è¡¨
+	/// \return è¿”å›å€¼ç±»å‹ä¸ºCookieList,å³map<string,string>.	
 	inline CookieList dump() const {
 		return _cookies;
 	}
@@ -118,7 +118,7 @@ class Cookie {
 	////////////////////////////////////////////////////////////////////////////
 	private:
 	
-	/// ·ÖÎöcookieÄÚÈİ
+	/// åˆ†æcookieå†…å®¹
 	void parse_cookie( const string &buf );
 
 	map<string,string> _cookies;		

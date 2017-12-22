@@ -1,5 +1,5 @@
 /// \file waHttpClient.cpp
-/// HTTP¿Í»§¶ËÀàÊµÏÖÎÄ¼ş
+/// HTTPå®¢æˆ·ç«¯ç±»å®ç°æ–‡ä»¶
 
 #include <cstring>
 #include <unistd.h>
@@ -17,22 +17,22 @@ using namespace std;
 /// Web Application Library namaspace
 namespace webapp {
 
-/// \defgroup waHttpClient waHttpClientÏà¹ØÈ«¾Öº¯Êı
+/// \defgroup waHttpClient waHttpClientç›¸å…³å…¨å±€å‡½æ•°
 
 /// \ingroup waHttpClient
 /// \fn int tcp_request( const string &server, const int port, const string &request, string &response, const int timeout )
-/// ·¢ËÍTCPÇëÇó²¢È¡µÃ»ØÓ¦ÄÚÈİ
-/// \param server ·şÎñÆ÷IP
-/// \param port ·şÎñÆ÷¶Ë¿Ú
-/// \param request ·¢ËÍµÄTCPÇëÇó
-/// \param response ·şÎñÆ÷µÄ»ØÓ¦ÄÚÈİ
-/// \param timeout ³¬Ê±Ê±³¤,µ¥Î»ÎªÃë,Îª0²»ÅĞ¶Ï³¬Ê±
-/// \retval 0 Ö´ĞĞ³É¹¦
-/// \retval 1 ´´½¨socketÊ§°Ü
-/// \retval 2 ÎŞ·¨Á¬½Ó·şÎñÆ÷
-/// \retval 3 ·¢ËÍÇëÇóÊ§°Ü
-/// \retval 4 ÉèÖÃ¶¨Ê±Æ÷Ê§°Ü»òÕßÁ¬½Ó³¬Ê±
-/// \retval 10 Î´Öª´íÎó
+/// å‘é€TCPè¯·æ±‚å¹¶å–å¾—å›åº”å†…å®¹
+/// \param server æœåŠ¡å™¨IP
+/// \param port æœåŠ¡å™¨ç«¯å£
+/// \param request å‘é€çš„TCPè¯·æ±‚
+/// \param response æœåŠ¡å™¨çš„å›åº”å†…å®¹
+/// \param timeout è¶…æ—¶æ—¶é•¿,å•ä½ä¸ºç§’,ä¸º0ä¸åˆ¤æ–­è¶…æ—¶
+/// \retval 0 æ‰§è¡ŒæˆåŠŸ
+/// \retval 1 åˆ›å»ºsocketå¤±è´¥
+/// \retval 2 æ— æ³•è¿æ¥æœåŠ¡å™¨
+/// \retval 3 å‘é€è¯·æ±‚å¤±è´¥
+/// \retval 4 è®¾ç½®å®šæ—¶å™¨å¤±è´¥æˆ–è€…è¿æ¥è¶…æ—¶
+/// \retval 10 æœªçŸ¥é”™è¯¯
 int tcp_request( const string &server, const int port, const string &request,
 	string &response, const int timeout ) 
 {
@@ -96,9 +96,9 @@ int tcp_request( const string &server, const int port, const string &request,
 
 /// \ingroup waHttpClient
 /// \fn string gethost_byname( const string &domain )
-/// ¸ù¾İ·şÎñÆ÷ÓòÃûÈ¡µÃIP
-/// \param domain ·şÎñÆ÷ÓòÃû£¨²»°üº¬"HTTP:://"Í·¼°ÈÎºÎ'/'×Ö·û£©
-/// \return Ö´ĞĞ³É¹¦·µ»Ø·şÎñÆ÷IP,·ñÔò·µ»Ø¿Õ×Ö·û´®
+/// æ ¹æ®æœåŠ¡å™¨åŸŸåå–å¾—IP
+/// \param domain æœåŠ¡å™¨åŸŸåï¼ˆä¸åŒ…å«"HTTP:://"å¤´åŠä»»ä½•'/'å­—ç¬¦ï¼‰
+/// \return æ‰§è¡ŒæˆåŠŸè¿”å›æœåŠ¡å™¨IP,å¦åˆ™è¿”å›ç©ºå­—ç¬¦ä¸²
 string gethost_byname( const string &domain ) {
 	string ip;
 	if ( domain != "" ) {
@@ -112,10 +112,10 @@ string gethost_byname( const string &domain ) {
 
 /// \ingroup waHttpClient
 /// \fn bool isip( const string &ipstr )
-/// ÅĞ¶Ï×Ö·û´®ÊÇ·ñÎªÓĞĞ§IP
-/// \param ipstr IP×Ö·û´®
-/// \retval true ÓĞĞ§
-/// \retval false ÎŞĞ§
+/// åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯å¦ä¸ºæœ‰æ•ˆIP
+/// \param ipstr IPå­—ç¬¦ä¸²
+/// \retval true æœ‰æ•ˆ
+/// \retval false æ— æ•ˆ
 bool isip( const string &ipstr ) {
 	
 	struct in_addr addr;
@@ -125,24 +125,24 @@ bool isip( const string &ipstr ) {
 		return false;
 }
 
-/// ÉèÖÃÖ¸¶¨µÄHTTPÇëÇóHeader
-/// \param name HeaderÃû³Æ
-/// \param value HeaderÖµ,
+/// è®¾ç½®æŒ‡å®šçš„HTTPè¯·æ±‚Header
+/// \param name Headeråç§°
+/// \param value Headerå€¼,
 void HttpClient::set_header( const string &name, const string &value ) {
 	if ( name != "" )
 		_sets[name] = value;
 }
 
-/// ÉèÖÃHTTPÇëÇóReferer Header
-/// \param referer Referer HeaderÖµ
+/// è®¾ç½®HTTPè¯·æ±‚Referer Header
+/// \param referer Referer Headerå€¼
 void HttpClient::set_referer( const string &referer ) {
 	if ( referer != "" )
 		set_header( "Referer", referer );
 }
 
-/// ÉèÖÃHTTPÇëÇóAuthorization Header
-/// \param username ÓÃ»§Ãû
-/// \param password ÓÃ»§¿ÚÁî
+/// è®¾ç½®HTTPè¯·æ±‚Authorization Header
+/// \param username ç”¨æˆ·å
+/// \param password ç”¨æˆ·å£ä»¤
 void HttpClient::set_auth( const string &username, const string &password ) {
 	if ( username != "" ) {
 		string auth = username + ":" + password;
@@ -151,9 +151,9 @@ void HttpClient::set_auth( const string &username, const string &password ) {
 	}
 }
 
-/// ÉèÖÃHTTPÇëÇóCookie Header
-/// \param name CookieÃû³Æ
-/// \param value CookieÖµ
+/// è®¾ç½®HTTPè¯·æ±‚Cookie Header
+/// \param name Cookieåç§°
+/// \param value Cookieå€¼
 void HttpClient::set_cookie( const string &name, const string &value ) {
 	if ( name != "" ) {
 		if ( _sets["Cookie"] != "" )
@@ -162,9 +162,9 @@ void HttpClient::set_cookie( const string &name, const string &value ) {
 	}
 }
 
-/// ÉèÖÃHTTPÇëÇóCGI²ÎÊı
-/// \param name CGI²ÎÊıÃû³Æ
-/// \param value CGI²ÎÊıÖµ
+/// è®¾ç½®HTTPè¯·æ±‚CGIå‚æ•°
+/// \param name CGIå‚æ•°åç§°
+/// \param value CGIå‚æ•°å€¼
 void HttpClient::set_param( const string &name, const string &value ) {
 	if ( name != "" ) {
 		if ( _params != "" ) _params += "&";
@@ -172,13 +172,13 @@ void HttpClient::set_param( const string &name, const string &value ) {
 	}
 }
 
-/// ·ÖÎöHTTP URL×Ö·û´®
-/// \param urlstr ÇëÇóURL
-/// \param parsed_host ·şÎñÆ÷Ö÷»úÃû·ÖÎö½á¹û
-/// \param parsed_host ·şÎñÆ÷Ö÷»úµØÖ··ÖÎö½á¹û
-/// \param parsed_url ÇëÇóURL·ÖÎö½á¹û
-/// \param parsed_param ÇëÇó²ÎÊı·ÖÎö½á¹û
-/// \param parsed_port ·şÎñÆ÷¶Ë¿Ú·ÖÎö½á¹û
+/// åˆ†æHTTP URLå­—ç¬¦ä¸²
+/// \param urlstr è¯·æ±‚URL
+/// \param parsed_host æœåŠ¡å™¨ä¸»æœºååˆ†æç»“æœ
+/// \param parsed_host æœåŠ¡å™¨ä¸»æœºåœ°å€åˆ†æç»“æœ
+/// \param parsed_url è¯·æ±‚URLåˆ†æç»“æœ
+/// \param parsed_param è¯·æ±‚å‚æ•°åˆ†æç»“æœ
+/// \param parsed_port æœåŠ¡å™¨ç«¯å£åˆ†æç»“æœ
 void HttpClient::parse_url( const string &urlstr, string &parsed_host, string &parsed_addr,
 	string &parsed_url, string &parsed_param, int &parsed_port )
 {
@@ -229,12 +229,12 @@ void HttpClient::parse_url( const string &urlstr, string &parsed_host, string &p
 		parsed_addr = parsed_host;
 }
 				   
-/// Éú³ÉHTTPÇëÇó×Ö·û´®
-/// \param url ËùÇëÇóµÄURL
-/// \param params ËùÇëÇóµÄURLµÄCGI²ÎÊı
-/// \param host ·şÎñÆ÷ÓòÃû(»òÕßIP)
-/// \param method ÇëÇó·½·¨(GET»òÕßPOST)
-/// \return ·µ»ØÉú³ÉµÄHTTPÇëÇó×Ö·û´®
+/// ç”ŸæˆHTTPè¯·æ±‚å­—ç¬¦ä¸²
+/// \param url æ‰€è¯·æ±‚çš„URL
+/// \param params æ‰€è¯·æ±‚çš„URLçš„CGIå‚æ•°
+/// \param host æœåŠ¡å™¨åŸŸå(æˆ–è€…IP)
+/// \param method è¯·æ±‚æ–¹æ³•(GETæˆ–è€…POST)
+/// \return è¿”å›ç”Ÿæˆçš„HTTPè¯·æ±‚å­—ç¬¦ä¸²
 string HttpClient::gen_httpreq( const string &url, const string &params, 
 	const string &host, const string &method ) 
 {
@@ -272,15 +272,15 @@ string HttpClient::gen_httpreq( const string &url, const string &params,
 	return request;
 }
 
-/// Ö´ĞĞHTTPÇëÇó
-/// \param url HTTPÇëÇóURL
-/// \param server ·şÎñÆ÷IP»òÕßÓòÃû,Îª¿Õ×Ö·û´®Ôò¸ù¾İ²ÎÊı1»ñµÃ,Ä¬ÈÏÎª¿Õ×Ö·û´®,
-/// Èô²ÎÊıurl,server¶¼²»°üº¬·şÎñÆ÷µØÖ·ĞÅÏ¢,Ôòº¯Êı·µ»ØÊ§°Ü
-/// \param port ·şÎñÆ÷¶Ë¿Ú,Ä¬ÈÏÎª80
-/// \param method HTTPÇëÇóMethod,Ä¬ÈÏÎª"GET"
-/// \param timeout HTTPÇëÇó³¬Ê±Ê±³¤,µ¥Î»ÎªÃë,Ä¬ÈÏÎª5Ãë
-/// \retval true Ö´ĞĞ³É¹¦
-/// \retval false Ö´ĞĞÊ§°Ü
+/// æ‰§è¡ŒHTTPè¯·æ±‚
+/// \param url HTTPè¯·æ±‚URL
+/// \param server æœåŠ¡å™¨IPæˆ–è€…åŸŸå,ä¸ºç©ºå­—ç¬¦ä¸²åˆ™æ ¹æ®å‚æ•°1è·å¾—,é»˜è®¤ä¸ºç©ºå­—ç¬¦ä¸²,
+/// è‹¥å‚æ•°url,serveréƒ½ä¸åŒ…å«æœåŠ¡å™¨åœ°å€ä¿¡æ¯,åˆ™å‡½æ•°è¿”å›å¤±è´¥
+/// \param port æœåŠ¡å™¨ç«¯å£,é»˜è®¤ä¸º80
+/// \param method HTTPè¯·æ±‚Method,é»˜è®¤ä¸º"GET"
+/// \param timeout HTTPè¯·æ±‚è¶…æ—¶æ—¶é•¿,å•ä½ä¸ºç§’,é»˜è®¤ä¸º5ç§’
+/// \retval true æ‰§è¡ŒæˆåŠŸ
+/// \retval false æ‰§è¡Œå¤±è´¥
 bool HttpClient::request( const string &url, const string &host, const int port, 
 	const string &method, const int timeout )
 {
@@ -334,13 +334,13 @@ bool HttpClient::request( const string &url, const string &host, const int port,
 	return true;
 }
 
-/// URL ÊÇ·ñÓĞĞ§
-/// \param url HTTPÇëÇóURL
-/// \param server ·şÎñÆ÷IP,Îª¿Õ×Ö·û´®Ôò¸ù¾İ²ÎÊı1»ñµÃ,Ä¬ÈÏÎª¿Õ×Ö·û´®,
-/// Èô²ÎÊıurl,server¶¼²»°üº¬·şÎñÆ÷µØÖ·ĞÅÏ¢,Ôòº¯Êı·µ»ØÊ§°Ü
-/// \param port ·şÎñÆ÷¶Ë¿Ú,Ä¬ÈÏÎª80
-/// \retval true URLÓĞĞ§
-/// \retval false URLÒÑÊ§Ğ§
+/// URL æ˜¯å¦æœ‰æ•ˆ
+/// \param url HTTPè¯·æ±‚URL
+/// \param server æœåŠ¡å™¨IP,ä¸ºç©ºå­—ç¬¦ä¸²åˆ™æ ¹æ®å‚æ•°1è·å¾—,é»˜è®¤ä¸ºç©ºå­—ç¬¦ä¸²,
+/// è‹¥å‚æ•°url,serveréƒ½ä¸åŒ…å«æœåŠ¡å™¨åœ°å€ä¿¡æ¯,åˆ™å‡½æ•°è¿”å›å¤±è´¥
+/// \param port æœåŠ¡å™¨ç«¯å£,é»˜è®¤ä¸º80
+/// \retval true URLæœ‰æ•ˆ
+/// \retval false URLå·²å¤±æ•ˆ
 bool HttpClient::exist( const string &url, const string &server, 
 	const int port ) 
 {
@@ -358,8 +358,8 @@ bool HttpClient::exist( const string &url, const string &server,
 	return res;
 }
 
-/// ·ÖÎöHTTP·µ»Ø
-/// \param response HTTP·µ»Ø×Ö·û´®
+/// åˆ†æHTTPè¿”å›
+/// \param response HTTPè¿”å›å­—ç¬¦ä¸²
 void HttpClient::parse_response( const string &response ) {
 	// clear response status
 	_status = "";
@@ -431,9 +431,9 @@ void HttpClient::parse_response( const string &response ) {
 		_content = body;
 }
 
-/// »ñÈ¡Ö¸¶¨µÄHTTP·µ»ØHeader
-/// \param name HeaderÃû³Æ,
-/// \return ³É¹¦·µ»ØHeaderÖµ,·ñÔò·µ»Ø¿Õ×Ö·û´®
+/// è·å–æŒ‡å®šçš„HTTPè¿”å›Header
+/// \param name Headeråç§°,
+/// \return æˆåŠŸè¿”å›Headerå€¼,å¦åˆ™è¿”å›ç©ºå­—ç¬¦ä¸²
 string HttpClient::get_header( const string &name ) {
 	if ( name != "" )
 		return _gets[name];
@@ -441,16 +441,16 @@ string HttpClient::get_header( const string &name ) {
 		return string( "" );		
 }
 
-/// »ñÈ¡HTTP·µ»ØSet-Cookie Header
-/// \return ·µ»ØCookieÁĞ±íÊı×é,Ã¿¸öÔªËØÎªÒ»¸öCookieÖµ
+/// è·å–HTTPè¿”å›Set-Cookie Header
+/// \return è¿”å›Cookieåˆ—è¡¨æ•°ç»„,æ¯ä¸ªå…ƒç´ ä¸ºä¸€ä¸ªCookieå€¼
 vector<String> HttpClient::get_cookie() {
 	String ck = this->get_header( "Set-Cookie" );
 	vector<String> cks = ck.split( "\n" );
 	return cks;
 }
 
-/// »ñÈ¡HTTP·µ»ØHeader
-/// \return HTTP·µ»ØHeader×Ö·û´®
+/// è·å–HTTPè¿”å›Header
+/// \return HTTPè¿”å›Headerå­—ç¬¦ä¸²
 string HttpClient::dump_header() {
 	// status
 	string header = ( this->get_header("HTTP_STATUS") + "\n" );
@@ -476,9 +476,9 @@ string HttpClient::dump_header() {
 	return header;
 }
 
-/// Ö´ĞĞHTTPÇëÇóÊÇ·ñ³É¹¦
-/// \retval true ³É¹¦
-/// \retval false Ê§°Ü
+/// æ‰§è¡ŒHTTPè¯·æ±‚æ˜¯å¦æˆåŠŸ
+/// \retval true æˆåŠŸ
+/// \retval false å¤±è´¥
 bool HttpClient::done() const {
 	if ( _status.isnum() ) {
 		int ret = webapp::stoi( _status );
@@ -488,7 +488,7 @@ bool HttpClient::done() const {
 	return false;
 }
 
-/// Çå¿ÕËùÓĞÉèÖÃ¼°×´Ì¬Öµ
+/// æ¸…ç©ºæ‰€æœ‰è®¾ç½®åŠçŠ¶æ€å€¼
 void HttpClient::clear() {
 	// set
 	_params = "";
@@ -500,9 +500,9 @@ void HttpClient::clear() {
 	_gets.clear();
 }
 
-/// ·ÖÎöHTTP·µ»ØchunkedÀàĞÍcontentÕıÎÄ
-/// \param chunkedstr chunked±àÂë×Ö·û´®
-/// \return ·µ»Ø½âÂë×Ö·û´®
+/// åˆ†æHTTPè¿”å›chunkedç±»å‹contentæ­£æ–‡
+/// \param chunkedstr chunkedç¼–ç å­—ç¬¦ä¸²
+/// \return è¿”å›è§£ç å­—ç¬¦ä¸²
 string HttpClient::parse_chunked( const string &chunkedstr ) {
 	char crlf[3] = "\x0D\x0A";
 	size_t pos, lastpos;
@@ -535,8 +535,8 @@ string HttpClient::parse_chunked( const string &chunkedstr ) {
 	return res;
 }
 
-/// ·µ»Ø´íÎóĞÅÏ¢ÃèÊö
-/// \return ·µ»Ø´íÎóĞÅÏ¢ÃèÊö
+/// è¿”å›é”™è¯¯ä¿¡æ¯æè¿°
+/// \return è¿”å›é”™è¯¯ä¿¡æ¯æè¿°
 string HttpClient::error() const {
 	switch ( _errno ) {
 		case ERROR_NULL :

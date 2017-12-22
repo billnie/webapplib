@@ -1,5 +1,5 @@
 /// \file waDateTime.cpp
-/// webapp::DateTimeÀàÊµÏÖÎÄ¼ş
+/// webapp::DateTimeç±»å®ç°æ–‡ä»¶
 
 #include <cstdio>
 #include <cstring>
@@ -11,14 +11,14 @@ using namespace std;
 /// Web Application Library namaspace
 namespace webapp {
 	
-/// ÒÔµ±Ç°Ê±¼äÉèÖÃ¶ÔÏó
+/// ä»¥å½“å‰æ—¶é—´è®¾ç½®å¯¹è±¡
 void DateTime::set() {
 	_time = ::time( 0 );
 	localtime_r( &_time, &_tm );
 }
 
-/// ÒÔ time_t ²ÎÊıÉèÖÃ¶ÔÏó
-/// \param tt time_tÀàĞÍ²ÎÊı
+/// ä»¥ time_t å‚æ•°è®¾ç½®å¯¹è±¡
+/// \param tt time_tç±»å‹å‚æ•°
 void DateTime::set( const time_t &tt ) {
 	time_t _tt = tt;
 	if ( tt < 0 ) _tt = 0;
@@ -28,15 +28,15 @@ void DateTime::set( const time_t &tt ) {
 	localtime_r( &_time, &_tm );
 }
 
-/// ÒÔÖ¸¶¨Ê±¼äÉèÖÃ¶ÔÏó
-/// Èô²ÎÊı²»ÊÇÓĞĞ§ÈÕÆÚÊ±¼ä,ÔòÉèÖÃÎªÏµÍ³³õÊ¼Ê±¼ä£¨1970/1/1£©
-/// Èô²ÎÊıÈÕÆÚÊ±¼ä²»´æÔÚ,ÔòÉèÖÃÎªË³ÑÓÓĞĞ§Ê±¼ä£¨·ÇÈòÄê2/29ÊÓÎª3/1£©
-/// \param year Äê
-/// \param mon ÔÂ
-/// \param mday ÈÕ
-/// \param hour Ê±,Ä¬ÈÏÎª0
-/// \param min ·Ö,Ä¬ÈÏÎª0
-/// \param src Ãë,Ä¬ÈÏÎª0
+/// ä»¥æŒ‡å®šæ—¶é—´è®¾ç½®å¯¹è±¡
+/// è‹¥å‚æ•°ä¸æ˜¯æœ‰æ•ˆæ—¥æœŸæ—¶é—´,åˆ™è®¾ç½®ä¸ºç³»ç»Ÿåˆå§‹æ—¶é—´ï¼ˆ1970/1/1ï¼‰
+/// è‹¥å‚æ•°æ—¥æœŸæ—¶é—´ä¸å­˜åœ¨,åˆ™è®¾ç½®ä¸ºé¡ºå»¶æœ‰æ•ˆæ—¶é—´ï¼ˆéé—°å¹´2/29è§†ä¸º3/1ï¼‰
+/// \param year å¹´
+/// \param mon æœˆ
+/// \param mday æ—¥
+/// \param hour æ—¶,é»˜è®¤ä¸º0
+/// \param min åˆ†,é»˜è®¤ä¸º0
+/// \param src ç§’,é»˜è®¤ä¸º0
 void DateTime::set( const int year, const int mon, const int mday, 
 	const int hour, const int min, const int sec ) 
 {
@@ -65,25 +65,25 @@ void DateTime::set( const int year, const int mon, const int mday,
 	_time = mktime( &_tm );
 }
 
-/// ÒÔ tm ½á¹¹²ÎÊıÉèÖÃ¶ÔÏó
-/// \param st struct tmÀàĞÍ²ÎÊı
+/// ä»¥ tm ç»“æ„å‚æ•°è®¾ç½®å¯¹è±¡
+/// \param st struct tmç±»å‹å‚æ•°
 void DateTime::set( const tm &st ) {
 	this->set( st.tm_year+1900, st.tm_mon+1, st.tm_mday,
 		st.tm_hour, st.tm_min, st.tm_sec );
 }
 
-/// ÒÔ DateTime ²ÎÊıÉèÖÃ¶ÔÏó
-/// \param date DateÀàĞÍ²ÎÊı
+/// ä»¥ DateTime å‚æ•°è®¾ç½®å¯¹è±¡
+/// \param date Dateç±»å‹å‚æ•°
 void DateTime::set( const DateTime &date ) {
 	this->set( date.value() );
 }
 
-/// ÒÔ"YYYY-MM-DD HH:MM:SS"¸ñÊ½×Ö·û´®ÉèÖÃ¶ÔÏó
-/// Èô×Ö·û´®¸ñÊ½´íÎó»òÕßÊ±¼äÖµ´íÎóÔòÉèÖÃÎªµ±Ç°Ê±¼ä
-/// \param datetime "YYYY-MM-DD HH:MM:SS"¸ñÊ½ÈÕÆÚÊ±¼ä×Ö·û´®
-/// \param datemark ÈÕÆÚ·Ö¸ô×Ö·û,Ä¬ÈÏÎª"-"
-/// \param dtmark ÈÕÆÚÊ±¼ä·Ö¸ô×Ö·û,Ä¬ÈÏÎª" ",²»ÄÜÓëdatemark»òtimemarkÏàÍ¬
-/// \param timemark Ê±¼ä·Ö¸ô×Ö·û,Ä¬ÈÏÎª":"
+/// ä»¥"YYYY-MM-DD HH:MM:SS"æ ¼å¼å­—ç¬¦ä¸²è®¾ç½®å¯¹è±¡
+/// è‹¥å­—ç¬¦ä¸²æ ¼å¼é”™è¯¯æˆ–è€…æ—¶é—´å€¼é”™è¯¯åˆ™è®¾ç½®ä¸ºå½“å‰æ—¶é—´
+/// \param datetime "YYYY-MM-DD HH:MM:SS"æ ¼å¼æ—¥æœŸæ—¶é—´å­—ç¬¦ä¸²
+/// \param datemark æ—¥æœŸåˆ†éš”å­—ç¬¦,é»˜è®¤ä¸º"-"
+/// \param dtmark æ—¥æœŸæ—¶é—´åˆ†éš”å­—ç¬¦,é»˜è®¤ä¸º" ",ä¸èƒ½ä¸datemarkæˆ–timemarkç›¸åŒ
+/// \param timemark æ—¶é—´åˆ†éš”å­—ç¬¦,é»˜è®¤ä¸º":"
 void DateTime::set( const string &datetime, const string &datemark, 
 	const string &dtmark, const string &timemark ) 
 {
@@ -106,10 +106,10 @@ void DateTime::set( const string &datetime, const string &datemark,
 		this->set();
 }
 
-/// Êä³öÈÕÆÚ×Ö·û´®
-/// \param datemark ÈÕÆÚ·Ö¸ô×Ö·û,Ä¬ÈÏÎª"-"
-/// \param leadingzero ÊÇ·ñ²¹³äÇ°ÖÃÁã,Ä¬ÈÏÎªÊÇ
-/// \return Êä³öÖ¸¶¨¸ñÊ½µÄÈÕÆÚ×Ö·û´®
+/// è¾“å‡ºæ—¥æœŸå­—ç¬¦ä¸²
+/// \param datemark æ—¥æœŸåˆ†éš”å­—ç¬¦,é»˜è®¤ä¸º"-"
+/// \param leadingzero æ˜¯å¦è¡¥å……å‰ç½®é›¶,é»˜è®¤ä¸ºæ˜¯
+/// \return è¾“å‡ºæŒ‡å®šæ ¼å¼çš„æ—¥æœŸå­—ç¬¦ä¸²
 string DateTime::date( const string &datemark, const bool leadingzero ) const {
 	char date_str[32];
 	if ( leadingzero )
@@ -122,10 +122,10 @@ string DateTime::date( const string &datemark, const bool leadingzero ) const {
 	return string( date_str );
 }
 
-/// Êä³öÊ±¼ä×Ö·û´®
-/// \param timemark Ê±¼ä·Ö¸ô×Ö·û,Ä¬ÈÏÎª":"
-/// \param leadingzero ÊÇ·ñ²¹³äÇ°ÖÃÁã,Ä¬ÈÏÎªÊÇ
-/// \return Êä³öÖ¸¶¨¸ñÊ½µÄÊ±¼ä×Ö·û´®
+/// è¾“å‡ºæ—¶é—´å­—ç¬¦ä¸²
+/// \param timemark æ—¶é—´åˆ†éš”å­—ç¬¦,é»˜è®¤ä¸º":"
+/// \param leadingzero æ˜¯å¦è¡¥å……å‰ç½®é›¶,é»˜è®¤ä¸ºæ˜¯
+/// \return è¾“å‡ºæŒ‡å®šæ ¼å¼çš„æ—¶é—´å­—ç¬¦ä¸²
 string DateTime::time( const string &timemark, const bool leadingzero ) const {
 	char time_str[32];
 	if ( leadingzero )
@@ -138,12 +138,12 @@ string DateTime::time( const string &timemark, const bool leadingzero ) const {
 	return string( time_str );
 }
 
-/// Êä³öÈÕÆÚÊ±¼ä×Ö·û´®
-/// \param datemark ÈÕÆÚ·Ö¸ô×Ö·û,Ä¬ÈÏÎª"-"
-/// \param dtmark ÈÕÆÚÊ±¼ä·Ö¸ô×Ö·û,Ä¬ÈÏÎª" "
-/// \param timemark Ê±¼ä·Ö¸ô×Ö·û,Ä¬ÈÏÎª":"
-/// \param leadingzero ÊÇ·ñ²¹³äÇ°ÖÃÁã,Ä¬ÈÏÎªÊÇ
-/// \return Êä³öÖ¸¶¨¸ñÊ½µÄÈÕÆÚÊ±¼ä×Ö·û´®
+/// è¾“å‡ºæ—¥æœŸæ—¶é—´å­—ç¬¦ä¸²
+/// \param datemark æ—¥æœŸåˆ†éš”å­—ç¬¦,é»˜è®¤ä¸º"-"
+/// \param dtmark æ—¥æœŸæ—¶é—´åˆ†éš”å­—ç¬¦,é»˜è®¤ä¸º" "
+/// \param timemark æ—¶é—´åˆ†éš”å­—ç¬¦,é»˜è®¤ä¸º":"
+/// \param leadingzero æ˜¯å¦è¡¥å……å‰ç½®é›¶,é»˜è®¤ä¸ºæ˜¯
+/// \return è¾“å‡ºæŒ‡å®šæ ¼å¼çš„æ—¥æœŸæ—¶é—´å­—ç¬¦ä¸²
 string DateTime::datetime( const string &datemark, const string &dtmark,
 	const string &timemark, const bool leadingzero ) const 
 {
@@ -152,9 +152,9 @@ string DateTime::datetime( const string &datemark, const string &dtmark,
 	return datetime;
 }
 
-/// Êä³ö GMT ¸ñÊ½ÈÕÆÚÊ±¼ä×Ö·û´®
-/// Ö÷ÒªÓÃÓÚÉèÖÃ cookie ÓĞĞ§ÆÚ
-/// \return GMT ¸ñÊ½ÈÕÆÚÊ±¼ä×Ö·û´®
+/// è¾“å‡º GMT æ ¼å¼æ—¥æœŸæ—¶é—´å­—ç¬¦ä¸²
+/// ä¸»è¦ç”¨äºè®¾ç½® cookie æœ‰æ•ˆæœŸ
+/// \return GMT æ ¼å¼æ—¥æœŸæ—¶é—´å­—ç¬¦ä¸²
 string DateTime::gmt_datetime() const {
 	char gmt[50];
 	struct tm gmt_tm;
@@ -164,41 +164,41 @@ string DateTime::gmt_datetime() const {
 	return string( gmt );
 }
 
-/// ¸³Öµ²Ù×÷
+/// èµ‹å€¼æ“ä½œ
 DateTime& DateTime::operator=( const DateTime &date ) {
 	if ( this == &date ) return *this;
 	this->set( date );
 	return *this;	
 }
-/// ¸³Öµ²Ù×÷
+/// èµ‹å€¼æ“ä½œ
 DateTime& DateTime::operator=( const time_t &tt ) {
 	this->set( tt );
 	return *this;
 }
 
-/// µİÔö²Ù×÷
+/// é€’å¢æ“ä½œ
 DateTime& DateTime::operator+=( const DateTime &date ) {
 	this->set( value() + date.value() );
 	return *this;
 }
-/// µİÔö²Ù×÷
+/// é€’å¢æ“ä½œ
 DateTime& DateTime::operator+=( const time_t &tt ) {
 	this->set( value() + tt );
 	return *this;
 }
 
-/// µİ¼õ²Ù×÷
+/// é€’å‡æ“ä½œ
 DateTime& DateTime::operator-=( const DateTime &date ) {
 	this->set( value() - date.value() );
 	return *this;
 }
-/// µİ¼õ²Ù×÷
+/// é€’å‡æ“ä½œ
 DateTime& DateTime::operator-=( const time_t &tt ) {
 	this->set( value() - tt );
 	return *this;
 }
 
-/// ·µ»Øµ±ÔÂÌìÊı£¬·¶Î§1~31
+/// è¿”å›å½“æœˆå¤©æ•°ï¼ŒèŒƒå›´1~31
 int DateTime::m_days() const {
 	int m = this->month();
 	if ( m==1 || m==3 || m==5 || m==7 || m==8 || m==10 || m==12 ) { 
@@ -215,26 +215,26 @@ int DateTime::m_days() const {
 	}
 }
 
-/// Ïà¼Ó²Ù×÷
+/// ç›¸åŠ æ“ä½œ
 DateTime operator+( const DateTime &date1, const DateTime &date2 ) {
 	DateTime newdate;
 	newdate.set( date1.value() + date2.value() );
 	return newdate;
 }
-/// Ïà¼Ó²Ù×÷
+/// ç›¸åŠ æ“ä½œ
 DateTime operator+( const DateTime &date, const time_t &tt ) {
 	DateTime newdate;
 	newdate.set( date.value() + tt );
 	return newdate;
 }
 
-/// Ïà¼õ²Ù×÷
+/// ç›¸å‡æ“ä½œ
 DateTime operator-( const DateTime &date1, const DateTime &date2 ) {
 	DateTime newdate;
 	newdate.set( date1.value() - date2.value() );
 	return newdate;
 }
-/// Ïà¼õ²Ù×÷
+/// ç›¸å‡æ“ä½œ
 DateTime operator-( const DateTime &date, const time_t &tt ) {
 	DateTime newdate;
 	newdate.set( date.value() - tt );

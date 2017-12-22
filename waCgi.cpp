@@ -1,5 +1,5 @@
 /// \file waCgi.cpp
-/// Cgi,CookieÀàÊµÏÖÎÄ¼ş
+/// Cgi,Cookieç±»å®ç°æ–‡ä»¶
 
 #include <cstdlib>
 #include <climits>
@@ -18,7 +18,7 @@ namespace webapp {
 
 /// \ingroup waCgi
 /// \fn void http_head()
-/// Êä³öHTML Content-Type header,×Ô¶¯±ÜÃâÖØ¸´Êä³ö
+/// è¾“å‡ºHTML Content-Type header,è‡ªåŠ¨é¿å…é‡å¤è¾“å‡º
 void http_head() {
 	static bool WEBAPP_ALREADY_HTTPHEAD = false;
 	if ( !WEBAPP_ALREADY_HTTPHEAD ) {
@@ -29,9 +29,9 @@ void http_head() {
 
 /// \ingroup waCgi
 /// \fn string get_env( const string &envname )
-/// È¡µÃ»·¾³±äÁ¿
-/// \param envname »·¾³±äÁ¿Ãû
-/// \return ³É¹¦·µ»Ø»·¾³±äÁ¿Öµ,·ñÔò·µ»Ø¿Õ×Ö·û´®
+/// å–å¾—ç¯å¢ƒå˜é‡
+/// \param envname ç¯å¢ƒå˜é‡å
+/// \return æˆåŠŸè¿”å›ç¯å¢ƒå˜é‡å€¼,å¦åˆ™è¿”å›ç©ºå­—ç¬¦ä¸²
 string get_env( const string &envname ) {
 	const char *env = envname.c_str();
 	char *val = getenv( env );
@@ -44,10 +44,10 @@ string get_env( const string &envname ) {
 ////////////////////////////////////////////////////////////////////////////
 // CGI
 
-/// ¹¹Ôìº¯Êı
-/// ¶ÁÈ¡²¢·ÖÎöCGIÄÚÈİ
-/// \param formdata_maxsize ²ÎÊıÊÇ"multipart/form-data"·½Ê½POSTÊ±µÄ×î´óFORMÉÏ´«Êı¾İ´óĞ¡,
-/// ³¬¹ı²¿·Ö±»½Ø¶Ï²»´¦Àí,µ¥Î»Îªbyte,Ä¬ÈÏÎª0¼´²»ÏŞÖÆÊı¾İ´óĞ¡
+/// æ„é€ å‡½æ•°
+/// è¯»å–å¹¶åˆ†æCGIå†…å®¹
+/// \param formdata_maxsize å‚æ•°æ˜¯"multipart/form-data"æ–¹å¼POSTæ—¶çš„æœ€å¤§FORMä¸Šä¼ æ•°æ®å¤§å°,
+/// è¶…è¿‡éƒ¨åˆ†è¢«æˆªæ–­ä¸å¤„ç†,å•ä½ä¸ºbyte,é»˜è®¤ä¸º0å³ä¸é™åˆ¶æ•°æ®å¤§å°
 Cgi::Cgi( const size_t formdata_maxsize ) {
 	// get envionment variable REQUEST_METHOD
 	_method = get_env( "REQUEST_METHOD" );
@@ -118,9 +118,9 @@ Cgi::Cgi( const size_t formdata_maxsize ) {
 	}
 }
 
-/// È¡µÃCGI²ÎÊı
-/// \param name CGI²ÎÊıÃû,´óĞ¡Ğ´Ãô¸Ğ
-/// \return ³É¹¦·µ»ØCGI²ÎÊıÖµ,·ñÔò·µ»Ø¿Õ×Ö·û´®,¶à¸öÍ¬ÃûCGI²ÎÊıÖµÖ®¼ä·Ö¸ô·ûÎª°ë½Ç¿Õ¸ñ' '
+/// å–å¾—CGIå‚æ•°
+/// \param name CGIå‚æ•°å,å¤§å°å†™æ•æ„Ÿ
+/// \return æˆåŠŸè¿”å›CGIå‚æ•°å€¼,å¦åˆ™è¿”å›ç©ºå­—ç¬¦ä¸²,å¤šä¸ªåŒåCGIå‚æ•°å€¼ä¹‹é—´åˆ†éš”ç¬¦ä¸ºåŠè§’ç©ºæ ¼' '
 string Cgi::get_cgi( const string &name ) {
 	if ( name == "" ) 
 		return string( "" );
@@ -134,7 +134,7 @@ string Cgi::get_cgi( const string &name ) {
 	
 	else if ( _method != "OPTIONS" && _method != "HEAD" && _method != "PUT" &&
 			  _method != "DELETE" && _method != "TRACE" ) {
-		// ÖÕ¶Ë²âÊÔÄ£Ê½£¬ÓÃ»§ÊäÈë cgi ²ÎÊı
+		// ç»ˆç«¯æµ‹è¯•æ¨¡å¼ï¼Œç”¨æˆ·è¾“å…¥ cgi å‚æ•°
 		string cgival;
 		cout << "Input value of CGI parameter \"" << name << "\", type _SPACE_ if no value: ";
 		cin >> cgival;
@@ -148,9 +148,9 @@ string Cgi::get_cgi( const string &name ) {
 		return string( "" );
 }
 
-/// ±£´æCGI²ÎÊı
-/// \param name CGI²ÎÊıÃû,´óĞ¡Ğ´Ãô¸Ğ
-/// \param value CGI²ÎÊıÖµ
+/// ä¿å­˜CGIå‚æ•°
+/// \param name CGIå‚æ•°å,å¤§å°å†™æ•æ„Ÿ
+/// \param value CGIå‚æ•°å€¼
 void Cgi::add_cgi( const string &name, const string &value ) {
 	if ( _cgi[name] == "" )
 		_cgi[name] = value;
@@ -158,8 +158,8 @@ void Cgi::add_cgi( const string &name, const string &value ) {
 		_cgi[name] += ( " " + value );
 }
 
-/// ·ÖÎöurlencodedÀàĞÍÄÚÈİ
-/// \param buf Òª·ÖÎöµÄÄÚÈİ
+/// åˆ†æurlencodedç±»å‹å†…å®¹
+/// \param buf è¦åˆ†æçš„å†…å®¹
 void Cgi::parse_urlencoded( const string &buf ) {
 	/*****************************
 	name1=value1&name2=value2&...
@@ -181,30 +181,30 @@ void Cgi::parse_urlencoded( const string &buf ) {
 	}
 }
 
-/// ·ÖÎömultipartÀàĞÍÄÚÈİ,
-/// HTML FORM ²ÎÊıÎª enctype=multipart/form-data
-/// \param content_type Content-TypeÃèÊö×Ö·û´®
-/// \param buf Òª·ÖÎöµÄÄÚÈİ
+/// åˆ†æmultipartç±»å‹å†…å®¹,
+/// HTML FORM å‚æ•°ä¸º enctype=multipart/form-data
+/// \param content_type Content-Typeæè¿°å­—ç¬¦ä¸²
+/// \param buf è¦åˆ†æçš„å†…å®¹
 void Cgi::parse_multipart( const string &content_type, const string &buf ) {
 	/*******************************************************
-	Éè·Ö¸ô·ûÎª{boundary}£¬»Ø³µ(0x0D)ºÍ»»ĞĞ·û(0x0A)Îª<CR>
+	è®¾åˆ†éš”ç¬¦ä¸º{boundary}ï¼Œå›è½¦(0x0D)å’Œæ¢è¡Œç¬¦(0x0A)ä¸º<CR>
 	
 	multipart/form-data, boundary={boundary}
 	
-	1.ÎÄ¼şĞÍ²ÎÊıµÄmultipart¸ñÊ½£º
+	1.æ–‡ä»¶å‹å‚æ•°çš„multipartæ ¼å¼ï¼š
 	--{boundary}<CR>
-	Content-Disposition: form-data; name="²ÎÊıÃû³Æ"; filename="ÎÄ¼şÃû³Æ"<CR>
+	Content-Disposition: form-data; name="å‚æ•°åç§°"; filename="æ–‡ä»¶åç§°"<CR>
 	Content-Type: {Content-Type}<CR>
 	<CR>
-	ÎÄ¼şÄÚÈİ
+	æ–‡ä»¶å†…å®¹
 	<CR>
 	--{boundary}<CR>
 	
-	2.ÆÕÍ¨²ÎÊıµÄmultipart¸ñÊ½£º
+	2.æ™®é€šå‚æ•°çš„multipartæ ¼å¼ï¼š
 	--{boundary}<CR>
-	Content-Disposition: form-data; name="²ÎÊıÃû³Æ"<CR>
+	Content-Disposition: form-data; name="å‚æ•°åç§°"<CR>
 	<CR>
-	²ÎÊıÖµ
+	å‚æ•°å€¼
 	<CR>
 	--{boundary}<CR>
 	*******************************************************/
@@ -240,31 +240,31 @@ void Cgi::parse_multipart( const string &content_type, const string &buf ) {
 			if ( (pos=itembuf.find("; name=\"")) != itembuf.npos ) {
 				size_t filename_pos = 0;
 				if ( (filename_pos=itembuf.find("; filename=\"")) != itembuf.npos ) {					
-					// ÎÄ¼şĞÍ²ÎÊı
+					// æ–‡ä»¶å‹å‚æ•°
 					/******************************************************
-					Content-Disposition: form-data; name="²ÎÊıÃû³Æ"; filename="ÎÄ¼şÃû³Æ"<CR>
+					Content-Disposition: form-data; name="å‚æ•°åç§°"; filename="æ–‡ä»¶åç§°"<CR>
 					Content-Type: {Content-Type}<CR>
 					<CR>
-					ÎÄ¼şÄÚÈİ
+					æ–‡ä»¶å†…å®¹
 					<CR>
 					******************************************************/
 					
-					// ·ÖÎö½á¹û
+					// åˆ†æç»“æœ
 					/******************************************************
-					²ÎÊıÃû³Æ = ÎÄ¼şÄÚÈİ
-					²ÎÊıÃû³Æ_name = ÎÄ¼şÃû³Æ
-					²ÎÊıÃû³Æ_type = {Content-Type}
+					å‚æ•°åç§° = æ–‡ä»¶å†…å®¹
+					å‚æ•°åç§°_name = æ–‡ä»¶åç§°
+					å‚æ•°åç§°_type = {Content-Type}
 					******************************************************/
 
 					String filename;
 					String filetype;
 					
-					// ²ÎÊıÃû³Æ
+					// å‚æ•°åç§°
 					if ( filename_pos > (pos+9) ) // 9: strlen("; name=\"\"")
 						itemname = itembuf.substr( pos+8, filename_pos-pos-9 ); // 9->8?
 
 					if ( itemname != "" ) {
-						// ²ÎÊıÃû³Æ_name = ÎÄ¼şÃû³Æ
+						// å‚æ•°åç§°_name = æ–‡ä»¶åç§°
 						if ( (nextpos=itembuf.find(qucr,filename_pos)) != itembuf.npos
 							&& nextpos >= (filename_pos+12) ) { // 12: strlen("; filename=\"")						
 							filename = itembuf.substr( filename_pos+12, nextpos-filename_pos-12 );
@@ -272,7 +272,7 @@ void Cgi::parse_multipart( const string &content_type, const string &buf ) {
 								add_cgi( (itemname+"_name"), filename );
 						}
 
-						// ²ÎÊıÃû³Æ_type = {Content-Type}
+						// å‚æ•°åç§°_type = {Content-Type}
 						if ( (pos=itembuf.find("Content-Type: ",filename_pos)) != itembuf.npos
 							&& (nextpos=itembuf.find(crcr,pos)) != itembuf.npos
 							&& nextpos >= (pos+14) ) { // 14: strlen("Content-Type: ")
@@ -282,7 +282,7 @@ void Cgi::parse_multipart( const string &content_type, const string &buf ) {
 								add_cgi( (itemname+"_type"), filetype );
 						}
 
-						// ²ÎÊıÃû³Æ = ÎÄ¼şÄÚÈİ
+						// å‚æ•°åç§° = æ–‡ä»¶å†…å®¹
 						if ( (pos=nextpos+4) != itembuf.npos // 4: strlen("")
 							&& (nextpos=itembuf.rfind(cr)) != itembuf.npos
 							&& nextpos >= (pos+1) ) {
@@ -291,22 +291,22 @@ void Cgi::parse_multipart( const string &content_type, const string &buf ) {
 								add_cgi( itemname, itemvalue );
 						}
 					}
-				} // ÎÄ¼şĞÍ²ÎÊı
+				} // æ–‡ä»¶å‹å‚æ•°
 				
 				else {
-					// ÆÕÍ¨²ÎÊı
+					// æ™®é€šå‚æ•°
 					/******************************************************
-					Content-Disposition: form-data; name="²ÎÊıÃû³Æ"<CR>
+					Content-Disposition: form-data; name="å‚æ•°åç§°"<CR>
 					<CR>
-					²ÎÊıÖµ
+					å‚æ•°å€¼
 					<CR>
 					******************************************************/
 					
-					// ²ÎÊıÃû³Æ
+					// å‚æ•°åç§°
 					if ( (nextpos=itembuf.find(qucr,pos)) != itembuf.npos )
 						itemname = itembuf.substr( pos+8, nextpos-pos-8 ); // 8: strlen("; name=\"")
 					
-					// ²ÎÊıÃû³Æ = ²ÎÊıÖµ
+					// å‚æ•°åç§° = å‚æ•°å€¼
 					if ( itemname != ""
 						&& (pos=itembuf.find(qucrcr)) != itembuf.npos 
 						&& (nextpos=itembuf.rfind(cr)) != itembuf.npos
@@ -316,7 +316,7 @@ void Cgi::parse_multipart( const string &content_type, const string &buf ) {
 						if ( itemvalue != "" )
 							add_cgi( itemname, itemvalue );
 					}
-				}// ÆÕÍ¨²ÎÊı
+				}// æ™®é€šå‚æ•°
 			}
 		} // one item
 	} // split by boundary
@@ -326,15 +326,15 @@ void Cgi::parse_multipart( const string &content_type, const string &buf ) {
 ////////////////////////////////////////////////////////////////////////////
 // Cookie
 
-/// ¹¹Ôìº¯Êı
-/// ¶ÁÈ¡²¢·ÖÎöCookie»·¾³±äÁ¿
+/// æ„é€ å‡½æ•°
+/// è¯»å–å¹¶åˆ†æCookieç¯å¢ƒå˜é‡
 Cookie::Cookie() {
 	this->parse_cookie( get_env("HTTP_COOKIE") );
 }
 
-/// È¡µÃcookieÄÚÈİ
-/// \param name cookie²ÎÊıÃû,´óĞ¡Ğ´Ãô¸Ğ
-/// \return ³É¹¦·µ»Øcookie²ÎÊıÖµ,·ñÔò·µ»Ø¿Õ×Ö·û´®
+/// å–å¾—cookieå†…å®¹
+/// \param name cookieå‚æ•°å,å¤§å°å†™æ•æ„Ÿ
+/// \return æˆåŠŸè¿”å›cookieå‚æ•°å€¼,å¦åˆ™è¿”å›ç©ºå­—ç¬¦ä¸²
 string Cookie::get_cookie( const string &name ) {
 	if ( name!="" && _cookies.find(name)!=_cookies.end() )
 		return _cookies[name];
@@ -342,13 +342,13 @@ string Cookie::get_cookie( const string &name ) {
 		return string( "" );
 }
 
-/// ÉèÖÃcookieÄÚÈİ
-/// ±ØĞëÔÚÊä³öcontent-typeÇ°µ÷ÓÃ
-/// \param name cookieÃû×Ö
-/// \param value cookieÖµ
-/// \param expires cookieÓĞĞ§ÆÚ,GMT¸ñÊ½ÈÕÆÚ×Ö·û´®,Ä¬ÈÏÎª¿Õ
-/// \param path cookieÂ·¾¶,Ä¬ÈÏÎª"/"
-/// \param domain cookieÓò,Ä¬ÈÏÎª""
+/// è®¾ç½®cookieå†…å®¹
+/// å¿…é¡»åœ¨è¾“å‡ºcontent-typeå‰è°ƒç”¨
+/// \param name cookieåå­—
+/// \param value cookieå€¼
+/// \param expires cookieæœ‰æ•ˆæœŸ,GMTæ ¼å¼æ—¥æœŸå­—ç¬¦ä¸²,é»˜è®¤ä¸ºç©º
+/// \param path cookieè·¯å¾„,é»˜è®¤ä¸º"/"
+/// \param domain cookieåŸŸ,é»˜è®¤ä¸º""
 void Cookie::set_cookie( const string &name, const string &value, 
 	const string &expires, const string &path, const string &domain ) const 
 {
@@ -366,8 +366,8 @@ void Cookie::set_cookie( const string &name, const string &value,
 		 << "domain=" + domain + ";" << endl;
 }
 
-/// ·ÖÎöcookieÄÚÈİ
-/// \param buf Òª·ÖÎöµÄÄÚÈİ
+/// åˆ†æcookieå†…å®¹
+/// \param buf è¦åˆ†æçš„å†…å®¹
 void Cookie::parse_cookie( const string &buf ) {
 	/*****************************
 	name1=value1; name2=value2; ...

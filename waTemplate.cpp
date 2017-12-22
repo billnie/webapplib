@@ -1,5 +1,5 @@
 /// \file waTemplate.cpp
-/// HTMLÄ£°å´¦ÀíÀàÊµÏÖÎÄ¼ş
+/// HTMLæ¨¡æ¿å¤„ç†ç±»å®ç°æ–‡ä»¶
 
 #include <cstdio>
 #include <cstdarg>
@@ -19,10 +19,10 @@ namespace webapp {
 ////////////////////////////////////////////////////////////////////////////
 // set functions
 
-/// ¶ÁÈ¡HTMLÄ£°åÎÄ¼ş
-/// \param tmpl_file Ä£°åÂ·¾¶ÎÄ¼şÃû
-/// \retval true ¶ÁÈ¡³É¹¦
-/// \retval false Ê§°Ü
+/// è¯»å–HTMLæ¨¡æ¿æ–‡ä»¶
+/// \param tmpl_file æ¨¡æ¿è·¯å¾„æ–‡ä»¶å
+/// \retval true è¯»å–æˆåŠŸ
+/// \retval false å¤±è´¥
 bool Template::load( const string &tmpl_file ) {
 	if ( _tmpl.load_file(tmpl_file) ) {
 		_tmplfile = tmpl_file;
@@ -34,25 +34,25 @@ bool Template::load( const string &tmpl_file ) {
 	}
 }
 
-/// ÉèÖÃHTMLÄ£°åÄÚÈİ
-/// \param tmpl Ä£°åÄÚÈİ×Ö·û´®
+/// è®¾ç½®HTMLæ¨¡æ¿å†…å®¹
+/// \param tmpl æ¨¡æ¿å†…å®¹å­—ç¬¦ä¸²
 void Template::tmpl( const string &tmpl ) {
 	_tmplfile = "Read from string";
 	_tmpl = tmpl;
 }
 
-/// ÉèÖÃÌæ»»¹æÔò
-/// \param name Ä£°åÓòÃû³Æ
-/// \param value Ìæ»»Öµ
+/// è®¾ç½®æ›¿æ¢è§„åˆ™
+/// \param name æ¨¡æ¿åŸŸåç§°
+/// \param value æ›¿æ¢å€¼
 void Template::set( const string &name, const string &value ) {
 	if ( name != "" )
 		_sets[name] = value;
 }
 
-/// ĞÂ½¨Ñ­»·
-/// \param loop Ñ­»·Ãû³Æ
-/// \param field_0 field_0¼°field_0Ö®ºóÎª×Ö¶ÎÃû³ÆÁĞ±í,×îºóÒ»¸ö²ÎÊı±ØĞëÊÇNULL
-/// \param ... ×Ö¶ÎÃû³ÆÁĞ±í,×îºóÒ»¸ö²ÎÊı±ØĞëÊÇNULL
+/// æ–°å»ºå¾ªç¯
+/// \param loop å¾ªç¯åç§°
+/// \param field_0 field_0åŠfield_0ä¹‹åä¸ºå­—æ®µåç§°åˆ—è¡¨,æœ€åä¸€ä¸ªå‚æ•°å¿…é¡»æ˜¯NULL
+/// \param ... å­—æ®µåç§°åˆ—è¡¨,æœ€åä¸€ä¸ªå‚æ•°å¿…é¡»æ˜¯NULL
 void Template::def_loop( const string &loop, const char* field_0, ... ) {
 	va_list ap;
 	const char *p;
@@ -89,11 +89,11 @@ void Template::def_loop( const string &loop, const char* field_0, ... ) {
 	_loops[loop].cols = cols;
 }
 
-/// Ìí¼ÓÒ»ĞĞÊı¾İµ½Ñ­»·
-/// ±ØĞëÏÈµ÷ÓÃTemplate::def_loop()³õÊ¼»¯Ñ­»·×Ö¶Î¶¨Òå,·ñÔòÖĞÖ¹
-/// \param loop Ñ­»·Ãû³Æ
-/// \param value_0 value_0¼°value_0Ö®ºóÎª×Ö¶ÎÃû³ÆÁĞ±í,×îºóÒ»¸ö²ÎÊı±ØĞëÊÇNULL
-/// \param ... ×Ö¶ÎÃû³ÆÁĞ±í,×îºóÒ»¸ö²ÎÊı±ØĞëÊÇNULL
+/// æ·»åŠ ä¸€è¡Œæ•°æ®åˆ°å¾ªç¯
+/// å¿…é¡»å…ˆè°ƒç”¨Template::def_loop()åˆå§‹åŒ–å¾ªç¯å­—æ®µå®šä¹‰,å¦åˆ™ä¸­æ­¢
+/// \param loop å¾ªç¯åç§°
+/// \param value_0 value_0åŠvalue_0ä¹‹åä¸ºå­—æ®µåç§°åˆ—è¡¨,æœ€åä¸€ä¸ªå‚æ•°å¿…é¡»æ˜¯NULL
+/// \param ... å­—æ®µåç§°åˆ—è¡¨,æœ€åä¸€ä¸ªå‚æ•°å¿…é¡»æ˜¯NULL
 void Template::append_row( const string &loop, const char* value_0, ... ) {
 	// loop must exist
 	if ( _loops.find(loop) == _loops.end() ) {
@@ -131,12 +131,12 @@ void Template::append_row( const string &loop, const char* value_0, ... ) {
 	++_loops[loop].rows;
 }
 
-/// Ìí¼ÓÒ»ĞĞÖ¸¶¨¸ñÊ½µÄÊı¾İµ½Ñ­»·
-/// ±ØĞëÏÈµ÷ÓÃTemplate::def_loop()³õÊ¼»¯Ñ­»·×Ö¶Î¶¨Òå,·ñÔòÖĞÖ¹
-/// \param loop Ñ­»·Ãû³Æ
-/// \param format ×Ö¶ÎÁĞÑ­»·Ê½¶¨Òå,"%d,%s,..."¸ñÊ½
-/// \param ... µÚÈı¸ö²ÎÊıÆğÎª×Ö¶ÎÖµÁĞ±í,
-/// ×Ö¶ÎÖµ²ÎÊı¸öÊı²»ÄÜÉÙÓÚ¸ñÊ½¶¨Òå²ÎÊıformatÖĞÖ¸¶¨µÄ¸öÊı
+/// æ·»åŠ ä¸€è¡ŒæŒ‡å®šæ ¼å¼çš„æ•°æ®åˆ°å¾ªç¯
+/// å¿…é¡»å…ˆè°ƒç”¨Template::def_loop()åˆå§‹åŒ–å¾ªç¯å­—æ®µå®šä¹‰,å¦åˆ™ä¸­æ­¢
+/// \param loop å¾ªç¯åç§°
+/// \param format å­—æ®µåˆ—å¾ªç¯å¼å®šä¹‰,"%d,%s,..."æ ¼å¼
+/// \param ... ç¬¬ä¸‰ä¸ªå‚æ•°èµ·ä¸ºå­—æ®µå€¼åˆ—è¡¨,
+/// å­—æ®µå€¼å‚æ•°ä¸ªæ•°ä¸èƒ½å°‘äºæ ¼å¼å®šä¹‰å‚æ•°formatä¸­æŒ‡å®šçš„ä¸ªæ•°
 void Template::append_format( const string &loop, const char* format, ... ) {
 	// loop must exist
 	if ( _loops.find(loop) == _loops.end() ) {
@@ -184,8 +184,8 @@ void Template::append_format( const string &loop, const char* format, ... ) {
 	++_loops[loop].rows;
 }
 
-/// Çå¿ÕËùÓĞÌæ»»¹æÔò
-/// °üÀ¨ËùÓĞÑ­»·Ìæ»»¹æÔò
+/// æ¸…ç©ºæ‰€æœ‰æ›¿æ¢è§„åˆ™
+/// åŒ…æ‹¬æ‰€æœ‰å¾ªç¯æ›¿æ¢è§„åˆ™
 void Template::clear_set() {
 	_sets.clear();
 	_loops.clear();
@@ -194,22 +194,22 @@ void Template::clear_set() {
 ////////////////////////////////////////////////////////////////////////////
 // parse functions
 
-/// ·µ»Ø×Ö¶ÎÎ»ÖÃ
-/// \param loop Ñ­»·Ãû³Æ
-/// \param field ×Ö¶ÎÃû³Æ
-/// \return ÕÒµ½·µ»Ø×Ö¶ÎÎ»ÖÃ,·ñÔò·µ»Ø-1
+/// è¿”å›å­—æ®µä½ç½®
+/// \param loop å¾ªç¯åç§°
+/// \param field å­—æ®µåç§°
+/// \return æ‰¾åˆ°è¿”å›å­—æ®µä½ç½®,å¦åˆ™è¿”å›-1
 int Template::field_pos( const string &loop, const string &field ) {
 	if ( _loops[loop].fieldspos.find(field) == _loops[loop].fieldspos.end() )
 		return -1;
 	return _loops[loop].fieldspos[field];
 }
 
-/// ¶ÁÈ¡Ö¸¶¨Î»ÖÃµÄÄ£°å½Å±¾ÀàĞÍ¼°±í´ïÊ½
-/// \param tmpl Ä£°å×Ö·û´®
-/// \param pos ¿ªÊ¼·ÖÎöµÄÎ»ÖÃ
-/// \param exp ¶ÁÈ¡³öµÄ±í´ïÊ½×Ö·û´®
-/// \param type ·ÖÎö³öµÄ½Å±¾Óï¾äÀàĞÍ
-/// \return ·µ»ØÖµÎª±¾´Î·ÖÎöµÄ×Ö·û´®³¤¶È,Èô³ö´í·µ»Ø-1
+/// è¯»å–æŒ‡å®šä½ç½®çš„æ¨¡æ¿è„šæœ¬ç±»å‹åŠè¡¨è¾¾å¼
+/// \param tmpl æ¨¡æ¿å­—ç¬¦ä¸²
+/// \param pos å¼€å§‹åˆ†æçš„ä½ç½®
+/// \param exp è¯»å–å‡ºçš„è¡¨è¾¾å¼å­—ç¬¦ä¸²
+/// \param type åˆ†æå‡ºçš„è„šæœ¬è¯­å¥ç±»å‹
+/// \return è¿”å›å€¼ä¸ºæœ¬æ¬¡åˆ†æçš„å­—ç¬¦ä¸²é•¿åº¦,è‹¥å‡ºé”™è¿”å›-1
 int Template::parse_script( const string &tmpl, const size_t pos, 
 	string &exp, int &type ) 
 {
@@ -294,9 +294,9 @@ int Template::parse_script( const string &tmpl, const size_t pos,
 	return ( end-pos+TMPL_END_LEN );
 }
 
-/// ·ÖÎö±í´ïÊ½µÄÖµ
-/// \param exp ±í´ïÊ½×Ö·û´®
-/// \return ·µ»ØÖµÎª¸Ã±í´ïÊ½µÄÖµ,Èô±í´ïÊ½·Ç·¨Ôò·µ»Ø±í´ïÊ½×Ö·û´®
+/// åˆ†æè¡¨è¾¾å¼çš„å€¼
+/// \param exp è¡¨è¾¾å¼å­—ç¬¦ä¸²
+/// \return è¿”å›å€¼ä¸ºè¯¥è¡¨è¾¾å¼çš„å€¼,è‹¥è¡¨è¾¾å¼éæ³•åˆ™è¿”å›è¡¨è¾¾å¼å­—ç¬¦ä¸²
 string Template::exp_value( const string &exp ) {
 	if ( strncmp(exp.c_str(),TMPL_VALUE,TMPL_VALUE_LEN) == 0 ) {
 		// simple value: $xxx
@@ -351,9 +351,9 @@ string Template::exp_value( const string &exp ) {
 	}
 }
 
-/// ·ÖÎö´¦ÀíÄ£°å
-/// \param tmpl Ä£°å×Ö·û´®
-/// \param output ·ÖÎö´¦Àí½á¹ûÊä³öÁ÷
+/// åˆ†æå¤„ç†æ¨¡æ¿
+/// \param tmpl æ¨¡æ¿å­—ç¬¦ä¸²
+/// \param output åˆ†æå¤„ç†ç»“æœè¾“å‡ºæµ
 void Template::parse( const string &tmpl, ostream &output ) {
 	// init datetime
 	struct tm stm;
@@ -455,12 +455,12 @@ void Template::parse( const string &tmpl, ostream &output ) {
 	output << tmpl.substr( lastpos );
 }
 
-/// ¼ì²éÌõ¼şÓï¾ä±í´ïÊ½ÊÇ·ñ³ÉÁ¢
-/// \param exp ²ÎÊıÎªÌõ¼ş±í´ïÊ½,
-/// Èô±í´ïÊ½Îª×Ö·û´®,ÔòÖµ²»Îª""²¢ÇÒ²»Îª"0"Ê±·µ»Øtrue,·ñÔò·µ»Øfalse,
-/// ÈôÎª±È½Ï±í´ïÊ½,³ÉÁ¢·µ»Øtrue,·ñÔò·µ»Øfalse
-/// \retval true Ìõ¼ş±í´ïÊ½³ÉÁ¢
-/// \retval false Ìõ¼ş±í´ïÊ½²»³ÉÁ¢
+/// æ£€æŸ¥æ¡ä»¶è¯­å¥è¡¨è¾¾å¼æ˜¯å¦æˆç«‹
+/// \param exp å‚æ•°ä¸ºæ¡ä»¶è¡¨è¾¾å¼,
+/// è‹¥è¡¨è¾¾å¼ä¸ºå­—ç¬¦ä¸²,åˆ™å€¼ä¸ä¸º""å¹¶ä¸”ä¸ä¸º"0"æ—¶è¿”å›true,å¦åˆ™è¿”å›false,
+/// è‹¥ä¸ºæ¯”è¾ƒè¡¨è¾¾å¼,æˆç«‹è¿”å›true,å¦åˆ™è¿”å›false
+/// \retval true æ¡ä»¶è¡¨è¾¾å¼æˆç«‹
+/// \retval false æ¡ä»¶è¡¨è¾¾å¼ä¸æˆç«‹
 bool Template::compare( const string &exp ) {
 	// read compare type
 	// supported: ==,!=,<=,<,>=,>
@@ -545,10 +545,10 @@ bool Template::compare( const string &exp ) {
 	}
 }
 
-/// ¼ì²éÌõ¼şÊÇ·ñ³ÉÁ¢	
-/// \param exp ²ÎÊıÎªÌõ¼ş±í´ïÊ½¼°Æä×éºÏ
-/// \retval true Ìõ¼ş±í´ïÊ½³ÉÁ¢
-/// \retval false Ìõ¼ş±í´ïÊ½²»³ÉÁ¢
+/// æ£€æŸ¥æ¡ä»¶æ˜¯å¦æˆç«‹	
+/// \param exp å‚æ•°ä¸ºæ¡ä»¶è¡¨è¾¾å¼åŠå…¶ç»„åˆ
+/// \retval true æ¡ä»¶è¡¨è¾¾å¼æˆç«‹
+/// \retval false æ¡ä»¶è¡¨è¾¾å¼ä¸æˆç«‹
 bool Template::check_if( const string &exp ) {
 	tmpl_logictype exp_type = TMPL_L_NONE;
 	String exps;
@@ -602,13 +602,13 @@ bool Template::check_if( const string &exp ) {
 	return false; // for warning
 }
 
-/// ´¦ÀíÌõ¼şÀàĞÍÄ£°å
-/// \param tmpl Ä£°å×Ö·û´®
-/// \param output ·ÖÎö´¦Àí½á¹ûÊä³öÁ÷
-/// \param parent_state µ÷ÓÃ¸Ãº¯ÊıÊ±µÄÌõ¼ş×´Ì¬
-/// \param parsed_exp ÒÑ·ÖÎöµÄÌõ¼ş½Å±¾±í´ïÊ½
-/// \param parsed_length ÒÑ·ÖÎöµÄÌõ¼ş½Å±¾±í´ïÊ½³¤¶È
-/// \return ·µ»ØÖµÎª±¾´Î·ÖÎöµÄ×Ö·û´®³¤¶È
+/// å¤„ç†æ¡ä»¶ç±»å‹æ¨¡æ¿
+/// \param tmpl æ¨¡æ¿å­—ç¬¦ä¸²
+/// \param output åˆ†æå¤„ç†ç»“æœè¾“å‡ºæµ
+/// \param parent_state è°ƒç”¨è¯¥å‡½æ•°æ—¶çš„æ¡ä»¶çŠ¶æ€
+/// \param parsed_exp å·²åˆ†æçš„æ¡ä»¶è„šæœ¬è¡¨è¾¾å¼
+/// \param parsed_length å·²åˆ†æçš„æ¡ä»¶è„šæœ¬è¡¨è¾¾å¼é•¿åº¦
+/// \return è¿”å›å€¼ä¸ºæœ¬æ¬¡åˆ†æçš„å­—ç¬¦ä¸²é•¿åº¦
 size_t Template::parse_if( const string &tmpl, ostream &output, 
 	const bool parent_state, const string &parsed_exp, const int parsed_length ) 
 {
@@ -770,10 +770,10 @@ size_t Template::parse_if( const string &tmpl, ostream &output,
 	return length;
 }
 
-/// ¼ì²éÑ­»·Óï¾äÊÇ·ñÓĞĞ§
-/// \param loop Ñ­»·Ñ­»·Ãû³Æ
-/// \retval true Ñ­»·ÒÑ¶¨Òå
-/// \retval false Î´¶¨Òå
+/// æ£€æŸ¥å¾ªç¯è¯­å¥æ˜¯å¦æœ‰æ•ˆ
+/// \param loop å¾ªç¯å¾ªç¯åç§°
+/// \retval true å¾ªç¯å·²å®šä¹‰
+/// \retval false æœªå®šä¹‰
 bool Template::check_loop( const string &loopname ) {
 	string loop = this->exp_value( loopname );
 	
@@ -786,9 +786,9 @@ bool Template::check_loop( const string &loopname ) {
 	}
 }
 
-/// ·µ»ØÑ­»·ÖĞÖ¸¶¨Î»ÖÃ×Ö¶ÎµÄÖµ
-/// \param fleid Ñ­»·±äÁ¿×Ö¶ÎÃû
-/// \return Èô¶ÁÈ¡³É¹¦·µ»ØÖµ×Ö·û´®,·ñÔò·µ»Ø¿Õ×Ö·û´®
+/// è¿”å›å¾ªç¯ä¸­æŒ‡å®šä½ç½®å­—æ®µçš„å€¼
+/// \param fleid å¾ªç¯å˜é‡å­—æ®µå
+/// \return è‹¥è¯»å–æˆåŠŸè¿”å›å€¼å­—ç¬¦ä¸²,å¦åˆ™è¿”å›ç©ºå­—ç¬¦ä¸²
 string Template::loop_value( const string &field ) {
 	// get loop info
 	size_t pos = field.find( TMPL_LOOPSCOPE );
@@ -813,13 +813,13 @@ string Template::loop_value( const string &field ) {
 	}
 }
 
-/// ´¦ÀíÑ­»·ÀàĞÍÄ£°å
-/// \param tmpl Ä£°å×Ö·û´®
-/// \param output ·ÖÎö´¦Àí½á¹ûÊä³öÁ÷
-/// \param parent_state µ÷ÓÃ¸Ãº¯ÊıÊ±µÄÌõ¼ş×´Ì¬
-/// \param parsed_exp ÒÑ·ÖÎöµÄÑ­»·½Å±¾±í´ïÊ½
-/// \param parsed_length ÒÑ·ÖÎöµÄÑ­»·½Å±¾±í´ïÊ½³¤¶È
-/// \return ·µ»ØÖµÎª±¾´Î·ÖÎöµÄ×Ö·û´®³¤¶È
+/// å¤„ç†å¾ªç¯ç±»å‹æ¨¡æ¿
+/// \param tmpl æ¨¡æ¿å­—ç¬¦ä¸²
+/// \param output åˆ†æå¤„ç†ç»“æœè¾“å‡ºæµ
+/// \param parent_state è°ƒç”¨è¯¥å‡½æ•°æ—¶çš„æ¡ä»¶çŠ¶æ€
+/// \param parsed_exp å·²åˆ†æçš„å¾ªç¯è„šæœ¬è¡¨è¾¾å¼
+/// \param parsed_length å·²åˆ†æçš„å¾ªç¯è„šæœ¬è¡¨è¾¾å¼é•¿åº¦
+/// \return è¿”å›å€¼ä¸ºæœ¬æ¬¡åˆ†æçš„å­—ç¬¦ä¸²é•¿åº¦
 size_t Template::parse_loop( const string &tmpl, ostream &output, 
 	const bool parent_state, const string &parsed_exp, const int parsed_length ) 
 {
@@ -972,16 +972,16 @@ size_t Template::parse_loop( const string &tmpl, ostream &output,
 ////////////////////////////////////////////////////////////////////////////
 // output functions
 
-/// Ä£°å·ÖÎö´íÎó¼ÍÂ¼
-/// \param pos Ä£°å´íÎóĞĞÎ»ÖÃ
-/// \param error ´íÎóÃèÊö
+/// æ¨¡æ¿åˆ†æé”™è¯¯çºªå½•
+/// \param pos æ¨¡æ¿é”™è¯¯è¡Œä½ç½®
+/// \param error é”™è¯¯æè¿°
 void Template::error_log( const size_t lines, const string &error ) {
 	if ( error != "" )
 		_errlog.insert( multimap<int,string>::value_type(lines,error) );
 }
 
-/// ·µ»ØÄ£°å·ÖÎö¼ÍÂ¼
-/// \param output ·ÖÎö´¦Àí½á¹ûÊä³öÁ÷
+/// è¿”å›æ¨¡æ¿åˆ†æçºªå½•
+/// \param output åˆ†æå¤„ç†ç»“æœè¾“å‡ºæµ
 void Template::parse_log( ostream &output ) {
 	output << endl;
 	output << "<!-- Generated by waTemplate " << _date << " " << _time << endl
@@ -1005,8 +1005,8 @@ void Template::parse_log( ostream &output ) {
 	_errlog.clear();
 }
 
-/// ·µ»ØHTML×Ö·û´®
-/// \return ·µ»ØÄ£°å·ÖÎö´¦Àí½á¹û
+/// è¿”å›HTMLå­—ç¬¦ä¸²
+/// \return è¿”å›æ¨¡æ¿åˆ†æå¤„ç†ç»“æœ
 string Template::html() {
 	ostringstream result;
 	this->parse( _tmpl, result );
@@ -1014,11 +1014,11 @@ string Template::html() {
 	return result.str();
 }
 
-/// Êä³öHTMLµ½stdout
-/// \param mode ÊÇ·ñÊä³öµ÷ÊÔĞÅÏ¢
-/// - Template::TMPL_OUTPUT_DEBUG Êä³öµ÷ÊÔĞÅÏ¢
-/// - Template::TMPL_OUTPUT_RELEASE ²»Êä³öµ÷ÊÔĞÅÏ¢
-/// - Ä¬ÈÏÎª²»Êä³öµ÷ÊÔĞÅÏ¢
+/// è¾“å‡ºHTMLåˆ°stdout
+/// \param mode æ˜¯å¦è¾“å‡ºè°ƒè¯•ä¿¡æ¯
+/// - Template::TMPL_OUTPUT_DEBUG è¾“å‡ºè°ƒè¯•ä¿¡æ¯
+/// - Template::TMPL_OUTPUT_RELEASE ä¸è¾“å‡ºè°ƒè¯•ä¿¡æ¯
+/// - é»˜è®¤ä¸ºä¸è¾“å‡ºè°ƒè¯•ä¿¡æ¯
 void Template::print( const output_mode mode ) {
 	_debug = mode;
 	this->parse( _tmpl, std::cout );
@@ -1026,15 +1026,15 @@ void Template::print( const output_mode mode ) {
 		this->parse_log( std::cout );
 }
 
-/// Êä³öHTMLµ½ÎÄ¼ş
-/// \param file Êä³öÎÄ¼şÃû
-/// \param mode ÊÇ·ñÊä³öµ÷ÊÔĞÅÏ¢
-/// - Template::TMPL_OUTPUT_DEBUG Êä³öµ÷ÊÔĞÅÏ¢
-/// - Template::TMPL_OUTPUT_RELEASE ²»Êä³öµ÷ÊÔĞÅÏ¢
-/// - Ä¬ÈÏÎª²»Êä³öµ÷ÊÔĞÅÏ¢
-/// \param permission ÎÄ¼şÊôĞÔ²ÎÊı£¬Ä¬ÈÏÎª0666
-/// \retval true ÎÄ¼şÊä³ö³É¹¦
-/// \retval false Ê§°Ü
+/// è¾“å‡ºHTMLåˆ°æ–‡ä»¶
+/// \param file è¾“å‡ºæ–‡ä»¶å
+/// \param mode æ˜¯å¦è¾“å‡ºè°ƒè¯•ä¿¡æ¯
+/// - Template::TMPL_OUTPUT_DEBUG è¾“å‡ºè°ƒè¯•ä¿¡æ¯
+/// - Template::TMPL_OUTPUT_RELEASE ä¸è¾“å‡ºè°ƒè¯•ä¿¡æ¯
+/// - é»˜è®¤ä¸ºä¸è¾“å‡ºè°ƒè¯•ä¿¡æ¯
+/// \param permission æ–‡ä»¶å±æ€§å‚æ•°ï¼Œé»˜è®¤ä¸º0666
+/// \retval true æ–‡ä»¶è¾“å‡ºæˆåŠŸ
+/// \retval false å¤±è´¥
 bool Template::print( const string &file, const output_mode mode,
 	const mode_t permission ) 
 {

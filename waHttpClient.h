@@ -1,7 +1,7 @@
 /// \file waHttpClient.h
-/// HTTP¿Í»§¶ËÀàÍ·ÎÄ¼ş
-/// ÒÀÀµÓÚ webapp::String, webapp::Encode
-/// <a href="wa_httpclient.html">Ê¹ÓÃËµÃ÷ÎÄµµ¼°¼òµ¥·¶Àı</a>
+/// HTTPå®¢æˆ·ç«¯ç±»å¤´æ–‡ä»¶
+/// ä¾èµ–äº webapp::String, webapp::Encode
+/// <a href="wa_httpclient.html">ä½¿ç”¨è¯´æ˜æ–‡æ¡£åŠç®€å•èŒƒä¾‹</a>
 
 #ifndef _WEBAPPLIB_HTTPCLIENT_H_
 #define _WEBAPPLIB_HTTPCLIENT_H_ 
@@ -19,123 +19,123 @@ namespace webapp {
 const string HTTP_CRLF = "\r\n";
 const string DOUBLE_CRLF = "\r\n\r\n";
 	
-/// ·¢ËÍTCPÇëÇó²¢È¡µÃ»ØÓ¦ÄÚÈİ
+/// å‘é€TCPè¯·æ±‚å¹¶å–å¾—å›åº”å†…å®¹
 int tcp_request( const string &server, const int port, const string &request, 
 	string &response, const int timeout );
-/// ¸ù¾İ·şÎñÆ÷ÓòÃûÈ¡µÃIP
+/// æ ¹æ®æœåŠ¡å™¨åŸŸåå–å¾—IP
 string gethost_byname( const string &domain );
-/// ÅĞ¶Ï×Ö·û´®ÊÇ·ñÎªÓĞĞ§IP
+/// åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯å¦ä¸ºæœ‰æ•ˆIP
 bool isip( const string &ipstr );
 
-/// HTTP¿Í»§¶ËÀà
-/// <a href="wa_httpclient.html">Ê¹ÓÃËµÃ÷ÎÄµµ¼°¼òµ¥·¶Àı</a>
+/// HTTPå®¢æˆ·ç«¯ç±»
+/// <a href="wa_httpclient.html">ä½¿ç”¨è¯´æ˜æ–‡æ¡£åŠç®€å•èŒƒä¾‹</a>
 class HttpClient {
 	public:
 	
-	/// \enum ´íÎóĞÅÏ¢
+	/// \enum é”™è¯¯ä¿¡æ¯
 	enum error_msg {
-		/// ÎŞ´íÎó
+		/// æ— é”™è¯¯
 		ERROR_NULL					= 0,
-		/// ´´½¨socketÊ§°Ü
+		/// åˆ›å»ºsocketå¤±è´¥
 		ERROR_CREATE_SOCKET			= 1,
-		/// ÎŞ·¨Á¬½Ó·şÎñÆ÷
+		/// æ— æ³•è¿æ¥æœåŠ¡å™¨
 		ERROR_CONNECT_SERVER		= 2,
-		/// ·¢ËÍÇëÇóÊ§°Ü
+		/// å‘é€è¯·æ±‚å¤±è´¥
 		ERROR_SEND_REQUEST			= 3,
-		/// ÉèÖÃ¶¨Ê±Æ÷Ê§°Ü»òÕßÁ¬½Ó³¬Ê±
+		/// è®¾ç½®å®šæ—¶å™¨å¤±è´¥æˆ–è€…è¿æ¥è¶…æ—¶
 		ERROR_RESPONSE_TIMEDOUT		= 4,
-		/// ·şÎñÆÚµØÖ·ĞÅÏ¢´íÎó
+		/// æœåŠ¡æœŸåœ°å€ä¿¡æ¯é”™è¯¯
 		ERROR_SERVERINFO_NULL		= 5,
-		/// HTTPÇëÇó¸ñÊ½´íÎó
+		/// HTTPè¯·æ±‚æ ¼å¼é”™è¯¯
 		ERROR_REQUEST_NULL			= 6,
-		/// ·şÎñÆ÷»ØÓ¦Îª¿Õ
+		/// æœåŠ¡å™¨å›åº”ä¸ºç©º
 		ERROR_RESPONSE_NULL			= 7,
-		/// ·şÎñÆ÷»ØÓ¦¸ñÊ½´íÎó
+		/// æœåŠ¡å™¨å›åº”æ ¼å¼é”™è¯¯
 		ERROR_RESPONSE_INVALID		= 8,
-		/// ·şÎñÆ÷»ØÓ¦HTTP×´Ì¬´íÎó
+		/// æœåŠ¡å™¨å›åº”HTTPçŠ¶æ€é”™è¯¯
 		ERROR_HTTPSTATUS			= 9,
-		/// Î´Öª´íÎó
+		/// æœªçŸ¥é”™è¯¯
 		ERROR_UNKNOWN				= 10
 	};
 
-	/// Ä¬ÈÏ¹¹Ôìº¯Êı
+	/// é»˜è®¤æ„é€ å‡½æ•°
 	HttpClient(){};
 	
-	/// ¹¹Ôì²¢Ö´ĞĞHTTPÇëÇó
-	/// \param url HTTPÇëÇóURL
-	/// \param server ·şÎñÆ÷IP,Îª¿Õ×Ö·û´®Ôò¸ù¾İ²ÎÊı1»ñµÃ,Ä¬ÈÏÎª¿Õ×Ö·û´®
-	/// \param port ·şÎñÆ÷¶Ë¿Ú,Ä¬ÈÏÎª80
-	/// \param method HTTPÇëÇóMethod,Ä¬ÈÏÎª"GET"
-	/// \param timeout HTTPÇëÇó³¬Ê±Ê±³¤,µ¥Î»ÎªÃë,Ä¬ÈÏÎª5Ãë,Îª0²»ÅĞ¶Ï³¬Ê±
+	/// æ„é€ å¹¶æ‰§è¡ŒHTTPè¯·æ±‚
+	/// \param url HTTPè¯·æ±‚URL
+	/// \param server æœåŠ¡å™¨IP,ä¸ºç©ºå­—ç¬¦ä¸²åˆ™æ ¹æ®å‚æ•°1è·å¾—,é»˜è®¤ä¸ºç©ºå­—ç¬¦ä¸²
+	/// \param port æœåŠ¡å™¨ç«¯å£,é»˜è®¤ä¸º80
+	/// \param method HTTPè¯·æ±‚Method,é»˜è®¤ä¸º"GET"
+	/// \param timeout HTTPè¯·æ±‚è¶…æ—¶æ—¶é•¿,å•ä½ä¸ºç§’,é»˜è®¤ä¸º5ç§’,ä¸º0ä¸åˆ¤æ–­è¶…æ—¶
 	HttpClient( const string &url, const string &server = "", const int port = 80, 
 		const string &method = "GET", const int timeout = 5 ) 
 	{
 		this->request( url, server, port, method, timeout );
 	}
 		  
-	/// Îö¹¹º¯Êı
+	/// ææ„å‡½æ•°
 	virtual ~HttpClient(){};
 
-	/// ÉèÖÃÖ¸¶¨µÄHTTPÇëÇóHeader
+	/// è®¾ç½®æŒ‡å®šçš„HTTPè¯·æ±‚Header
 	void set_header( const string &name, const string &value );
-	/// ÉèÖÃHTTPÇëÇóReferer Header
+	/// è®¾ç½®HTTPè¯·æ±‚Referer Header
 	void set_referer( const string &referer );
-	/// ÉèÖÃHTTPÇëÇóAuthorization Header
+	/// è®¾ç½®HTTPè¯·æ±‚Authorization Header
 	void set_auth( const string &username, const string &password );
-	/// ÉèÖÃHTTPÇëÇóCookie Header
+	/// è®¾ç½®HTTPè¯·æ±‚Cookie Header
 	void set_cookie( const string &name, const string &value );
-	/// ÉèÖÃHTTPÇëÇóCGI²ÎÊı
+	/// è®¾ç½®HTTPè¯·æ±‚CGIå‚æ•°
 	void set_param( const string &name, const string &value );
 
-	/// Ö´ĞĞHTTPÇëÇó
+	/// æ‰§è¡ŒHTTPè¯·æ±‚
 	bool request( const string &url, const string &server = "", const int port = 80, 
 		const string &method = "GET", const int timeout = 5 );
-	/// URL ÊÇ·ñÓĞĞ§
+	/// URL æ˜¯å¦æœ‰æ•ˆ
 	bool exist( const string &url, const string &server = "", const int port = 80 );
 
-	/// »ñÈ¡Ö¸¶¨µÄHTTP·µ»ØHeader
+	/// è·å–æŒ‡å®šçš„HTTPè¿”å›Header
 	string get_header( const string &name );
-	/// »ñÈ¡HTTP·µ»ØSet-Cookie Header
+	/// è·å–HTTPè¿”å›Set-Cookie Header
 	vector<String> get_cookie();
-	/// »ñÈ¡HTTP·µ»ØHeader
+	/// è·å–HTTPè¿”å›Header
 	string dump_header();
 	
-	/// Ö´ĞĞHTTPÇëÇóÊÇ·ñ³É¹¦
+	/// æ‰§è¡ŒHTTPè¯·æ±‚æ˜¯å¦æˆåŠŸ
 	bool done() const;
-	/// Çå¿ÕËùÓĞÉèÖÃ¼°×´Ì¬Öµ
+	/// æ¸…ç©ºæ‰€æœ‰è®¾ç½®åŠçŠ¶æ€å€¼
 	void clear();
 	
-	/// »ñÈ¡HTTP·µ»ØStatus
-	/// \return HTTP·µ»ØStatus×Ö·û´®
+	/// è·å–HTTPè¿”å›Status
+	/// \return HTTPè¿”å›Statuså­—ç¬¦ä¸²
 	inline string status() const {
 		return _status;
 	}
-	/// »ñÈ¡HTTP·µ»ØContentÕıÎÄ
-	/// \return HTTP·µ»ØContentÕıÎÄ
+	/// è·å–HTTPè¿”å›Contentæ­£æ–‡
+	/// \return HTTPè¿”å›Contentæ­£æ–‡
 	inline string content() const {
 		return _content;
 	}
-	/// »ñÈ¡HTTP·µ»ØContentÕıÎÄ³¤¶È(Content-Length)
-	/// \return HTTP·µ»ØContentÕıÎÄ³¤¶È
+	/// è·å–HTTPè¿”å›Contentæ­£æ–‡é•¿åº¦(Content-Length)
+	/// \return HTTPè¿”å›Contentæ­£æ–‡é•¿åº¦
 	inline size_t content_length() const {
 		return _content.length();
 	}
 	
-	/// ·µ»Ø´íÎóĞÅÏ¢´úÂë
-	/// ´úÂëĞÅÏ¢¶¨Òå²Î¼û Http::error_msg
+	/// è¿”å›é”™è¯¯ä¿¡æ¯ä»£ç 
+	/// ä»£ç ä¿¡æ¯å®šä¹‰å‚è§ Http::error_msg
 	inline error_msg errnum() const {
 		return _errno;
 	}
-	/// ·µ»Ø´íÎóĞÅÏ¢ÃèÊö
+	/// è¿”å›é”™è¯¯ä¿¡æ¯æè¿°
 	string error() const;
 
-	/// Êä³öÉú³ÉµÄHTTPÇëÇóÈ«ÎÄ
-	/// \return ·µ»ØÉú³ÉµÄHTTPÇëÇóÈ«ÎÄ
+	/// è¾“å‡ºç”Ÿæˆçš„HTTPè¯·æ±‚å…¨æ–‡
+	/// \return è¿”å›ç”Ÿæˆçš„HTTPè¯·æ±‚å…¨æ–‡
 	inline string dump_request() const {
 		return _request;
 	}
-	/// Êä³ö»ñµÃµÄ·şÎñÆ÷·µ»ØÈ«ÎÄ
-	/// \return ·µ»Ø»ñµÃµÄ·şÎñÆ÷·µ»ØÈ«ÎÄ
+	/// è¾“å‡ºè·å¾—çš„æœåŠ¡å™¨è¿”å›å…¨æ–‡
+	/// \return è¿”å›è·å¾—çš„æœåŠ¡å™¨è¿”å›å…¨æ–‡
 	inline string dump_response() const {
 		return _response;
 	}
@@ -143,15 +143,15 @@ class HttpClient {
 	////////////////////////////////////////////////////////////////////////////
 	private:
 
-	/// ·ÖÎöHTTP URL×Ö·û´®
+	/// åˆ†æHTTP URLå­—ç¬¦ä¸²
 	void parse_url( const string &url, string &parsed_host, string &parsed_addr,
 		string &parsed_url, string &parsed_param, int &parsed_port );
-	/// Éú³ÉHTTPÇëÇó×Ö·û´®
+	/// ç”ŸæˆHTTPè¯·æ±‚å­—ç¬¦ä¸²
 	string gen_httpreq( const string &url, const string &params,
 		const string &host, const string &method );
-	/// ·ÖÎöHTTP·µ»Ø
+	/// åˆ†æHTTPè¿”å›
 	void parse_response( const string &response );
-	/// ·ÖÎöHTTP·µ»ØchunkedÀàĞÍcontentÕıÎÄ
+	/// åˆ†æHTTPè¿”å›chunkedç±»å‹contentæ­£æ–‡
 	string parse_chunked( const string &chunkedstr );
 	
 	// set		

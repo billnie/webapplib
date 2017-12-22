@@ -1,5 +1,5 @@
 /// \file waFileSystem.cpp
-/// ÎÄ¼ş²Ù×÷º¯ÊıÊµÏÖÎÄ¼ş
+/// æ–‡ä»¶æ“ä½œå‡½æ•°å®ç°æ–‡ä»¶
 
 #include <cstdio>
 #include <unistd.h>
@@ -14,14 +14,14 @@ using namespace std;
 /// Web Application Library namaspace
 namespace webapp {
 
-/// \defgroup waFileSystem waFileSystemÎÄ¼ş²Ù×÷º¯Êı¿â
+/// \defgroup waFileSystem waFileSystemæ–‡ä»¶æ“ä½œå‡½æ•°åº“
 	
 /// \ingroup waFileSystem
 /// \fn bool file_exist( const string &file )
-/// ÎÄ¼ş»òÕßÄ¿Â¼ÊÇ·ñ´æÔÚ
-/// \param file ÎÄ¼şÂ·¾¶Ãû
-/// \retval true ÎÄ¼ş´æÔÚ
-/// \retval false ²»´æÔÚ
+/// æ–‡ä»¶æˆ–è€…ç›®å½•æ˜¯å¦å­˜åœ¨
+/// \param file æ–‡ä»¶è·¯å¾„å
+/// \retval true æ–‡ä»¶å­˜åœ¨
+/// \retval false ä¸å­˜åœ¨
 bool file_exist( const string &file ) {
 	if ( access(file.c_str(),F_OK) == 0 )
 		return true;
@@ -31,10 +31,10 @@ bool file_exist( const string &file ) {
 
 /// \ingroup waFileSystem
 /// \fn bool is_link( const string &file )
-/// ÎÄ¼şÊÇ·ñÎªÁ´½Ó
-/// \param file ÎÄ¼şÂ·¾¶Ãû
-/// \retval true ÎÄ¼ş´æÔÚÇÒÎª·ûºÅÁ´½Ó
-/// \retval false ²»´æÔÚ»òÕß²»ÊÇ·ûºÅÁ´½Ó
+/// æ–‡ä»¶æ˜¯å¦ä¸ºé“¾æ¥
+/// \param file æ–‡ä»¶è·¯å¾„å
+/// \retval true æ–‡ä»¶å­˜åœ¨ä¸”ä¸ºç¬¦å·é“¾æ¥
+/// \retval false ä¸å­˜åœ¨æˆ–è€…ä¸æ˜¯ç¬¦å·é“¾æ¥
 bool is_link( const string &file ) {
 	struct stat statbuf;
 	
@@ -47,10 +47,10 @@ bool is_link( const string &file ) {
 
 /// \ingroup waFileSystem
 /// \fn bool is_dir( const string &file )
-/// ÊÇ·ñÎªÄ¿Â¼
-/// \param dile Ä¿Â¼Â·¾¶Ãû
-/// \retval true Ä¿Â¼´æÔÚ
-/// \retval false ²»´æÔÚ»òÕß²»ÊÇÄ¿Â¼
+/// æ˜¯å¦ä¸ºç›®å½•
+/// \param dile ç›®å½•è·¯å¾„å
+/// \retval true ç›®å½•å­˜åœ¨
+/// \retval false ä¸å­˜åœ¨æˆ–è€…ä¸æ˜¯ç›®å½•
 bool is_dir( const string &file ) {
 	struct stat statbuf;
 	
@@ -63,11 +63,11 @@ bool is_dir( const string &file ) {
 
 /// \ingroup waFileSystem
 /// \fn bool make_link( const string &srcfile, const string &destfile )
-/// ½¨Á¢Á´½Ó,ĞÂÁ´½ÓÃûÎÄ¼ş±ØĞë²»´æÔÚ
-/// \param srcfile Ô­ÎÄ¼şÃû
-/// \param destfile ĞÂÁ´½ÓÃû
-/// \retval true ²Ù×÷³É¹¦
-/// \retval false ²»³É¹¦
+/// å»ºç«‹é“¾æ¥,æ–°é“¾æ¥åæ–‡ä»¶å¿…é¡»ä¸å­˜åœ¨
+/// \param srcfile åŸæ–‡ä»¶å
+/// \param destfile æ–°é“¾æ¥å
+/// \retval true æ“ä½œæˆåŠŸ
+/// \retval false ä¸æˆåŠŸ
 bool make_link( const string &srcfile, const string &destfile ) {
 	if ( symlink(srcfile.c_str(),destfile.c_str()) == 0 )
 		return true;
@@ -77,9 +77,9 @@ bool make_link( const string &srcfile, const string &destfile ) {
 
 /// \ingroup waFileSystem
 /// \fn size_t file_size( const string &file )
-/// È¡µÃÎÄ¼ş´óĞ¡
-/// \param file ÎÄ¼şÂ·¾¶Ãû
-/// \return ÈôÎÄ¼ş´æÔÚÔò·µ»Ø´óĞ¡,·ñÔò·µ»Ø-1
+/// å–å¾—æ–‡ä»¶å¤§å°
+/// \param file æ–‡ä»¶è·¯å¾„å
+/// \return è‹¥æ–‡ä»¶å­˜åœ¨åˆ™è¿”å›å¤§å°,å¦åˆ™è¿”å›-1
 size_t file_size( const string &file ) {
 	struct stat statbuf;
 	
@@ -91,9 +91,9 @@ size_t file_size( const string &file ) {
 
 /// \ingroup waFileSystem
 /// \fn time_t file_time( const string &file )
-/// È¡µÃÎÄ¼ş¸ü¸ÄÊ±¼ä
-/// \param file ÎÄ¼şÂ·¾¶Ãû
-/// \return ÈôÎÄ¼ş´æÔÚÔò·µ»ØÆä×îºó¸ü¸ÄÊ±¼ä,·ñÔò·µ»Ø-1
+/// å–å¾—æ–‡ä»¶æ›´æ”¹æ—¶é—´
+/// \param file æ–‡ä»¶è·¯å¾„å
+/// \return è‹¥æ–‡ä»¶å­˜åœ¨åˆ™è¿”å›å…¶æœ€åæ›´æ”¹æ—¶é—´,å¦åˆ™è¿”å›-1
 time_t file_time( const string &file ) {
 	struct stat statbuf;
 	
@@ -105,9 +105,9 @@ time_t file_time( const string &file ) {
 
 /// \ingroup waFileSystem
 /// \fn string file_path( const string &file )
-/// È¡µÃÎÄ¼şÂ·¾¶
-/// \param file ÎÄ¼şÂ·¾¶Ãû
-/// \return ÈôÄÜÈ¡µÃÎÄ¼şÂ·¾¶Ôò·µ»Ø,·ñÔò·µ»Ø¿Õ×Ö·û´®
+/// å–å¾—æ–‡ä»¶è·¯å¾„
+/// \param file æ–‡ä»¶è·¯å¾„å
+/// \return è‹¥èƒ½å–å¾—æ–‡ä»¶è·¯å¾„åˆ™è¿”å›,å¦åˆ™è¿”å›ç©ºå­—ç¬¦ä¸²
 string file_path( const string &file ) {
 	size_t p;
 	if ( (p=file.rfind("/")) != file.npos )
@@ -119,9 +119,9 @@ string file_path( const string &file ) {
 
 /// \ingroup waFileSystem
 /// \fn string file_name( const string &file )
-/// È¡µÃÎÄ¼şÃû³Æ
-/// \param file ÎÄ¼şÂ·¾¶Ãû
-/// \return ÈôÄÜÈ¡µÃÎÄ¼şÃû³ÆÔò·µ»Ø,·ñÔò·µ»ØÔ­ÎÄ¼şÂ·¾¶Ãû³Æ
+/// å–å¾—æ–‡ä»¶åç§°
+/// \param file æ–‡ä»¶è·¯å¾„å
+/// \return è‹¥èƒ½å–å¾—æ–‡ä»¶åç§°åˆ™è¿”å›,å¦åˆ™è¿”å›åŸæ–‡ä»¶è·¯å¾„åç§°
 string file_name( const string &file ) {
 	size_t p;
 	if ( (p=file.rfind("/")) != file.npos )
@@ -133,11 +133,11 @@ string file_name( const string &file ) {
 
 /// \ingroup waFileSystem
 /// \fn bool rename_file( const string &oldname, const string &newname )
-/// ÎÄ¼ş»òÕßÄ¿Â¼¸ÄÃû,ĞÂÎÄ¼şÃû±ØĞëÓëÔ­ÎÄ¼şÃûÎ»ÓÚÍ¬Ò»ÎÄ¼şÏµÍ³
-/// \param oldname Ô­ÎÄ¼şÃû
-/// \param newname ĞÂÎÄ¼şÃû
-/// \retval true ²Ù×÷³É¹¦
-/// \retval false Ê§°Ü
+/// æ–‡ä»¶æˆ–è€…ç›®å½•æ”¹å,æ–°æ–‡ä»¶åå¿…é¡»ä¸åŸæ–‡ä»¶åä½äºåŒä¸€æ–‡ä»¶ç³»ç»Ÿ
+/// \param oldname åŸæ–‡ä»¶å
+/// \param newname æ–°æ–‡ä»¶å
+/// \retval true æ“ä½œæˆåŠŸ
+/// \retval false å¤±è´¥
 bool rename_file( const string &oldname, const string &newname ) {
 	if ( rename(oldname.c_str(),newname.c_str()) != -1 )
 		return true;
@@ -147,11 +147,11 @@ bool rename_file( const string &oldname, const string &newname ) {
 
 /// \ingroup waFileSystem
 /// \fn bool copy_file( const string &srcfile, const string &destfile )
-/// ¿½±´ÎÄ¼ş	
-/// \param srcfile Ô­ÎÄ¼şÃû
-/// \param destfile Ä¿µÄÎÄ¼şÃû,ÎÄ¼şÊôĞÔÎª0666
-/// \retval true ²Ù×÷³É¹¦
-/// \retval false Ê§°Ü
+/// æ‹·è´æ–‡ä»¶	
+/// \param srcfile åŸæ–‡ä»¶å
+/// \param destfile ç›®çš„æ–‡ä»¶å,æ–‡ä»¶å±æ€§ä¸º0666
+/// \retval true æ“ä½œæˆåŠŸ
+/// \retval false å¤±è´¥
 bool copy_file( const string &srcfile, const string &destfile ) {
 	FILE *src=NULL, *dest=NULL;
 	if ( (src=fopen(srcfile.c_str(),"rb")) == NULL ) {
@@ -186,10 +186,10 @@ bool copy_file( const string &srcfile, const string &destfile ) {
 
 /// \ingroup waFileSystem
 /// \fn bool delete_file( const string &file )
-/// É¾³ıÎÄ¼ş
-/// \param file ÎÄ¼şÂ·¾¶Ãû
-/// \retval true É¾³ı³É¹¦
-/// \retval false ÎÄ¼ş²»´æÔÚ»òÕßÉ¾³ıÊ§°Ü
+/// åˆ é™¤æ–‡ä»¶
+/// \param file æ–‡ä»¶è·¯å¾„å
+/// \retval true åˆ é™¤æˆåŠŸ
+/// \retval false æ–‡ä»¶ä¸å­˜åœ¨æˆ–è€…åˆ é™¤å¤±è´¥
 bool delete_file( const string &file ) {
 	if ( remove(file.c_str()) == 0 )
 		return true;
@@ -199,11 +199,11 @@ bool delete_file( const string &file ) {
 
 /// \ingroup waFileSystem
 /// \fn bool move_file( const string &srcfile, const string &destfile )
-/// ÒÆ¶¯ÎÄ¼ş
-/// \param srcfile Ô­ÎÄ¼şÃû
-/// \param destfile ĞÂÎÄ¼şÃû
-/// \retval true ²Ù×÷³É¹¦
-/// \retval false Ê§°Ü
+/// ç§»åŠ¨æ–‡ä»¶
+/// \param srcfile åŸæ–‡ä»¶å
+/// \param destfile æ–°æ–‡ä»¶å
+/// \retval true æ“ä½œæˆåŠŸ
+/// \retval false å¤±è´¥
 bool move_file( const string &srcfile, const string &destfile ) {
 	if ( rename_file(srcfile,destfile) )
 		return true;
@@ -219,10 +219,10 @@ bool move_file( const string &srcfile, const string &destfile ) {
 
 /// \ingroup waFileSystem
 /// \fn vector<string> dir_files( const string &dir )
-/// ·µ»ØÄ¿Â¼ÎÄ¼şÁĞ±í
-/// \param dir ²ÎÊıÎªÄ¿Â¼Â·¾¶Ãû
-/// \return ·µ»Ø½á¹ûÎªÎÄ¼ş¼°×ÓÄ¿Â¼ÁĞ±í,×ÓÄ¿Â¼µÄµÚÒ»¸ö×Ö·ûÎª '/',
-/// ·µ»Ø½á¹ûÖĞ²»°üÀ¨´ú±íµ±Ç°¼°ÉÏÒ»¼¶Ä¿Â¼µÄ "/.", "/.."
+/// è¿”å›ç›®å½•æ–‡ä»¶åˆ—è¡¨
+/// \param dir å‚æ•°ä¸ºç›®å½•è·¯å¾„å
+/// \return è¿”å›ç»“æœä¸ºæ–‡ä»¶åŠå­ç›®å½•åˆ—è¡¨,å­ç›®å½•çš„ç¬¬ä¸€ä¸ªå­—ç¬¦ä¸º '/',
+/// è¿”å›ç»“æœä¸­ä¸åŒ…æ‹¬ä»£è¡¨å½“å‰åŠä¸Šä¸€çº§ç›®å½•çš„ "/.", "/.."
 vector<string> dir_files( const string &dir ) {
 	vector<string> files;
 	string file;
@@ -246,12 +246,12 @@ vector<string> dir_files( const string &dir ) {
 
 /// \ingroup waFileSystem
 /// \fn bool make_dir( const string &dir, const size_t mode )
-/// ½¨Á¢Ä¿Â¼
-/// \param dir Òª´´½¨µÄÄ¿Â¼,ÈôÉÏ²ãÄ¿Â¼²»´æÔÚÔò×Ô¶¯´´½¨
-/// \param mode ´´½¨Ä¿Â¼È¨ÏŞ,Ä¬ÈÏÎªS_IRWXU|S_IRGRP|S_IXGRP|S_IROTH|S_IXOTH(0755)
-/// ³É¹¦·µ»Øtrue, ·ñÔò·µ»Øfalse.
-/// \retval true ²Ù×÷³É¹¦
-/// \retval false Ê§°Ü
+/// å»ºç«‹ç›®å½•
+/// \param dir è¦åˆ›å»ºçš„ç›®å½•,è‹¥ä¸Šå±‚ç›®å½•ä¸å­˜åœ¨åˆ™è‡ªåŠ¨åˆ›å»º
+/// \param mode åˆ›å»ºç›®å½•æƒé™,é»˜è®¤ä¸ºS_IRWXU|S_IRGRP|S_IXGRP|S_IROTH|S_IXOTH(0755)
+/// æˆåŠŸè¿”å›true, å¦åˆ™è¿”å›false.
+/// \retval true æ“ä½œæˆåŠŸ
+/// \retval false å¤±è´¥
 bool make_dir( const string &dir, const mode_t mode ) {
 	// check
 	size_t len = dir.length();
@@ -282,17 +282,17 @@ bool make_dir( const string &dir, const mode_t mode ) {
 
 /// \ingroup waFileSystem
 /// \fn bool copy_dir( const string &srcdir, const string &destdir )
-/// ¿½±´Ä¿Â¼,¿½±´×ÓÄ¿Â¼Ê±Îªµİ¹éµ÷ÓÃ
-/// \param srcdir Ô­Ä¿Â¼
-/// \param destdir Ä¿µÄÄ¿Â¼
-/// \retval true ²Ù×÷³É¹¦
-/// \retval false Ê§°Ü
+/// æ‹·è´ç›®å½•,æ‹·è´å­ç›®å½•æ—¶ä¸ºé€’å½’è°ƒç”¨
+/// \param srcdir åŸç›®å½•
+/// \param destdir ç›®çš„ç›®å½•
+/// \retval true æ“ä½œæˆåŠŸ
+/// \retval false å¤±è´¥
 bool copy_dir( const string &srcdir, const string &destdir ) {	
 	vector<string> files = dir_files( srcdir );
 	string from;
 	string to;
 	
-	// ´´½¨Ä¿±êÄ¿Â¼
+	// åˆ›å»ºç›®æ ‡ç›®å½•
 	if ( !file_exist(destdir) )
 		make_dir( destdir );
 	
@@ -300,13 +300,13 @@ bool copy_dir( const string &srcdir, const string &destdir ) {
 		from = srcdir + "/" + files[i];
 		to = destdir + "/" + files[i];
 		
-		// ×ÓÄ¿Â¼,µİ¹éµ÷ÓÃ
+		// å­ç›®å½•,é€’å½’è°ƒç”¨
 		if ( files[i][0] == '/' ) {
 			 if ( !copy_dir(from,to) )
 				return false;
 		}
 		
-		// ÎÄ¼ş
+		// æ–‡ä»¶
 		else if ( !copy_file(from,to) )
 			return false;
 	}
@@ -316,30 +316,30 @@ bool copy_dir( const string &srcdir, const string &destdir ) {
 
 /// \ingroup waFileSystem
 /// \fn bool delete_dir( const string &dir )
-/// É¾³ıÄ¿Â¼,É¾³ı×ÓÄ¿Â¼Ê±Îªµİ¹éµ÷ÓÃ
-/// \param dir ÒªÉ¾³ıµÄÄ¿Â¼
-/// \retval true ²Ù×÷³É¹¦
-/// \retval false Ê§°Ü
+/// åˆ é™¤ç›®å½•,åˆ é™¤å­ç›®å½•æ—¶ä¸ºé€’å½’è°ƒç”¨
+/// \param dir è¦åˆ é™¤çš„ç›®å½•
+/// \retval true æ“ä½œæˆåŠŸ
+/// \retval false å¤±è´¥
 bool delete_dir( const string &dir ) {	
 	vector<string> files = dir_files( dir );
 	string todel;
 	
-	// É¾³ıÎÄ¼ş
+	// åˆ é™¤æ–‡ä»¶
 	for ( size_t i=0; i<files.size(); ++i ) {
 		todel = dir + "/" + files[i];
 		
-		// ×ÓÄ¿Â¼,µİ¹éµ÷ÓÃ
+		// å­ç›®å½•,é€’å½’è°ƒç”¨
 		if ( files[i][0] == '/' ) {
 			 if ( !delete_dir(todel) )
 				return false;
 		}
 		
-		// ÎÄ¼ş
+		// æ–‡ä»¶
 		else if ( !delete_file(todel) )
 			return false;
 	}
 	
-	// É¾³ıÄ¿Â¼
+	// åˆ é™¤ç›®å½•
 	if ( rmdir(dir.c_str()) == 0 )
 		return true;
 
@@ -348,11 +348,11 @@ bool delete_dir( const string &dir ) {
 			
 /// \ingroup waFileSystem
 /// \fn bool move_dir( const string &srcdir, const string &destdir )
-/// ÒÆ¶¯Ä¿Â¼
-/// \param srcdir Ô­Ä¿Â¼
-/// \param destdir Ä¿µÄÄ¿Â¼
-/// \retval true ²Ù×÷³É¹¦
-/// \retval false Ê§°Ü
+/// ç§»åŠ¨ç›®å½•
+/// \param srcdir åŸç›®å½•
+/// \param destdir ç›®çš„ç›®å½•
+/// \retval true æ“ä½œæˆåŠŸ
+/// \retval false å¤±è´¥
 bool move_dir( const string &srcdir, const string &destdir ) {
 	if ( rename_file(srcdir,destdir) )
 		return true;
@@ -368,9 +368,9 @@ bool move_dir( const string &srcdir, const string &destdir ) {
 
 /// \ingroup waFileSystem
 /// \fn void lock_file( int fd, const int type )
-/// ÎÄ¼ş¾ä±úËøº¯Êı£¬ÈôÎÄ¼şÒÑ±»ËøÔò×èÈû²¢µÈ´ı
-/// \param fd ÎÄ¼ş¾ä±ú
-/// \param type ËøÄ£Ê½£¬¿ÉÑ¡F_WRLCK¡¢F_RDLCK¡¢F_UNLCK
+/// æ–‡ä»¶å¥æŸ„é”å‡½æ•°ï¼Œè‹¥æ–‡ä»¶å·²è¢«é”åˆ™é˜»å¡å¹¶ç­‰å¾…
+/// \param fd æ–‡ä»¶å¥æŸ„
+/// \param type é”æ¨¡å¼ï¼Œå¯é€‰F_WRLCKã€F_RDLCKã€F_UNLCK
 void lock_file( int fd, const int type ) {
 	struct flock lck;
 	lck.l_start = 0;
@@ -389,10 +389,10 @@ void lock_file( int fd, const int type ) {
 
 /// \ingroup waFileSystem
 /// \fn bool is_locked( int fd )
-/// ÅĞ¶ÏÎÄ¼ş¾ä±úËø
-/// \param fd ÎÄ¼ş¾ä±ú
-/// \retval true ÎÄ¼şÒÑ±»Ëø
-/// \retval false ÎÄ¼şÎ´±»Ëø
+/// åˆ¤æ–­æ–‡ä»¶å¥æŸ„é”
+/// \param fd æ–‡ä»¶å¥æŸ„
+/// \retval true æ–‡ä»¶å·²è¢«é”
+/// \retval false æ–‡ä»¶æœªè¢«é”
 bool is_locked( int fd ) {
 	struct flock lck;
 	lck.l_start = 0;
@@ -410,11 +410,11 @@ bool is_locked( int fd ) {
 
 /// \ingroup waFileSystem
 /// \fn FILE* lock_open( const string &file, const char* mode, const int type )
-/// ÉêÇëËø²¢´ò¿ªÎÄ¼ş£¬ÈôÎÄ¼şÒÑ±»ËøÔò×èÈû²¢µÈ´ı
-/// \param file ÎÄ¼şÂ·¾¶
-/// \param mode ÎÄ¼ş´ò¿ªÄ£Ê½£¬Óëfopen()Í¬²ÎÊıÒâÒåÏàÍ¬
-/// \param type ËøÄ£Ê½£¬¿ÉÑ¡F_WRLCK¡¢F_RDLCK¡¢F_UNLCK
-/// \return ÎÄ¼ş¾ä±ú£¬Ê§°Ü·µ»ØNULL
+/// ç”³è¯·é”å¹¶æ‰“å¼€æ–‡ä»¶ï¼Œè‹¥æ–‡ä»¶å·²è¢«é”åˆ™é˜»å¡å¹¶ç­‰å¾…
+/// \param file æ–‡ä»¶è·¯å¾„
+/// \param mode æ–‡ä»¶æ‰“å¼€æ¨¡å¼ï¼Œä¸fopen()åŒå‚æ•°æ„ä¹‰ç›¸åŒ
+/// \param type é”æ¨¡å¼ï¼Œå¯é€‰F_WRLCKã€F_RDLCKã€F_UNLCK
+/// \return æ–‡ä»¶å¥æŸ„ï¼Œå¤±è´¥è¿”å›NULL
 FILE* lock_open( const string &file, const char* mode, const int type ) {
 	FILE *fp;
 	mode_t mask = umask( 0 );

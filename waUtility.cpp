@@ -1,5 +1,5 @@
 /// \file waUtility.cpp
-/// ÏµÍ³µ÷ÓÃ¹¤¾ßº¯ÊıÊµÏÖÎÄ¼ş
+/// ç³»ç»Ÿè°ƒç”¨å·¥å…·å‡½æ•°å®ç°æ–‡ä»¶
 
 #include <cstdio>
 #include <cstring>
@@ -28,11 +28,11 @@ namespace webapp {
 	
 /// \ingroup waUtility 
 /// \fn size_t string_hash( const string &str )
-/// ·µ»Ø×Ö·û´®HASHÖµ£¬»ùÓÚDJB HASHËã·¨
-/// Perl¼æÈİÊµÏÖ°æ±¾ string_hash.pl
-/// JavaScript¼æÈİÊµÏÖ°æ±¾ string_hash.js
-/// \param str Ô´×Ö·û´®
-/// \return ×Ö·û´®HASH½á¹û£¬ÎŞ·ûºÅÕûÊı
+/// è¿”å›å­—ç¬¦ä¸²HASHå€¼ï¼ŒåŸºäºDJB HASHç®—æ³•
+/// Perlå…¼å®¹å®ç°ç‰ˆæœ¬ string_hash.pl
+/// JavaScriptå…¼å®¹å®ç°ç‰ˆæœ¬ string_hash.js
+/// \param str æºå­—ç¬¦ä¸²
+/// \return å­—ç¬¦ä¸²HASHç»“æœï¼Œæ— ç¬¦å·æ•´æ•°
 size_t string_hash( const string &str ) {
 	unsigned char ch;
 	size_t hash = 5381;
@@ -51,10 +51,10 @@ size_t string_hash( const string &str ) {
 
 /// \ingroup waUtility 
 /// \fn string replace_text( const string &text, const map<string,string> &replace )
-/// È«ÎÄ´Ê±íÌæ»»£¬¼æÈİGBKºº×Ö
-/// \param text ×Ö·û´®Ô­ÎÄ
-/// \param replace Ìæ»»¶ÔÓ¦´Ê±í
-/// \return Ìæ»»ºó½á¹û
+/// å…¨æ–‡è¯è¡¨æ›¿æ¢ï¼Œå…¼å®¹GBKæ±‰å­—
+/// \param text å­—ç¬¦ä¸²åŸæ–‡
+/// \param replace æ›¿æ¢å¯¹åº”è¯è¡¨
+/// \return æ›¿æ¢åç»“æœ
 string replace_text( const string &text, const map<string,string> &replace ) {
 	// replace size list 
 	map<string,string>::const_iterator it = replace.begin();
@@ -111,7 +111,7 @@ string replace_text( const string &text, const map<string,string> &replace ) {
 	return result;
 }
 
-// ÅĞ¶ÏÊÇ·ñ±êµã·ûºÅ×Ö·û
+// åˆ¤æ–­æ˜¯å¦æ ‡ç‚¹ç¬¦å·å­—ç¬¦
 bool is_punctuation( unsigned char c ) {
 	const char filter_char[] = "`[]~@^_{}|\\";
 	if ( strchr(filter_char,c) != NULL )
@@ -120,7 +120,7 @@ bool is_punctuation( unsigned char c ) {
 		return false;
 }
 
-// È«½Ç×ÖÄ¸¡¢Êı×Ö¡¢±êµã¡¢¿Õ°××Ö·û×ª»»Îª°ë½Ç×Ö·û
+// å…¨è§’å­—æ¯ã€æ•°å­—ã€æ ‡ç‚¹ã€ç©ºç™½å­—ç¬¦è½¬æ¢ä¸ºåŠè§’å­—ç¬¦
 string sbc_to_dbc( const string &sbc_string ) {
 	string dbc;
 	if ( sbc_string == "" ) return dbc;
@@ -158,9 +158,9 @@ string sbc_to_dbc( const string &sbc_string ) {
 
 /// \ingroup waUtility 
 /// \fn string extract_html( const string &html )
-/// ÌáÈ¡HTML´úÂëÕıÎÄ
-/// \param html HTML´úÂë×Ö·û´®
-/// \return ²»º¬HTML´úÂëµÄÌáÈ¡½á¹û
+/// æå–HTMLä»£ç æ­£æ–‡
+/// \param html HTMLä»£ç å­—ç¬¦ä¸²
+/// \return ä¸å«HTMLä»£ç çš„æå–ç»“æœ
 string extract_html( const string &html ) {
 	bool in_html = false;
 	string text, curr_tag;
@@ -190,17 +190,17 @@ string extract_html( const string &html ) {
 
 /// \ingroup waUtility 
 /// \fn string extract_text( const string &text, const int option, const size_t len )
-/// È«½Ç°ë½Ç×Ö·û×ª»»²¢ÌáÈ¡ÕıÎÄ
-/// \param text Ô´×Ö·û´®
-/// \param option ¹ıÂË·¶Î§Ñ¡Ïî£¬¿ÉÑ¡Öµ×éºÏÓĞ
-/// - EXTRACT_ALPHA ¹ıÂË×ÖÄ¸
-/// - EXTRACT_DIGIT ¹ıÂËÊı×Ö
-/// - EXTRACT_PUNCT ¹ıÂË±êµã
-/// - EXTRACT_SPACE ¹ıÂË¿Õ°×
-/// - EXTRACT_HTML ¹ıÂËHTML´úÂë
-/// - Ä¬ÈÏÖµÎªEXTRACT_ALL¼´ÒÔÉÏÈ«²¿
-/// \param len ¹ıÂË³¤¶È£¬´óÓÚ0Ê±Ö»½ØÈ¡Ç°len¸öÓĞĞ§×Ö·û£¬Ä¬ÈÏÎª0
-/// \return ×ª»»ÌáÈ¡½á¹û×Ö·û´®£¬ÈôÔ´×Ö·û´®ÄÚÈİ±»È«²¿¹ıÂËÔò·µ»Ø¿Õ
+/// å…¨è§’åŠè§’å­—ç¬¦è½¬æ¢å¹¶æå–æ­£æ–‡
+/// \param text æºå­—ç¬¦ä¸²
+/// \param option è¿‡æ»¤èŒƒå›´é€‰é¡¹ï¼Œå¯é€‰å€¼ç»„åˆæœ‰
+/// - EXTRACT_ALPHA è¿‡æ»¤å­—æ¯
+/// - EXTRACT_DIGIT è¿‡æ»¤æ•°å­—
+/// - EXTRACT_PUNCT è¿‡æ»¤æ ‡ç‚¹
+/// - EXTRACT_SPACE è¿‡æ»¤ç©ºç™½
+/// - EXTRACT_HTML è¿‡æ»¤HTMLä»£ç 
+/// - é»˜è®¤å€¼ä¸ºEXTRACT_ALLå³ä»¥ä¸Šå…¨éƒ¨
+/// \param len è¿‡æ»¤é•¿åº¦ï¼Œå¤§äº0æ—¶åªæˆªå–å‰lenä¸ªæœ‰æ•ˆå­—ç¬¦ï¼Œé»˜è®¤ä¸º0
+/// \return è½¬æ¢æå–ç»“æœå­—ç¬¦ä¸²ï¼Œè‹¥æºå­—ç¬¦ä¸²å†…å®¹è¢«å…¨éƒ¨è¿‡æ»¤åˆ™è¿”å›ç©º
 string extract_text( const string &text, const int option, const size_t len ) {
 	if ( text=="" || option<=0 )
 		return text;
@@ -244,7 +244,7 @@ string extract_text( const string &text, const int option, const size_t len ) {
 	return extracted;
 }
 
-// µ×²ãÈÕÖ¾º¯ÊıÊµÏÖ
+// åº•å±‚æ—¥å¿—å‡½æ•°å®ç°
 void _file_logger( FILE *fp, va_list ap, const char *format ) {
 	if ( fp == NULL ) return;
 	
@@ -260,10 +260,10 @@ void _file_logger( FILE *fp, va_list ap, const char *format ) {
 
 /// \ingroup waUtility 
 /// \fn void file_logger( const string &file, const char *format, ... )
-/// ×·¼ÓÈÕÖ¾¼ÇÂ¼
-/// \param file ÈÕÖ¾ÎÄ¼şÂ·¾¶
-/// \param format ÈÕÖ¾ĞĞ¸ñÊ½
-/// \param ... ÈÕÖ¾Êı¾İ²ÎÊıÁĞ±í
+/// è¿½åŠ æ—¥å¿—è®°å½•
+/// \param file æ—¥å¿—æ–‡ä»¶è·¯å¾„
+/// \param format æ—¥å¿—è¡Œæ ¼å¼
+/// \param ... æ—¥å¿—æ•°æ®å‚æ•°åˆ—è¡¨
 void file_logger( const string &file, const char *format, ... ) {
 	if ( file == "" ) return;
 	
@@ -279,10 +279,10 @@ void file_logger( const string &file, const char *format, ... ) {
 
 /// \ingroup waUtility 
 /// \fn void file_logger( FILE *fp, const char *format, ... )
-/// ×·¼ÓÈÕÖ¾¼ÇÂ¼
-/// \param fp ÈÕÖ¾ÎÄ¼ş¾ä±ú£¬»òÕßstdout/stderr
-/// \param format ÈÕÖ¾ĞĞ¸ñÊ½
-/// \param ... ÈÕÖ¾Êı¾İ²ÎÊıÁĞ±í
+/// è¿½åŠ æ—¥å¿—è®°å½•
+/// \param fp æ—¥å¿—æ–‡ä»¶å¥æŸ„ï¼Œæˆ–è€…stdout/stderr
+/// \param format æ—¥å¿—è¡Œæ ¼å¼
+/// \param ... æ—¥å¿—æ•°æ®å‚æ•°åˆ—è¡¨
 void file_logger( FILE *fp, const char *format, ... ) {
 	if ( fp == NULL ) return;
 	
@@ -294,9 +294,9 @@ void file_logger( FILE *fp, const char *format, ... ) {
 
 /// \ingroup waUtility 
 /// \fn string system_command( const string &cmd )
-/// Ö´ĞĞÃüÁî²¢·µ»ØÃüÁîÊä³ö½á¹û
-/// \param cmd ÃüÁî×Ö·û´®£¬°üÀ¨ÃüÁîĞĞ²ÎÊı
-/// \return ÃüÁîÖ´ĞĞÊä³ö½á¹û
+/// æ‰§è¡Œå‘½ä»¤å¹¶è¿”å›å‘½ä»¤è¾“å‡ºç»“æœ
+/// \param cmd å‘½ä»¤å­—ç¬¦ä¸²ï¼ŒåŒ…æ‹¬å‘½ä»¤è¡Œå‚æ•°
+/// \return å‘½ä»¤æ‰§è¡Œè¾“å‡ºç»“æœ
 string system_command( const string &cmd ) {
 	string res;
 	if ( cmd == "" ) return res;
@@ -314,9 +314,9 @@ string system_command( const string &cmd ) {
 
 /// \ingroup waUtility 
 /// \fn string host_addr( const string &interface )
-/// ·µ»ØÖ¸¶¨Íø¿¨Éè±¸°ó¶¨µÄIPµØÖ·
-/// \param interface Íø¿¨Éè±¸Ãû£¬Ä¬ÈÏÎª"eth0"
-/// \return Ö¸¶¨Íø¿¨Éè±¸°ó¶¨µÄIPµØÖ·
+/// è¿”å›æŒ‡å®šç½‘å¡è®¾å¤‡ç»‘å®šçš„IPåœ°å€
+/// \param interface ç½‘å¡è®¾å¤‡åï¼Œé»˜è®¤ä¸º"eth0"
+/// \return æŒ‡å®šç½‘å¡è®¾å¤‡ç»‘å®šçš„IPåœ°å€
 string host_addr( const string &interface ) {
 	int fd;
 	if ( (fd=socket(AF_INET,SOCK_DGRAM,0)) < 0 )

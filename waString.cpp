@@ -1,5 +1,5 @@
 /// \file waString.cpp
-/// webapp::StringÀàÊµÏÖÎÄ¼ş
+/// webapp::Stringç±»å®ç°æ–‡ä»¶
 
 #include <cstdio>
 #include <cstdarg>
@@ -13,18 +13,18 @@ namespace webapp {
 	
 ////////////////////////////////////////////////////////////////////////////////	
 
-/// \defgroup waString waStringÏà¹ØÈ«¾Öº¯Êı
+/// \defgroup waString waStringç›¸å…³å…¨å±€å‡½æ•°
 
 /// \ingroup waString
 /// \fn string itos( const long i, const ios::fmtflags base )
-/// long int×ª»»Îªstring
-/// \param i long int»òÕßint
-/// \param base ×ª»»½øÖÆ²ÎÊı,¿ÉÑ¡
-/// - ios::dec 10½øÖÆ
-/// - ios::oct 8½øÖÆ
-/// - ios::hex 16½øÖÆ
-/// - Ä¬ÈÏÎª10½øÖÆ
-/// \return ·µ»Ø½á¹ûstring,×ª»»Ê§°Ü·µ»Ø"0"
+/// long intè½¬æ¢ä¸ºstring
+/// \param i long intæˆ–è€…int
+/// \param base è½¬æ¢è¿›åˆ¶å‚æ•°,å¯é€‰
+/// - ios::dec 10è¿›åˆ¶
+/// - ios::oct 8è¿›åˆ¶
+/// - ios::hex 16è¿›åˆ¶
+/// - é»˜è®¤ä¸º10è¿›åˆ¶
+/// \return è¿”å›ç»“æœstring,è½¬æ¢å¤±è´¥è¿”å›"0"
 string itos( const long i, const ios::fmtflags base ) {
 	char format[] = "%ld";
 	if ( base == ios::oct )
@@ -52,14 +52,14 @@ string itos( const long i, const ios::fmtflags base ) {
 
 /// \ingroup waString
 /// \fn long stoi( const string &s, const ios::fmtflags base )
-/// string×ª»»Îªlong int
+/// stringè½¬æ¢ä¸ºlong int
 /// \param s string
-/// \param base ×ª»»½øÖÆ²ÎÊı,¿ÉÑ¡
-/// - ios::dec 10½øÖÆ
-/// - ios::oct 8½øÖÆ
-/// - ios::hex 16½øÖÆ
-/// - Ä¬ÈÏÎª10½øÖÆ
-/// \return ·µ»Ø½á¹ûlong int,×ª»»Ê§°Ü·µ»Ø0
+/// \param base è½¬æ¢è¿›åˆ¶å‚æ•°,å¯é€‰
+/// - ios::dec 10è¿›åˆ¶
+/// - ios::oct 8è¿›åˆ¶
+/// - ios::hex 16è¿›åˆ¶
+/// - é»˜è®¤ä¸º10è¿›åˆ¶
+/// \return è¿”å›ç»“æœlong int,è½¬æ¢å¤±è´¥è¿”å›0
 long stoi( const string &s, const ios::fmtflags base ) {
 	int ibase = 10;
 	char *ep;
@@ -76,10 +76,10 @@ long stoi( const string &s, const ios::fmtflags base ) {
 
 /// \ingroup waString
 /// \fn string ftos( const doule f, const int ndigit )
-/// double×ª»»Îªstring
+/// doubleè½¬æ¢ä¸ºstring
 /// \param f double
-/// \param ndigit Ğ¡Êıµãºó±£ÁôÎ»Êı,Ä¬ÈÏÎª2
-/// \return ×ª»»³É¹¦·µ»Østring,·ñÔò·µ»Ø"0"
+/// \param ndigit å°æ•°ç‚¹åä¿ç•™ä½æ•°,é»˜è®¤ä¸º2
+/// \return è½¬æ¢æˆåŠŸè¿”å›string,å¦åˆ™è¿”å›"0"
 string ftos( const double f, const int ndigit ) {
 	int fmtlen = 10;
 	int strlen = 64;
@@ -115,9 +115,9 @@ string ftos( const double f, const int ndigit ) {
 
 /// \ingroup waString
 /// \fn double stof( const string &s )
-/// string×ª»»Îªdouble
+/// stringè½¬æ¢ä¸ºdouble
 /// \param s string
-/// \return ×ª»»³É¹¦·µ»Ødouble,·ñÔò·µ»Ø0
+/// \return è½¬æ¢æˆåŠŸè¿”å›double,å¦åˆ™è¿”å›0
 double stof( const string &s ) {
 	char *ep;
 	return strtod( s.c_str(), &ep );
@@ -125,11 +125,11 @@ double stof( const string &s ) {
 
 /// \ingroup waString
 /// \fn bool isgbk( const unsigned char c1, const unsigned char c2 )
-/// ÅĞ¶ÏÒ»¸öË«×Ö½Ú×Ö·ûÊÇ·ñÊÇGBK±àÂëºº×Ö
-/// \param c1 Ë«×Ö½Ú×Ö·û1
-/// \param c2 Ë«×Ö½Ú×Ö·û2
-/// \retval true ÊÇ
-/// \retval false ·ñ
+/// åˆ¤æ–­ä¸€ä¸ªåŒå­—èŠ‚å­—ç¬¦æ˜¯å¦æ˜¯GBKç¼–ç æ±‰å­—
+/// \param c1 åŒå­—èŠ‚å­—ç¬¦1
+/// \param c2 åŒå­—èŠ‚å­—ç¬¦2
+/// \retval true æ˜¯
+/// \retval false å¦
 bool isgbk( const unsigned char c1, const unsigned char c2 ) {
 	if ( (c1>=0x81&&c1<=0xFE) && ((c2>=0x40&&c2<=0x7E)||(c2>=0xA1&&c2<=0xFE)) )
 		return true;
@@ -139,10 +139,10 @@ bool isgbk( const unsigned char c1, const unsigned char c2 ) {
 
 /// \ingroup waString
 /// \fn string va_sprintf( va_list ap, const string &format )
-/// ¿É±ä²ÎÊı×Ö·û´®¸ñÊ½»¯£¬Óëva_start()¡¢va_end()ºêÅäºÏÊ¹ÓÃ
-/// \param format ×Ö·û´®¸ñÊ½
-/// \param ap ¿É±ä²ÎÊıÁĞ±í
-/// \return ¸ñÊ½»¯×Ö·û´®½á¹û
+/// å¯å˜å‚æ•°å­—ç¬¦ä¸²æ ¼å¼åŒ–ï¼Œä¸va_start()ã€va_end()å®é…åˆä½¿ç”¨
+/// \param format å­—ç¬¦ä¸²æ ¼å¼
+/// \param ap å¯å˜å‚æ•°åˆ—è¡¨
+/// \return æ ¼å¼åŒ–å­—ç¬¦ä¸²ç»“æœ
 string va_sprintf( va_list ap, const string &format ) {
 	int strlen = 256;
 	char *buf = new char[strlen];
@@ -163,8 +163,8 @@ string va_sprintf( va_list ap, const string &format ) {
 
 /// \ingroup waString
 /// \fn string va_str( const char *format, ... )
-/// ¸ñÊ½»¯×Ö·û´®²¢·µ»Ø£¬¸÷²ÎÊı¶¨ÒåÓë±ê×¼sprintf()º¯ÊıÍêÈ«ÏàÍ¬
-/// \return ¸ñÊ½»¯×Ö·û´®½á¹û
+/// æ ¼å¼åŒ–å­—ç¬¦ä¸²å¹¶è¿”å›ï¼Œå„å‚æ•°å®šä¹‰ä¸æ ‡å‡†sprintf()å‡½æ•°å®Œå…¨ç›¸åŒ
+/// \return æ ¼å¼åŒ–å­—ç¬¦ä¸²ç»“æœ
 string va_str( const char *format, ... ) {
 	va_list ap;
 	va_start( ap, format );
@@ -173,8 +173,8 @@ string va_str( const char *format, ... ) {
 	return result;
 }
 
-/// ·µ»Ø char* ĞÍ½á¹û£¬µ÷ÓÃÕß±ØĞëµ÷ÓÃ delete[] ÊÍ·ÅËù·µ»ØÄÚ´æ
-/// \return char*ÀàĞÍÊı¾İ½á¹û
+/// è¿”å› char* å‹ç»“æœï¼Œè°ƒç”¨è€…å¿…é¡»è°ƒç”¨ delete[] é‡Šæ”¾æ‰€è¿”å›å†…å­˜
+/// \return char*ç±»å‹æ•°æ®ç»“æœ
 char* String::c_char() const {
 	size_t size = this->length();
 	char *buf = new char[ size + 1 ];
@@ -183,8 +183,8 @@ char* String::c_char() const {
 	return buf;
 }
 
-/// ·µ»Ø×Ö·ûÊıÁ¿£¬GBKºº×ÖËã×÷Ò»¸ö×Ö·û
-/// \return ×Ö·ûÊıÁ¿
+/// è¿”å›å­—ç¬¦æ•°é‡ï¼ŒGBKæ±‰å­—ç®—ä½œä¸€ä¸ªå­—ç¬¦
+/// \return å­—ç¬¦æ•°é‡
 string::size_type String::w_length() const {
 	size_t wlen = 0;
 	size_t len = this->length();
@@ -198,12 +198,12 @@ string::size_type String::w_length() const {
 	return wlen;
 }
 
-/// ½ØÈ¡×Ó×Ö·û´®,±ÜÃâ³öÏÖ°ë¸öºº×Ö
-/// Èô½ØÈ¡½á¹ûµÄÊ×Î²Îª°ë¸öºº×ÖÔòÉ¾³ı,É¾³ı°ë¸öºº×Öºó½á¹û¿ÉÄÜÎª¿Õ×Ö·û´®,
-/// ¸Ãº¯Êı±ÜÃâÔÚ½ØÈ¡Ê±½«Ò»¸öÍêÕûºº×Ö·Ö¿ª,¶Ô×Ö·û´®ÖĞÔ­ÓĞµÄ²»ÍêÕûºº×Ö×Ö·û²»×÷´¦Àí
-/// \param pos ÆğÊ¼Î»ÖÃ,Ä¬ÈÏÎª0,µ¥×Ö½Ú¼ÆÊı·½Ê½
-/// \param n Òª½ØÈ¡µÄ×Ö·û´®³¤¶È,Ä¬ÈÏÎªµ½Ä©Î²,µ¥×Ö½Ú¼ÆÊı·½Ê½
-/// \return Ëù½ØÈ¡µÄ×Ö·û´®
+/// æˆªå–å­å­—ç¬¦ä¸²,é¿å…å‡ºç°åŠä¸ªæ±‰å­—
+/// è‹¥æˆªå–ç»“æœçš„é¦–å°¾ä¸ºåŠä¸ªæ±‰å­—åˆ™åˆ é™¤,åˆ é™¤åŠä¸ªæ±‰å­—åç»“æœå¯èƒ½ä¸ºç©ºå­—ç¬¦ä¸²,
+/// è¯¥å‡½æ•°é¿å…åœ¨æˆªå–æ—¶å°†ä¸€ä¸ªå®Œæ•´æ±‰å­—åˆ†å¼€,å¯¹å­—ç¬¦ä¸²ä¸­åŸæœ‰çš„ä¸å®Œæ•´æ±‰å­—å­—ç¬¦ä¸ä½œå¤„ç†
+/// \param pos èµ·å§‹ä½ç½®,é»˜è®¤ä¸º0,å•å­—èŠ‚è®¡æ•°æ–¹å¼
+/// \param n è¦æˆªå–çš„å­—ç¬¦ä¸²é•¿åº¦,é»˜è®¤ä¸ºåˆ°æœ«å°¾,å•å­—èŠ‚è®¡æ•°æ–¹å¼
+/// \return æ‰€æˆªå–çš„å­—ç¬¦ä¸²
 String String::w_substr( const string::size_type pos, 
 	const string::size_type n ) const 
 {
@@ -232,40 +232,40 @@ String String::w_substr( const string::size_type pos,
         return String( "" );
 }
 
-/// Çå³ı×ó²à¿Õ°××Ö·û
-/// \param blank Òª¹ıÂËµôµÄ¿Õ°××Ö·ûÁĞ±í,Ä¬ÈÏÎªwebapp::BLANK_CHARS
+/// æ¸…é™¤å·¦ä¾§ç©ºç™½å­—ç¬¦
+/// \param blank è¦è¿‡æ»¤æ‰çš„ç©ºç™½å­—ç¬¦åˆ—è¡¨,é»˜è®¤ä¸ºwebapp::BLANK_CHARS
 void String::trim_left( const string &blank ) {
 	while ( this->length()>0 && blank.find(this->at(0))!=npos )
 		this->erase( 0, 1 );
 }
 
-/// Çå³ıÓÒ²à¿Õ°××Ö·û
-/// \param blank Òª¹ıÂËµôµÄ¿Õ°××Ö·ûÁĞ±í,Ä¬ÈÏÎªwebapp::BLANK_CHARS
+/// æ¸…é™¤å³ä¾§ç©ºç™½å­—ç¬¦
+/// \param blank è¦è¿‡æ»¤æ‰çš„ç©ºç™½å­—ç¬¦åˆ—è¡¨,é»˜è®¤ä¸ºwebapp::BLANK_CHARS
 void String::trim_right( const string &blank ) {
 	while ( this->length()>0 && blank.find(this->at(length()-1))!=npos )
 		erase( this->length()-1, 1 );
 }
 
-/// Çå³ıÁ½²à¿Õ°××Ö·û
-/// \param blank Òª¹ıÂËµôµÄ¿Õ°××Ö·ûÁĞ±í,Ä¬ÈÏÎªwebapp::BLANK_CHARS
+/// æ¸…é™¤ä¸¤ä¾§ç©ºç™½å­—ç¬¦
+/// \param blank è¦è¿‡æ»¤æ‰çš„ç©ºç™½å­—ç¬¦åˆ—è¡¨,é»˜è®¤ä¸ºwebapp::BLANK_CHARS
 void String::trim( const string &blank ) {
 	this->trim_left( blank );
 	this->trim_right( blank );
 }
 
-/// ´Ó×ó±ß½ØÈ¡Ö¸¶¨³¤¶È×Ó´®
-/// \param n Òª½ØÈ¡µÄ×Ö·û´®³¤¶È,Èô³¤¶È³¬³öÔò·µ»ØÔ­×Ö·û´®
-/// \return Ëù½ØÈ¡µÄ×Ö·û´®
+/// ä»å·¦è¾¹æˆªå–æŒ‡å®šé•¿åº¦å­ä¸²
+/// \param n è¦æˆªå–çš„å­—ç¬¦ä¸²é•¿åº¦,è‹¥é•¿åº¦è¶…å‡ºåˆ™è¿”å›åŸå­—ç¬¦ä¸²
+/// \return æ‰€æˆªå–çš„å­—ç¬¦ä¸²
 String String::left( const string::size_type n ) const {
 	size_t len = this->length();
 	len = ( n>len ) ? len : n;
 	return String( this->substr(0,len) );
 }
 
-/// ´ÓÖĞ¼ä½ØÈ¡Ö¸¶¨³¤¶È×Ó´®
-/// \param pos ¿ªÊ¼½ØÈ¡µÄÎ»ÖÃ
-/// \param n Òª½ØÈ¡µÄ×Ö·û´®³¤¶È,Èô³¤¶È³¬³öÔò·µ»ØÔ­×Ö·û´®,Ä¬ÈÏÎªµ½Ä©Î²
-/// \return Ëù½ØÈ¡µÄ×Ö·û´®
+/// ä»ä¸­é—´æˆªå–æŒ‡å®šé•¿åº¦å­ä¸²
+/// \param pos å¼€å§‹æˆªå–çš„ä½ç½®
+/// \param n è¦æˆªå–çš„å­—ç¬¦ä¸²é•¿åº¦,è‹¥é•¿åº¦è¶…å‡ºåˆ™è¿”å›åŸå­—ç¬¦ä¸²,é»˜è®¤ä¸ºåˆ°æœ«å°¾
+/// \return æ‰€æˆªå–çš„å­—ç¬¦ä¸²
 String String::mid( const string::size_type pos, 
 	const string::size_type n ) const 
 {
@@ -274,17 +274,17 @@ String String::mid( const string::size_type pos,
 	return String( this->substr(pos,n) );
 }		
 
-/// ´ÓÓÒ±ß½ØÈ¡Ö¸¶¨³¤¶È×Ó´®
-/// \param n Òª½ØÈ¡µÄ×Ö·û´®³¤¶È,Èô³¤¶È³¬³öÔò·µ»ØÔ­×Ö·û´®
-/// \return Ëù½ØÈ¡µÄ×Ö·û´®
+/// ä»å³è¾¹æˆªå–æŒ‡å®šé•¿åº¦å­ä¸²
+/// \param n è¦æˆªå–çš„å­—ç¬¦ä¸²é•¿åº¦,è‹¥é•¿åº¦è¶…å‡ºåˆ™è¿”å›åŸå­—ç¬¦ä¸²
+/// \return æ‰€æˆªå–çš„å­—ç¬¦ä¸²
 String String::right( const string::size_type n ) const {
 	size_t len = this->length();
 	len = ( n>len )? n : len;
 	return String( this->substr(len-n,n) );
 }		
 
-/// µ÷Õû×Ö·û´®³¤¶È
-/// \param n ĞÂ×Ö·û´®³¤¶È,ÈôĞ¡ÓÚµ±Ç°³¤¶ÈÔò½Ø¶Ï,Èô´óÓÚµ±Ç°³¤¶ÈÔò²¹³ä¿Õ°××Ö·û
+/// è°ƒæ•´å­—ç¬¦ä¸²é•¿åº¦
+/// \param n æ–°å­—ç¬¦ä¸²é•¿åº¦,è‹¥å°äºå½“å‰é•¿åº¦åˆ™æˆªæ–­,è‹¥å¤§äºå½“å‰é•¿åº¦åˆ™è¡¥å……ç©ºç™½å­—ç¬¦
 void String::resize( const string::size_type n ) {
 	size_t len = this->length();
 	if ( n < len ) {
@@ -295,9 +295,9 @@ void String::resize( const string::size_type n ) {
 	}
 }
 
-/// Í³¼ÆÖ¸¶¨×Ó´®³öÏÖµÄ´ÎÊı
-/// \param str Òª²éÕÒµÄ×Ó´®
-/// \return ×Ó´®²»ÖØ¸´³öÏÖµÄ´ÎÊı
+/// ç»Ÿè®¡æŒ‡å®šå­ä¸²å‡ºç°çš„æ¬¡æ•°
+/// \param str è¦æŸ¥æ‰¾çš„å­ä¸²
+/// \return å­ä¸²ä¸é‡å¤å‡ºç°çš„æ¬¡æ•°
 int String::count( const string &str ) const {
 	size_t pos = 0;
 	size_t count = 0;
@@ -311,14 +311,14 @@ int String::count( const string &str ) const {
 	return count;
 }
 	
-/// ¸ù¾İ·Ö¸î·û·Ö¸î×Ö·û´®
-/// \param tag ·Ö¸î±ê¼Ç×Ö·û´®
-/// \param limit ·Ö¸î´ÎÊıÏŞÖÆ,Ä¬ÈÏÎª0¼´²»ÏŞÖÆ
-/// \param mode ½á¹û·µ»ØÄ£Ê½,¿ÉÑ¡
-/// - String::SPLIT_IGNORE_BLANK ºöÂÔÁ¬Ğø¶à¸ö·Ö¸ô·û£¬·µ»Ø½á¹û²»º¬¿Õ×Ö¶Î
-/// - String::SPLIT_KEEP_BLANK ²»ºöÂÔÁ¬Ğø¶à¸ö·Ö¸ô·û£¬·µ»Ø½á¹û°üº¬¿Õ×Ö¶Î
-/// - Ä¬ÈÏÎªString::SPLIT_IGNORE_BLANK
-/// \return ·Ö¸î½á¹û×Ö·û´®Êı×é vector<String>
+/// æ ¹æ®åˆ†å‰²ç¬¦åˆ†å‰²å­—ç¬¦ä¸²
+/// \param tag åˆ†å‰²æ ‡è®°å­—ç¬¦ä¸²
+/// \param limit åˆ†å‰²æ¬¡æ•°é™åˆ¶,é»˜è®¤ä¸º0å³ä¸é™åˆ¶
+/// \param mode ç»“æœè¿”å›æ¨¡å¼,å¯é€‰
+/// - String::SPLIT_IGNORE_BLANK å¿½ç•¥è¿ç»­å¤šä¸ªåˆ†éš”ç¬¦ï¼Œè¿”å›ç»“æœä¸å«ç©ºå­—æ®µ
+/// - String::SPLIT_KEEP_BLANK ä¸å¿½ç•¥è¿ç»­å¤šä¸ªåˆ†éš”ç¬¦ï¼Œè¿”å›ç»“æœåŒ…å«ç©ºå­—æ®µ
+/// - é»˜è®¤ä¸ºString::SPLIT_IGNORE_BLANK
+/// \return åˆ†å‰²ç»“æœå­—ç¬¦ä¸²æ•°ç»„ vector<String>
 vector<String> String::split( const string &tag, const int limit, 
 	const split_mode mode ) const 
 {
@@ -357,10 +357,10 @@ vector<String> String::split( const string &tag, const int limit,
 	return list;
 }
 
-/// ×ª»»×Ö·û´®ÎªMAP½á¹¹(map<string,string>)
-/// \param itemtag ±í´ïÊ½Ö®¼äµÄ·Ö¸ô·û,Ä¬ÈÏÎª"&"
-/// \param exptag ±í´ïÊ½ÖĞ±äÁ¿ÃûÓë±äÁ¿ÖµÖ®¼äµÄ·Ö¸ô·û,Ä¬ÈÏÎª"="
-/// \return ×ª»»½á¹û map<string,string>
+/// è½¬æ¢å­—ç¬¦ä¸²ä¸ºMAPç»“æ„(map<string,string>)
+/// \param itemtag è¡¨è¾¾å¼ä¹‹é—´çš„åˆ†éš”ç¬¦,é»˜è®¤ä¸º"&"
+/// \param exptag è¡¨è¾¾å¼ä¸­å˜é‡åä¸å˜é‡å€¼ä¹‹é—´çš„åˆ†éš”ç¬¦,é»˜è®¤ä¸º"="
+/// \return è½¬æ¢ç»“æœ map<string,string>
 map<string,string> String::tomap( const string &itemtag, 
 	const string &exptag ) const 
 {
@@ -382,9 +382,9 @@ map<string,string> String::tomap( const string &itemtag,
 	return hashmap;
 }
 
-/// ×éºÏ×Ö·û´®,Óësplit()Ïà·´
-/// \param strings ×Ö·û´®Êı×é
-/// \param tag ×éºÏ·Ö¸ô·û
+/// ç»„åˆå­—ç¬¦ä¸²,ä¸split()ç›¸å
+/// \param strings å­—ç¬¦ä¸²æ•°ç»„
+/// \param tag ç»„åˆåˆ†éš”ç¬¦
 void String::join( const vector<string> &strings, const string &tag ) {
 	if ( strings.size() > 0 ) {
 		this->erase();
@@ -405,10 +405,10 @@ void String::join( const vector<String> &strings, const string &tag ) {
 	}
 }
 
-/// ¸ñÊ½»¯¸³Öµ
-/// ¸÷²ÎÊı¶¨ÒåÓë±ê×¼sprintf()º¯ÊıÍêÈ«ÏàÍ¬
-/// \retval true Ö´ĞĞ³É¹¦
-/// \retval false Ê§°Ü
+/// æ ¼å¼åŒ–èµ‹å€¼
+/// å„å‚æ•°å®šä¹‰ä¸æ ‡å‡†sprintf()å‡½æ•°å®Œå…¨ç›¸åŒ
+/// \retval true æ‰§è¡ŒæˆåŠŸ
+/// \retval false å¤±è´¥
 bool String::sprintf( const char *format, ... ) {
 	va_list ap;
 	va_start( ap, format );
@@ -417,12 +417,12 @@ bool String::sprintf( const char *format, ... ) {
 	return true;
 }
 
-/// Ìæ»»
-/// ¸Ãº¯ÊıÖØÔØÁËstring::replace()
-/// \param oldstr ±»Ìæ»»µôµÄ×Ö·û´®
-/// \param newstr ÓÃÀ´Ìæ»»¾É×Ö·û´®µÄĞÂ×Ö·û´®
-/// \retval 1 Ìæ»»³É¹¦
-/// \retval 0 Ê§°Ü
+/// æ›¿æ¢
+/// è¯¥å‡½æ•°é‡è½½äº†string::replace()
+/// \param oldstr è¢«æ›¿æ¢æ‰çš„å­—ç¬¦ä¸²
+/// \param newstr ç”¨æ¥æ›¿æ¢æ—§å­—ç¬¦ä¸²çš„æ–°å­—ç¬¦ä¸²
+/// \retval 1 æ›¿æ¢æˆåŠŸ
+/// \retval 0 å¤±è´¥
 int String::replace( const string &oldstr, const string &newstr ) {
 	size_t pos = 0;
 	if ( oldstr!="" && (pos=this->find(oldstr))!=npos ) {
@@ -432,10 +432,10 @@ int String::replace( const string &oldstr, const string &newstr ) {
 	return 0;
 }
 
-/// È«ÎÄÌæ»»
-/// \param oldstr ±»Ìæ»»µôµÄ×Ö·û´®
-/// \param newstr ÓÃÀ´Ìæ»»¾É×Ö·û´®µÄĞÂ×Ö·û´®
-/// \return Ö´ĞĞÌæ»»µÄ´ÎÊı
+/// å…¨æ–‡æ›¿æ¢
+/// \param oldstr è¢«æ›¿æ¢æ‰çš„å­—ç¬¦ä¸²
+/// \param newstr ç”¨æ¥æ›¿æ¢æ—§å­—ç¬¦ä¸²çš„æ–°å­—ç¬¦ä¸²
+/// \return æ‰§è¡Œæ›¿æ¢çš„æ¬¡æ•°
 int String::replace_all( const string &oldstr, const string &newstr ) {
 	if ( oldstr == "" )
 		return 0;
@@ -451,21 +451,21 @@ int String::replace_all( const string &oldstr, const string &newstr ) {
 	return i;
 }
 
-/// ×ª»»Îª´óĞ´×ÖÄ¸
+/// è½¬æ¢ä¸ºå¤§å†™å­—æ¯
 void String::upper() {
 	for( size_t i=0; i<this->length(); i++ )
 		(*this)[i] = toupper( (*this)[i] );
 }
 
-/// ×ª»»ÎªĞ¡Ğ´×ÖÄ¸
+/// è½¬æ¢ä¸ºå°å†™å­—æ¯
 void String::lower() {
 	for( size_t i=0; i<this->length(); i++ )
 		(*this)[i] = tolower( (*this)[i] );
 }
 
-/// ×Ö·û´®ÊÇ·ñÍêÈ«ÓÉÊı×Ö×é³É
-/// \retval true ÊÇ
-/// \retval false ·ñ
+/// å­—ç¬¦ä¸²æ˜¯å¦å®Œå…¨ç”±æ•°å­—ç»„æˆ
+/// \retval true æ˜¯
+/// \retval false å¦
 bool String::isnum() const {
 	if ( this->length() == 0 )
 		return false;
@@ -477,10 +477,10 @@ bool String::isnum() const {
 	return true;
 }
 
-/// ¶ÁÈ¡ÎÄ¼şµ½×Ö·û´®
-/// \param filename Òª¶ÁÈ¡µÄÎÄ¼şÍêÕûÂ·¾¶Ãû³Æ
-/// \retval true ¶ÁÈ¡³É¹¦
-/// \retval false Ê§°Ü
+/// è¯»å–æ–‡ä»¶åˆ°å­—ç¬¦ä¸²
+/// \param filename è¦è¯»å–çš„æ–‡ä»¶å®Œæ•´è·¯å¾„åç§°
+/// \retval true è¯»å–æˆåŠŸ
+/// \retval false å¤±è´¥
 bool String::load_file( const string &filename ) {
 	FILE *fp = fopen( filename.c_str(), "rb" );
 	if ( fp == NULL ) return false;
@@ -499,12 +499,12 @@ bool String::load_file( const string &filename ) {
 	return true;
 }
 
-/// ±£´æ×Ö·û´®µ½ÎÄ¼ş
-/// \param filename ÒªĞ´ÈëµÄÎÄ¼şÂ·¾¶Ãû³Æ
-/// \param mode Ğ´Èë·½Ê½,Ä¬ÈÏÎªios::trunc|ios::out
-/// \param permission ÎÄ¼şÊôĞÔ²ÎÊı£¬Ä¬ÈÏÎª0666
-/// \retval true Ğ´Èë³É¹¦
-/// \retval false Ê§°Ü
+/// ä¿å­˜å­—ç¬¦ä¸²åˆ°æ–‡ä»¶
+/// \param filename è¦å†™å…¥çš„æ–‡ä»¶è·¯å¾„åç§°
+/// \param mode å†™å…¥æ–¹å¼,é»˜è®¤ä¸ºios::trunc|ios::out
+/// \param permission æ–‡ä»¶å±æ€§å‚æ•°ï¼Œé»˜è®¤ä¸º0666
+/// \retval true å†™å…¥æˆåŠŸ
+/// \retval false å¤±è´¥
 bool String::save_file( const string &filename, const ios::openmode mode,
 	const mode_t permission ) const 
 {

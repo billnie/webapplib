@@ -1,7 +1,7 @@
 /// \file waMysqlClient.cpp
-/// webapp::MysqlClient,webapp::MysqlDataÀàÊµÏÖÎÄ¼ş
+/// webapp::MysqlClient,webapp::MysqlDataç±»å®ç°æ–‡ä»¶
 
-// ±àÒë²ÎÊı:
+// ç¼–è¯‘å‚æ•°:
 // (CC) -I /usr/local/include/mysql/ -L /usr/local/lib/mysql -lmysqlclient -lm
 
 #include <cstring>
@@ -14,9 +14,9 @@ namespace webapp {
 
 /// \ingroup waMysqlClient
 /// \fn string escape_sql( const string &str )
-/// SQLÓï¾ä×Ö·û×ªÒå
-/// \param Òª×ª»»µÄSQL×Ö·û´®
-/// \return ×ªÒå¹ıµÄ×Ö·û´®
+/// SQLè¯­å¥å­—ç¬¦è½¬ä¹‰
+/// \param è¦è½¬æ¢çš„SQLå­—ç¬¦ä¸²
+/// \return è½¬ä¹‰è¿‡çš„å­—ç¬¦ä¸²
 string escape_sql( const string &str ) {
 	char *p = new char[str.length()*2+1];
 	mysql_escape_string( p, str.c_str(), str.length() );
@@ -28,7 +28,7 @@ string escape_sql( const string &str ) {
 ////////////////////////////////////////////////////////////////////////////
 // MysqlData
 
-/// MysqlDataÎö¹¹º¯Êı
+/// MysqlDataææ„å‡½æ•°
 MysqlData::~MysqlData() {
 	if ( _mysqlres != NULL )
 		mysql_free_result( _mysqlres );
@@ -36,10 +36,10 @@ MysqlData::~MysqlData() {
 	_mysqlfields = 0;
 }
 
-/// ·µ»ØÖ¸¶¨Î»ÖÃµÄMysqlDataÊı¾İ
-/// \param row Êı¾İĞĞÎ»ÖÃ,Ä¬ÈÏÎª0
-/// \param col Êı¾İÁĞÎ»ÖÃ,Ä¬ÈÏÎª0
-/// \return ·µ»ØÊı¾İ,²»´æÔÚÔò·µ»Ø¿Õ×Ö·û´®
+/// è¿”å›æŒ‡å®šä½ç½®çš„MysqlDataæ•°æ®
+/// \param row æ•°æ®è¡Œä½ç½®,é»˜è®¤ä¸º0
+/// \param col æ•°æ®åˆ—ä½ç½®,é»˜è®¤ä¸º0
+/// \return è¿”å›æ•°æ®,ä¸å­˜åœ¨åˆ™è¿”å›ç©ºå­—ç¬¦ä¸²
 string MysqlData::get_data( const size_t row, const size_t col ) {
 	if( _mysqlres!=NULL && row<_rows && col<_cols ) {
 		if ( row != _fetched ) {
@@ -58,10 +58,10 @@ string MysqlData::get_data( const size_t row, const size_t col ) {
 	return string( "" );
 }
 
-/// ·µ»ØÖ¸¶¨×Ö¶ÎµÄMysqlDataÊı¾İ
-/// \param row ĞĞÎ»ÖÃ
-/// \param field ×Ö¶ÎÃû
-/// \return Êı¾İ×Ö·û´®,²»´æÔÚ·µ»Ø¿Õ×Ö·û´®
+/// è¿”å›æŒ‡å®šå­—æ®µçš„MysqlDataæ•°æ®
+/// \param row è¡Œä½ç½®
+/// \param field å­—æ®µå
+/// \return æ•°æ®å­—ç¬¦ä¸²,ä¸å­˜åœ¨è¿”å›ç©ºå­—ç¬¦ä¸²
 string MysqlData::get_data( const size_t row, const string &field ) {
 	int col = this->field_pos( field );
 	if ( col != -1 )
@@ -70,9 +70,9 @@ string MysqlData::get_data( const size_t row, const string &field ) {
 		return string( "" );
 }
 
-/// ·µ»ØÖ¸¶¨Î»ÖÃµÄMysqlDataÊı¾İĞĞ
-/// \param row Êı¾İĞĞÎ»ÖÃ,Ä¬ÈÏÎª0¼´µÚÒ»ĞĞ
-/// \return ·µ»ØÖµÀàĞÍÎªMysqlDataRow,¼´map<string,string>
+/// è¿”å›æŒ‡å®šä½ç½®çš„MysqlDataæ•°æ®è¡Œ
+/// \param row æ•°æ®è¡Œä½ç½®,é»˜è®¤ä¸º0å³ç¬¬ä¸€è¡Œ
+/// \return è¿”å›å€¼ç±»å‹ä¸ºMysqlDataRow,å³map<string,string>
 MysqlDataRow MysqlData::get_row( const size_t row ) {
 	MysqlDataRow datarow;
 	string field;
@@ -99,10 +99,10 @@ MysqlDataRow MysqlData::get_row( const size_t row ) {
 	return datarow;
 }
 
-/// Ìî³äMysqlDataÊı¾İ
-/// \param mysql MYSQL*²ÎÊı
-/// \retval true ³É¹¦
-/// \retval false Ê§°Ü
+/// å¡«å……MysqlDataæ•°æ®
+/// \param mysql MYSQL*å‚æ•°
+/// \retval true æˆåŠŸ
+/// \retval false å¤±è´¥
 bool MysqlData::fill_data( MYSQL *mysql ) {
 	if ( mysql == NULL )
 		return false;
@@ -131,9 +131,9 @@ bool MysqlData::fill_data( MYSQL *mysql ) {
 	return false;
 }
 
-/// ·µ»Ø×Ö¶ÎÎ»ÖÃ
-/// \param field ×Ö¶ÎÃû
-/// \return ÈôÊı¾İ½á¹ûÖĞ´æÔÚ¸Ã×Ö¶ÎÔò·µ»Ø×Ö¶ÎÎ»ÖÃ,·ñÔò·µ»Ø-1
+/// è¿”å›å­—æ®µä½ç½®
+/// \param field å­—æ®µå
+/// \return è‹¥æ•°æ®ç»“æœä¸­å­˜åœ¨è¯¥å­—æ®µåˆ™è¿”å›å­—æ®µä½ç½®,å¦åˆ™è¿”å›-1
 int MysqlData::field_pos( const string &field ) {
 	if ( _mysqlfields==0 || field=="" )
 		return -1;
@@ -152,9 +152,9 @@ int MysqlData::field_pos( const string &field ) {
 	return -1;
 }
 
-/// ·µ»Ø×Ö¶ÎÃû³Æ
-/// \param col ×Ö¶ÎÎ»ÖÃ
-/// \return ÈôÊı¾İ½á¹ûÖĞ´æÔÚ¸Ã×Ö¶ÎÔò·µ»Ø×Ö¶ÎÃû³Æ,·ñÔò·µ»Ø¿Õ×Ö·û´®
+/// è¿”å›å­—æ®µåç§°
+/// \param col å­—æ®µä½ç½®
+/// \return è‹¥æ•°æ®ç»“æœä¸­å­˜åœ¨è¯¥å­—æ®µåˆ™è¿”å›å­—æ®µåç§°,å¦åˆ™è¿”å›ç©ºå­—ç¬¦ä¸²
 string MysqlData::field_name( size_t col ) const {
 	if ( _mysqlfields!=0 && col<=_cols )
 		return string( _mysqlfields[col].name );
@@ -165,15 +165,15 @@ string MysqlData::field_name( size_t col ) const {
 ////////////////////////////////////////////////////////////////////////////
 // MysqlClient
 
-/// Á¬½ÓÊı¾İ¿â
-/// \param host MySQLÖ÷»úIP
-/// \param user MySQLÓÃ»§Ãû
-/// \param pwd ÓÃ»§¿ÚÁî
-/// \param database Òª´ò¿ªµÄÊı¾İ¿â
-/// \param port Êı¾İ¿â¶Ë¿Ú£¬Ä¬ÈÏÎª0
-/// \param socket UNIX_SOCKET£¬Ä¬ÈÏÎªNULL
-/// \retval true ³É¹¦
-/// \retval false Ê§°Ü
+/// è¿æ¥æ•°æ®åº“
+/// \param host MySQLä¸»æœºIP
+/// \param user MySQLç”¨æˆ·å
+/// \param pwd ç”¨æˆ·å£ä»¤
+/// \param database è¦æ‰“å¼€çš„æ•°æ®åº“
+/// \param port æ•°æ®åº“ç«¯å£ï¼Œé»˜è®¤ä¸º0
+/// \param socket UNIX_SOCKETï¼Œé»˜è®¤ä¸ºNULL
+/// \retval true æˆåŠŸ
+/// \retval false å¤±è´¥
 bool MysqlClient::connect( const string &host, const string &user, const string &pwd, 
 	const string &database, const int port, const char* socket ) 
 {
@@ -188,7 +188,7 @@ bool MysqlClient::connect( const string &host, const string &user, const string 
 	return _connected;
 }
 
-/// ¶Ï¿ªÊı¾İ¿âÁ¬½Ó
+/// æ–­å¼€æ•°æ®åº“è¿æ¥
 void MysqlClient::disconnect() {
 	if( _connected ) {
 		mysql_close( &_mysql );
@@ -196,9 +196,9 @@ void MysqlClient::disconnect() {
 	}
 }
 
-/// ÅĞ¶ÏÊÇ·ñÁ¬½ÓÊı¾İ¿â
-/// \retval true Á¬½Ó
-/// \retval false ¶Ï¿ª
+/// åˆ¤æ–­æ˜¯å¦è¿æ¥æ•°æ®åº“
+/// \retval true è¿æ¥
+/// \retval false æ–­å¼€
 bool MysqlClient::is_connected() {
 	if ( _connected ) {
 		if ( mysql_ping(&_mysql) == 0 )
@@ -210,10 +210,10 @@ bool MysqlClient::is_connected() {
 	return _connected;
 }
 
-/// Ñ¡ÔñÊı¾İ¿â
-/// \param database Êı¾İ¿âÃû
-/// \retval true ³É¹¦
-/// \retval false Ê§°Ü
+/// é€‰æ‹©æ•°æ®åº“
+/// \param database æ•°æ®åº“å
+/// \retval true æˆåŠŸ
+/// \retval false å¤±è´¥
 bool MysqlClient::select_db( const string &database ) {
 	if ( _connected && mysql_select_db(&_mysql,database.c_str())==0 )
 		return true;
@@ -221,11 +221,11 @@ bool MysqlClient::select_db( const string &database ) {
 		return false;
 }
 
-/// Ö´ĞĞSQLÓï¾ä,È¡µÃ²éÑ¯½á¹û
-/// \param sqlstr ÒªÖ´ĞĞµÄSQLÓï¾ä
-/// \param records ±£´æÊı¾İ½á¹ûµÄMysqlData¶ÔÏó
-/// \retval true ³É¹¦
-/// \retval false Ê§°Ü
+/// æ‰§è¡ŒSQLè¯­å¥,å–å¾—æŸ¥è¯¢ç»“æœ
+/// \param sqlstr è¦æ‰§è¡Œçš„SQLè¯­å¥
+/// \param records ä¿å­˜æ•°æ®ç»“æœçš„MysqlDataå¯¹è±¡
+/// \retval true æˆåŠŸ
+/// \retval false å¤±è´¥
 bool MysqlClient::query( const string &sqlstr, MysqlData &records ) {
 	if ( _connected && mysql_real_query(&_mysql,sqlstr.c_str(),sqlstr.length())==0 ) {
 		if( records.fill_data(&_mysql) )
@@ -234,10 +234,10 @@ bool MysqlClient::query( const string &sqlstr, MysqlData &records ) {
 	return false;
 }
 
-/// Ö´ĞĞSQLÓï¾ä
-/// \param sqlstr ÒªÖ´ĞĞµÄSQLÓï¾ä
-/// \retval true ³É¹¦
-/// \retval false Ê§°Ü
+/// æ‰§è¡ŒSQLè¯­å¥
+/// \param sqlstr è¦æ‰§è¡Œçš„SQLè¯­å¥
+/// \retval true æˆåŠŸ
+/// \retval false å¤±è´¥
 bool MysqlClient::query( const string &sqlstr ) {
 	if ( _connected && mysql_real_query(&_mysql,sqlstr.c_str(),sqlstr.length())==0 )
 		return true;			
@@ -245,11 +245,11 @@ bool MysqlClient::query( const string &sqlstr ) {
 		return false;
 }
 
-/// ·µ»Ø²éÑ¯½á¹ûÖĞÖ¸¶¨Î»ÖÃµÄ×Ö·û´®Öµ
-/// \param sqlstr SQL²éÑ¯×Ö·û´®
-/// \param row Êı¾İĞĞÎ»ÖÃ,Ä¬ÈÏÎª0
-/// \param col Êı¾İÁĞÎ»ÖÃ,Ä¬ÈÏÎª0
-/// \return ²éÑ¯³É¹¦·µ»Ø×Ö·û´®,·ñÔò·µ»Ø¿Õ×Ö·û´®
+/// è¿”å›æŸ¥è¯¢ç»“æœä¸­æŒ‡å®šä½ç½®çš„å­—ç¬¦ä¸²å€¼
+/// \param sqlstr SQLæŸ¥è¯¢å­—ç¬¦ä¸²
+/// \param row æ•°æ®è¡Œä½ç½®,é»˜è®¤ä¸º0
+/// \param col æ•°æ®åˆ—ä½ç½®,é»˜è®¤ä¸º0
+/// \return æŸ¥è¯¢æˆåŠŸè¿”å›å­—ç¬¦ä¸²,å¦åˆ™è¿”å›ç©ºå­—ç¬¦ä¸²
 string MysqlClient::query_val( const string &sqlstr, const size_t row, 
 	const size_t col ) 
 {
@@ -261,10 +261,10 @@ string MysqlClient::query_val( const string &sqlstr, const size_t row,
 	return string( "" );
 }
 
-/// ·µ»Ø²éÑ¯½á¹ûÖĞÖ¸¶¨ĞĞ
-/// \param sqlstr SQL²éÑ¯×Ö·û´®
-/// \param row Êı¾İĞĞÎ»ÖÃ,Ä¬ÈÏÎª0
-/// \return ·µ»ØÖµÀàĞÍÎªMysqlDataRow,¼´map<string,string>
+/// è¿”å›æŸ¥è¯¢ç»“æœä¸­æŒ‡å®šè¡Œ
+/// \param sqlstr SQLæŸ¥è¯¢å­—ç¬¦ä¸²
+/// \param row æ•°æ®è¡Œä½ç½®,é»˜è®¤ä¸º0
+/// \return è¿”å›å€¼ç±»å‹ä¸ºMysqlDataRow,å³map<string,string>
 MysqlDataRow MysqlClient::query_row( const string &sqlstr, const size_t row ) {
     MysqlData data;
     MysqlDataRow datarow;
@@ -276,8 +276,8 @@ MysqlDataRow MysqlClient::query_row( const string &sqlstr, const size_t row ) {
     return datarow;
 }
 
-/// ÉÏ´Î²éÑ¯¶¯×÷ËùÓ°ÏìµÄ¼ÇÂ¼ÌõÊı
-/// \return ·µ»Ø¼ÇÂ¼ÌõÊı,ÀàĞÍsize_t
+/// ä¸Šæ¬¡æŸ¥è¯¢åŠ¨ä½œæ‰€å½±å“çš„è®°å½•æ¡æ•°
+/// \return è¿”å›è®°å½•æ¡æ•°,ç±»å‹size_t
 size_t MysqlClient::affected() {
 	if ( _connected )
 		return mysql_affected_rows( &_mysql );
@@ -285,9 +285,9 @@ size_t MysqlClient::affected() {
 		return 0;
 }
 
-/// È¡µÃÉÏ´Î²éÑ¯µÄÒ»¸öAUTO_INCREMENTÁĞÉú³ÉµÄID
-/// Ò»¸öMysql±íÖ»ÄÜÓĞÒ»¸öAUTO_INCREMENTÁĞ,ÇÒ±ØĞëÎªË÷Òı
-/// \return ·µ»ØÉú³ÉµÄID
+/// å–å¾—ä¸Šæ¬¡æŸ¥è¯¢çš„ä¸€ä¸ªAUTO_INCREMENTåˆ—ç”Ÿæˆçš„ID
+/// ä¸€ä¸ªMysqlè¡¨åªèƒ½æœ‰ä¸€ä¸ªAUTO_INCREMENTåˆ—,ä¸”å¿…é¡»ä¸ºç´¢å¼•
+/// \return è¿”å›ç”Ÿæˆçš„ID
 size_t MysqlClient::last_id() {
 	if ( _connected )
 		return mysql_insert_id( &_mysql );
@@ -295,8 +295,8 @@ size_t MysqlClient::last_id() {
 		return 0;
 }
 
-/// È¡µÃ¸üĞÂĞÅÏ¢
-/// \return ·µ»Ø¸üĞÂĞÅÏ¢
+/// å–å¾—æ›´æ–°ä¿¡æ¯
+/// \return è¿”å›æ›´æ–°ä¿¡æ¯
 string MysqlClient::info() {
 	if ( _connected )
 		return string( mysql_info(&_mysql) );
