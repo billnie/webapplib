@@ -71,6 +71,7 @@ class Cgi {
 
 	map<string,string> _cgi;
 	String _method;
+    String _content;
 	bool _trunc;
 };
 

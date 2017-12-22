@@ -77,7 +77,8 @@ int main() {
 		} else {
 			cout << mysqlclient.error() << endl;
 		}
-        mysqlclient.query("INSERT INTO log (tm, header, content, dfa) VALUES (from_unixtime(1513926245),\"ios\",\"hello world\",\"2314234124\")");
+        
+        mysqlclient.query("INSERT INTO log (tm, header, content, dfa) VALUES (from_unixtime(1513926245),\'ios\',\'hello world\',\'2314234124\')");
 	}
 
 	#endif //_WEBAPPLIB_NOMYSQL

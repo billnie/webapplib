@@ -85,7 +85,16 @@ Cgi::Cgi( const size_t formdata_maxsize ) {
 			// parse stdin
 			this->parse_urlencoded( buf );
 			
-		} else if ( content_type.find("multipart/form-data") != content_type.npos ) {
+        }else if ( content_type.find("application/json") != content_type.npos ) {
+            // read stdin
+            int content_length = atoi( (get_env("CONTENT_LENGTH")).c_str() );
+            for ( int i=0; i<content_length; ++i ) {
+                cin >> c;
+                buf += c;
+            }
+            _content = buf;
+            
+        } else if ( content_type.find("multipart/form-data") != content_type.npos ) {
 			// read stdin
 			cin.unsetf( ios::skipws );
 

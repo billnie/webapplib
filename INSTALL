@@ -13,3 +13,9 @@
 
 以上安装过程在 Linux（CentOS）、MacOSX 与 Cygwin 环境测试通过，
 使用 CMake 方式编译应该可以支持更多系统平台。
+
+日志
+curl -v -d "content=curlpost&dfa=12345" "http://49.4.0.191/cgi-bin/log.cgi"
+
+
+curl -l -H "Content-type: application/json" -X POST -d '{"phone":"13521389587","password":"test"}' http://49.4.0.191/cgi-bin/log.cgi
