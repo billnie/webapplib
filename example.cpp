@@ -50,12 +50,12 @@ int main() {
 	#ifndef _WEBAPPLIB_NOMYSQL
 
 	String sql;
-	sql.sprintf( "SELECT value FROM table WHERE user='%s'", escape_sql(username).c_str() );
+	sql.sprintf( "SELECT value FROM kkkk WHERE user='%s'", escape_sql(username).c_str() );
 	
 	MysqlClient mysqlclient;
 	MysqlData mysqldata;
 
-	mysqlclient.connect( "example.mysql.com", "user", "pwd", "database" );
+	mysqlclient.connect( "example.mysql.com", "user", "pwd", "test" );
 	if ( mysqlclient.is_connected() ) {
 		if ( mysqlclient.query(sql,mysqldata) ) {
 			value = mysqldata( 0, "value" );

@@ -7,6 +7,7 @@
 #include "waString.h"
 #include "waTextFile.h"
 #include "waConfigFile.h"
+#include "json/json.h"
 
 using namespace std;
 
