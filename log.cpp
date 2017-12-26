@@ -4,6 +4,7 @@
 #include <iostream>
 #include "webapplib.h"
 #include "json/json.h"
+#include <stdlib.h>
 using namespace webapp;
 
 int main() {
@@ -43,15 +44,39 @@ int main() {
 	
 	if ( mysqlclient.is_connected() ) {
 		string s;
-		s = "INSERT INTO log (tm, header, content, dfa) VALUES (from_unixtime(";
-		s += "1513926245)";
-		s+= ",\'os\',\'";
-		s+= cgi["content"];
-		s+= "\',\'";
-		s+=cgi["dfa"];
-		s+="\')";
-		cout<<s<<endl;
-		mysqlclient.query(s);
+        if(cgi._content.length()>0){
+            Json::Reader reader;
+            Json::Value rt;
+		cout<<"begin parse"<<endl;    
+        if (reader.parse(cgi._content.c_str(), rt)){
+                //数组多条
+                int sendSize = rt.size();
+                for(int i=0;i<sendSize;i++){
+                    s = "INSERT INTO log (tm, header, content, dfa) VALUES (from_unixtime(";
+                    s += rt[i]["tm"].asString();  s += "),\'";
+                    s += rt[i]["header"].asString();
+                    s+= "\',\'";
+                    s+= rt[i]["content"].asString();
+                    s+= "\',\'";
+                    s+=rt["dfa"].asString();
+                    s+="\')";
+                    cout<<s<<endl;
+                    mysqlclient.query(s);
+                }
+            }
+		cout<<"parese json"<<endl;
+        }else{
+            s = "INSERT INTO log (tm, header, content, dfa) VALUES (from_unixtime(";
+            s += "1513926245)";
+            s+= ",\'os\',\'";
+            s+= cgi["content"];
+            s+= "\',\'";
+            s+=cgi["dfa"];
+            s+="\')";
+            cout<<s<<endl;
+            mysqlclient.query(s);
+        }
+
 	}
 
 	return 0;
