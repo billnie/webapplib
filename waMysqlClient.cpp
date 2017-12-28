@@ -180,6 +180,7 @@ bool MysqlClient::connect( const string &host, const string &user, const string 
 	this->disconnect();
 	
 	if ( mysql_init(&_mysql) ) {
+		mysql_options(&_mysql, MYSQL_SET_CHARSET_NAME, "utf8") ;
 		if ( mysql_real_connect( &_mysql, host.c_str(), user.c_str(),
 			pwd.c_str(), database.c_str(), port, socket, CLIENT_COMPRESS ) )
 			_connected = true;

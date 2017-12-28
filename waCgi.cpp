@@ -91,12 +91,12 @@ Cgi::Cgi( const size_t formdata_maxsize ) {
             for ( int i=0; i<content_length; ++i ) {
                 cin >> c;
                 buf += c;
+		_content = buf;
             }
-            _content = buf;
-            
         } else if ( content_type.find("multipart/form-data") != content_type.npos ) {
 			// read stdin
-			cin.unsetf( ios::skipws );
+	
+		cin.unsetf( ios::skipws );
 
 			if ( formdata_maxsize > 0 ) {
 				// max size set
@@ -124,6 +124,8 @@ Cgi::Cgi( const size_t formdata_maxsize ) {
 			// parse stdin
 			this->parse_multipart( content_type, buf );
 		}
+	}else{
+		cout<<"nonetype"<<endl;
 	}
 }
 
