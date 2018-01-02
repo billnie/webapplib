@@ -91,49 +91,50 @@ void printd(int n)//把整形按字符型输出
     }  
 }
 
-void hexlog(char *val, ...){
-    int ch;
-    va_list arg;
-    va_start(arg, val);
-    while (*val != '\0')
-    {
-        switch (*val)
-        {
-            case '%':            //遇到%执行switch case语句
-            {
-                if (*(val + 1) == 'c')//输出字符
-                {
-                    ch = va_arg(arg, char);
-                    putchar(ch);
-                    val++;                //指针变量向下偏移一个单位
-                }
-                else if (*(val + 1) == 'd')
-                {
-                    ch = va_arg(arg, char);//输出整形
-                    printd(ch);
-                    val++;
-                }
-                else if (*(val + 1) == 's')//输出字符串
-                {  
-                    char*p = va_arg(arg, char*);  
-                    while (*p != '\0')  
-                    {  
-                        putchar(*p);  
-                        p++;  
-                    }  
-                    val++;                //指向头一变量的下一个字符  
-                }  
-                else  
-                    putchar('%');  
-                break;  
-            }  
-            default:  
-            {  
-                putchar(*val);  
-                break;  
-            }  
-        }  
-        val++;  
-    }  
-    va_end(arg);
-}
+//void hexlog(char *val, ...){
+//    int ch;
+//    va_list arg;
+//    va_start(arg, val);
+//    while (*val != '\0')
+//    {
+//        switch (*val)
+//        {
+//            case '%':            //遇到%执行switch case语句
+//            {
+//                if (*(val + 1) == 'c')//输出字符
+//                {
+//                    ch = va_arg(arg, char);
+//                    putchar(ch);
+//                    val++;                //指针变量向下偏移一个单位
+//                }
+//                else if (*(val + 1) == 'd')
+//                {
+//                    ch = va_arg(arg, char);//输出整形
+//                    printd(ch);
+//                    val++;
+//                }
+//                else if (*(val + 1) == 's')//输出字符串
+//                {
+//                    char*p = va_arg(arg, char*);
+//                    while (*p != '\0')
+//                    {
+//                        putchar(*p);
+//                        p++;
+//                    }
+//                    val++;                //指向头一变量的下一个字符
+//                }
+//                else
+//                    putchar('%');
+//                break;
+//            }
+//            default:
+//            {
+//                putchar(*val);
+//                break;
+//            }
+//        }
+//        val++;
+//    }
+//    va_end(arg);
+//}
+
