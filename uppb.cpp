@@ -34,7 +34,12 @@
 #include <stdexcept>
 #include <iostream>
 #include <cstdlib>
+<<<<<<< HEAD
 #include "webapplib.h"
+=======
+#include <stdio.h>
+#include <cstring>
+>>>>>>> e10c40d22f2c1cb8d78e3b256a43f0e795fd363b
 #include "cgicc/CgiDefs.h"
 #include "cgicc/Cgicc.h"
 #include "cgicc/HTTPHTMLHeader.h"
