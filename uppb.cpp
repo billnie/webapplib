@@ -34,7 +34,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <cstdlib>
-
+#include "webapplib.h"
 #include "cgicc/CgiDefs.h"
 #include "cgicc/Cgicc.h"
 #include "cgicc/HTTPHTMLHeader.h"
@@ -55,7 +55,7 @@
 #define log_free_unpack             sls_logs__log_group__free_unpacked
 using namespace std;
 using namespace cgicc;
-
+using namespace webapp;
 int zlibumcompress(const unsigned char *text, char **out, int *len){
     if(text && out && len){
         uLong tlen = *len;  /* 需要把字符串的结束符'\0'也一并处理 */
@@ -116,45 +116,12 @@ main(int /*argc*/,  char ** /*argv*/)
     // Create a new Cgicc object containing all the CGI data
     Cgicc cgi;
       cout << "Content-Type: text/html;charset=utf-8\n\n";// << endl;
-    // Redirect output, if desired
-    if(cgi.queryCheckbox("redirect")) {
-      const_file_iterator file = cgi.getFile("userfile");
 
-      // Only redirect a valid file
-      if(file != cgi.getFiles().end()) {
-        cout << HTTPContentHeader(file->getDataType());
-        file->writeToStream(cout);
 
-        return EXIT_SUCCESS;
-      }
-    }
     // Get a pointer to the environment
     const CgiEnvironment& env = cgi.getEnvironment();
-      const_file_iterator file;
-      file = cgi.getFile("userfile");
-    if(file != cgi.getFiles().end()) {
-
-        if(stringsAreEqual(file->getDataType(), "application/zip")){
-            //解压
-            string ss = file->getData();
-            char *ubuf;
-            unsigned long ulen;
-            int ur;
-            ulen = file->getDataLength()*50;
-            ubuf = (char*)malloc(file->getDataLength()*50);
-            memset (ubuf, 0, file->getDataLength()*50);
-            if((ur=uncompress((unsigned char*)ubuf, &ulen, (unsigned char*)ss.c_str(), file->getDataLength())) != Z_OK)
-            {
-                cout<<ss<<endl;
-            }else{
-                cout<< ubuf;
-            }
-            free(ubuf);
-        }else{
-            file->writeToStream(cout);
-        }
-
-    }else{
+      
+    {
         if(stringsAreEqual(env.getRequestMethod(), "post")){
             char *buf=NULL;
             int len,start;
