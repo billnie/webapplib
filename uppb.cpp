@@ -34,7 +34,8 @@
 #include <stdexcept>
 #include <iostream>
 #include <cstdlib>
-
+#include <stdio.h>
+#include <cstring>
 #include "cgicc/CgiDefs.h"
 #include "cgicc/Cgicc.h"
 #include "cgicc/HTTPHTMLHeader.h"
