@@ -36,7 +36,7 @@
 #include <cstdlib>
 
 #include "webapplib.h"
-
+#include <zlib.h>
 #include <stdio.h>
 #include <cstring>
 
@@ -64,7 +64,7 @@ using namespace webapp;
 
 int lz4umcompress(const unsigned char *text, char **out, int *len){
     if(text && out && len){
-        uLong tlen = *len;  /* 需要把字符串的结束符'\0'也一并处理 */
+        int tlen = *len;  /* 需要把字符串的结束符'\0'也一并处理 */
         unsigned char* buf = NULL;
         uLong blen;
         int ur;
