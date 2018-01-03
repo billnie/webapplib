@@ -127,8 +127,11 @@ main(int /*argc*/,  char ** /*argv*/)
                         cout<<" ";
                         sc = "";
                         for(j=0; j < grp->logs[i]->n_contents;j++){
+                            if(j>0) sc += ",";
                             cout<<grp->logs[i]->contents[j]->key;
                             sc +=grp->logs[i]->contents[j]->key;
+                            sc += ":";
+                            sc += grp->logs[i]->contents[j]->value;
                         }
                         cout<<endl;
                         sprintf(ss, "%d", grp->logs[i]->time);
