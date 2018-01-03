@@ -26,7 +26,7 @@ LIBPATH = /usr/local/lib
 MYSQLINC = -I/usr/include/mysql -I/usr/local/include/protobuf-c/
 #MYSQLINC = -I/usr/local/include/mysql -I/usr/local/include/protobuf-c/ #osx
 # MySQL 库文件路径及链接参数
-MYSQLLIB = -L/usr/lib/mysql -lmysqlclient -lm -lz -ljsoncpp
+MYSQLLIB = -L/usr/lib/mysql -lmysqlclient -lm -lz -ljsoncpp -lwebapp
 #MYSQLLIB = -L/usr/local/lib/mysqld -lmysqlclient -lm -lz -ljsoncpp     #osx
 ################################################################################
 # 以下部分一般不需更改
@@ -35,7 +35,7 @@ MYSQLLIB = -L/usr/lib/mysql -lmysqlclient -lm -lz -ljsoncpp
 CXX = g++
 
 # 编译选项
-CXXFLAGS = -O2 -g
+CXXFLAGS =-Wall -O2 -g
 # -Wall 显示所有警告信息
 # -O2 编译优化
 # -g 生成调试信息
