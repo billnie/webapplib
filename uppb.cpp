@@ -44,7 +44,7 @@
 #include "cgicc/Cgicc.h"
 #include "cgicc/HTTPHTMLHeader.h"
 #include "cgicc/HTMLClasses.h"
-#include <zlib.h>
+
 #include    <lz4.h>
 #if HAVE_SYS_UTSNAME_H
 #  include <sys/utsname.h>
@@ -61,31 +61,7 @@
 using namespace std;
 using namespace cgicc;
 using namespace webapp;
-int zlibumcompress(const unsigned char *text, char **out, int *len){
-    if(text && out && len){
-        uLong tlen = *len;  /* 需要把字符串的结束符'\0'也一并处理 */
-        unsigned char* buf = NULL;
-        uLong blen;
-        int ur;
-        /* 计算缓冲区大小，并为其分配内存 */
-        blen = 0; blen = tlen *100; ur = 0;
-        buf = (unsigned char *) malloc(blen);
-        memset(buf, 0, blen);
-        /* 压缩 */
-//        hexDump("oridata",(void*)text, tlen);
-        if((ur = uncompress(buf, &blen, (unsigned char*)text, tlen) )!= Z_OK)
-        {
-            printf("compress failed!%d, error = %d\n", tlen,ur);
-            return -1;
-        }else{
-//           printf((char*)buf);
-        }
-        
-        *out = (char*)buf; *len = blen;
-        return 0;
-    }
-    return -1;
-}
+
 int lz4umcompress(const unsigned char *text, char **out, int *len){
     if(text && out && len){
         uLong tlen = *len;  /* 需要把字符串的结束符'\0'也一并处理 */
@@ -118,15 +94,18 @@ main(int /*argc*/,  char ** /*argv*/)
 {
   try {
 
-    // Create a new Cgicc object containing all the CGI data
     Cgicc cgi;
       cout << "Content-Type: text/html;charset=utf-8\n\n";// << endl;
 
-
     // Get a pointer to the environment
     const CgiEnvironment& env = cgi.getEnvironment();
+      MysqlClient mysqlclient;
+      MysqlData mysqldata;
       
-    {
+      mysqlclient.connect( "127.0.0.1", "root", "jfh_2017", "test" );
+      
+      if ( mysqlclient.is_connected() ) {
+    
         if(stringsAreEqual(env.getRequestMethod(), "post")){
             char *buf=NULL;
             int len,start;
@@ -141,13 +120,28 @@ main(int /*argc*/,  char ** /*argv*/)
                 if(grp){
                     cout<<grp->topic<<endl;
                     int i,j,k;
+                    string s,sc;
+                    char ss[32];
                     for(i=0;i < grp->n_logs;i++){
                         cout<<grp->logs[i]->time;
                         cout<<" ";
+                        sc = "";
                         for(j=0; j < grp->logs[i]->n_contents;j++){
                             cout<<grp->logs[i]->contents[j]->key;
+                            sc +=grp->logs[i]->contents[j]->key;
                         }
                         cout<<endl;
+                        sprintf(ss, "%d", grp->logs[i]->time);
+                        s = "INSERT INTO log (tm, header, content, dfa) VALUES (from_unixtime(";
+                        s += ss;  s += "),\'";
+                        s += grp->topic;
+                        s+= "\',\'";
+                        s+= grp->source;
+                        s+= "\',\'";
+                        s+=sc;
+                        s+="\')";
+                        cout<<s<<endl;
+                        mysqlclient.query(s);
                     }
                     log_free_unpack(grp,NULL);
                 }else{
