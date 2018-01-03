@@ -64,9 +64,9 @@ using namespace webapp;
 
 int lz4umcompress(const unsigned char *text, char **out, int *len){
     if(text && out && len){
-        uLong tlen = *len;  /* 需要把字符串的结束符'\0'也一并处理 */
+        int tlen = *len;  /* 需要把字符串的结束符'\0'也一并处理 */
         unsigned char* buf = NULL;
-        uLong blen;
+        int blen;
         int ur;
         /* 计算缓冲区大小，并为其分配内存 */
         blen = 0; blen = tlen *100; ur = 0;
@@ -74,7 +74,7 @@ int lz4umcompress(const unsigned char *text, char **out, int *len){
         memset(buf, 0, blen);
         /* 压缩 */
         //        hexDump("oridata",(void*)text, tlen);
-        if((ur = LZ4_uncompress_unknownOutputSize((const char*)text,(char*) buf, *len, blen) )<= Z_OK)
+        if((ur = LZ4_uncompress_unknownOutputSize((const char*)text,(char*) buf, *len, blen) )<= 0)
         {
             printf("compress failed!%d, error = %d\n", tlen,ur);
             return -1;
